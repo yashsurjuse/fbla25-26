@@ -4,6 +4,15 @@
   --bg-900: #04060a;
   --accent-from: #7c5cff;
   --accent-to: #00e0ff;
+  --a11y-text-scale: 1;
+  --a11y-filter: none;
+  --a11y-font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --a11y-cursor: auto;
+  --a11y-cursor-pointer: pointer;
+}
+
+html {
+  font-size: calc(16px * var(--a11y-text-scale));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,7 +26,54 @@ body {
               radial-gradient(1000px 500px at 90% 80%, rgba(0,224,255,0.035), transparent 20%),
               var(--bg-900);
   color: #e6eef6;
-  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: var(--a11y-font-family, var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial);
+}
+
+.a11y-filter-target {
+  filter: var(--a11y-filter, none);
+}
+
+body, body * {
+  cursor: var(--a11y-cursor, auto);
+}
+
+body a,
+body button,
+body [role="button"],
+body input[type="button"],
+body input[type="submit"],
+body input[type="reset"],
+body label {
+  cursor: var(--a11y-cursor-pointer, pointer);
+}
+
+.cursor-pointer {
+  cursor: var(--a11y-cursor-pointer, pointer);
+}
+
+#a11y-cursor-highlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  margin-left: -24px;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 2px solid rgba(0, 224, 255, 0.55);
+  box-shadow: 0 0 16px rgba(0, 224, 255, 0.35);
+  transition: transform 0.08s ease-out;
+  z-index: 9999;
+}
+
+#a11y-cursor-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: inherit;
+  background: rgba(0, 224, 255, 0.25);
+  opacity: 0.35;
 }
 
 .nav-link {

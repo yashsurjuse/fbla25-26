@@ -23,7 +23,7 @@ export default function Modal({ children, onClose }: { children: React.ReactNode
           <button
             onClick={onClose}
             aria-label="Close"
-            className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20"
+            className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white transition hover:bg-white/20 max-[749px]:hidden"
           >
             ×
           </button>

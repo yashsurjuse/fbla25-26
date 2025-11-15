@@ -89,13 +89,18 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
   );
   const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (open) {
-      setVisibleMonth(
-        selectedDate ? new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1) : new Date(),
-      );
-    }
-  }, [open, selectedDate]);
+  const syncMonthToSelection = () => {
+    const target = selectedDate
+      ? new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1)
+      : new Date();
+
+    setVisibleMonth((prev) => {
+      if (prev.getFullYear() === target.getFullYear() && prev.getMonth() === target.getMonth()) {
+        return prev;
+      }
+      return target;
+    });
+  };
 
   useEffect(() => {
     if (!open) return undefined;
@@ -134,7 +139,15 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
     <div ref={containerRef} className="relative">
       <button
         type="button"
-        onClick={() => setOpen((prev) => !prev)}
+        onClick={() =>
+          setOpen((prev) => {
+            const next = !prev;
+            if (!prev && next) {
+              syncMonthToSelection();
+            }
+            return next;
+          })
+        }
         className={cn(
           "flex w-full items-center justify-between gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-left text-sm text-white/80 transition focus:outline-none focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-cyan-300/40",
           selectedDate ? "text-white" : "text-white/60",
