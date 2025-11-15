@@ -37,3 +37,32 @@ body {
 /* small utility */
 .shadow-neon { box-shadow: 0 6px 30px rgba(124,92,255,0.08); }
 
+/* Accessibility Features */
+/* Visual Clarity Mode - Increased contrast and larger text */
+body.visual-clarity {
+  filter: contrast(1.2);
+}
+
+body.visual-clarity * {
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* Colorblind Mode - Adjusted color palette */
+body.colorblind-mode {
+  filter: saturate(0.8) hue-rotate(10deg);
+}
+
+/* Custom Cursor Styles */
+body.custom-cursor-enabled {
+  cursor: url(/cursor.png), auto !important;
+}
+
+body.custom-cursor-enabled a,
+body.custom-cursor-enabled button,
+body.custom-cursor-enabled [role="button"],
+body.custom-cursor-enabled input[type="button"],
+body.custom-cursor-enabled input[type="submit"] {
+  cursor: url(/cursor_select.png), pointer !important;
+}
+
