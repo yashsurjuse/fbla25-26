@@ -1,7 +1,10 @@
 'use client';
 
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
-import { useEffect, useRef } from 'react';
+import { motion } from 'framer-motion';
+import NextImage from 'next/image';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import Modal from '@/components/Modal';
 import type { GalleryItem } from '@/data/galleryItems';
 import styles from './CircularGallery.module.css';
 
@@ -156,6 +159,7 @@ type MediaProps = {
   borderRadius: number;
   font: string;
   labelPlacement?: "top" | "bottom";
+  item: GalleryItem;
 };
 
 class Media {
@@ -174,6 +178,7 @@ class Media {
   private borderRadius: number;
   private font: string;
   private labelPlacement: "top" | "bottom";
+  readonly item: GalleryItem;
   plane!: Mesh;
   program!: Program;
   title!: Title;
@@ -203,6 +208,7 @@ class Media {
     this.borderRadius = props.borderRadius;
     this.font = props.font;
     this.labelPlacement = props.labelPlacement ?? "bottom";
+    this.item = props.item;
 
     this.createShader();
     this.createMesh();
@@ -365,6 +371,7 @@ type AppConfig = {
   font: string;
   scrollSpeed: number;
   scrollEase: number;
+  onSelectItem: (item: GalleryItem) => void;
 };
 
 class GalleryApp {
@@ -377,6 +384,7 @@ class GalleryApp {
   private medias: Media[] = [];
   private items: GalleryItem[];
   private itemsWithPlacement: (GalleryItem & { labelPosition: "top" | "bottom" })[] = [];
+  private onSelectItem: (item: GalleryItem) => void;
   private bend: number;
   private textColor: string;
   private borderRadius: number;
@@ -393,6 +401,10 @@ class GalleryApp {
   private dragStartScroll = 0;
   private isCoarsePointer = false;
   private dragMultiplier = 0.025;
+  private pointerDown = { x: 0, y: 0 };
+  private pointerDownTime = 0;
+  private hasExceededClickThreshold = false;
+  private readonly clickDistanceThreshold = 8;
 
   constructor(container: HTMLDivElement, config: AppConfig) {
     this.container = container;
@@ -401,6 +413,7 @@ class GalleryApp {
       ...item,
       labelPosition: item.labelPosition ?? (baseIndex % 2 === 0 ? "bottom" : "top"),
     }));
+    this.onSelectItem = config.onSelectItem;
     this.bend = config.bend;
     this.textColor = config.textColor;
     this.borderRadius = config.borderRadius;
@@ -465,6 +478,7 @@ class GalleryApp {
         borderRadius: this.borderRadius,
         font: this.font,
         labelPlacement: item.labelPosition,
+        item,
       }),
     );
   }
@@ -477,6 +491,7 @@ class GalleryApp {
   };
 
   private handlePointerDown = (event: PointerEvent) => {
+    if (!event.isPrimary) return;
     if (event.pointerType === "touch") {
       event.preventDefault();
     }
@@ -484,16 +499,23 @@ class GalleryApp {
     this.container.setPointerCapture(event.pointerId);
     this.dragStart = event.clientX;
     this.dragStartScroll = this.scroll.current;
+    this.pointerDown = { x: event.clientX, y: event.clientY };
+    this.pointerDownTime = performance.now();
+    this.hasExceededClickThreshold = false;
   };
 
   private handlePointerMove = (event: PointerEvent) => {
-    if (!this.isDragging) return;
+    if (!this.isDragging || !event.isPrimary) return;
     if (event.pointerType === "touch") {
       event.preventDefault();
     }
     const multiplier = this.dragMultiplier;
     const distance = (this.dragStart - event.clientX) * (this.scrollSpeed * multiplier);
     this.scroll.target = this.dragStartScroll + distance;
+    const movement = Math.hypot(event.clientX - this.pointerDown.x, event.clientY - this.pointerDown.y);
+    if (movement > this.clickDistanceThreshold) {
+      this.hasExceededClickThreshold = true;
+    }
   };
 
   private handlePointerUp = (event: PointerEvent) => {
@@ -502,8 +524,55 @@ class GalleryApp {
     if (this.container.hasPointerCapture?.(event.pointerId)) {
       this.container.releasePointerCapture(event.pointerId);
     }
+    const movement = Math.hypot(event.clientX - this.pointerDown.x, event.clientY - this.pointerDown.y);
+    const timeSinceDown = performance.now() - this.pointerDownTime;
+    const isTap =
+      event.isPrimary &&
+      !this.hasExceededClickThreshold &&
+      movement < this.clickDistanceThreshold &&
+      timeSinceDown < 700;
+    if (isTap) {
+      this.handleTap(event);
+    }
     this.snapToNearest();
   };
+
+  private handleTap = (event: PointerEvent) => {
+    const coords = this.getWorldCoordinatesFromEvent(event);
+    if (!coords) return;
+    const media = this.findMediaAt(coords.worldX, coords.worldY);
+    if (media) {
+      this.onSelectItem(media.item);
+    }
+  };
+
+  private getWorldCoordinatesFromEvent(event: PointerEvent) {
+    const rect = this.container.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return null;
+    const ndcX = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+    const ndcY = 1 - ((event.clientY - rect.top) / rect.height) * 2;
+    const worldX = ndcX * (this.viewport.width / 2);
+    const worldY = ndcY * (this.viewport.height / 2);
+    return { worldX, worldY };
+  }
+
+  private findMediaAt(worldX: number, worldY: number) {
+    const padding = 0.15;
+    let closest: { media: Media; score: number } | null = null;
+    for (const media of this.medias) {
+      const halfWidth = (media.plane.scale.x / 2) * (1 + padding);
+      const halfHeight = (media.plane.scale.y / 2) * (1 + padding);
+      const dx = Math.abs(worldX - media.plane.position.x);
+      const dy = Math.abs(worldY - media.plane.position.y);
+      if (dx <= halfWidth && dy <= halfHeight) {
+        const score = dx + dy;
+        if (!closest || score < closest.score) {
+          closest = { media, score };
+        }
+      }
+    }
+    return closest?.media ?? null;
+  }
 
   private snapToNearest = () => {
     if (!this.medias.length) return;
@@ -599,6 +668,15 @@ export default function CircularGallery({
   scrollEase = 0.05,
 }: CircularGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
+
+  const handleSelectItem = useCallback((item: GalleryItem) => {
+    setSelectedItem(item);
+  }, []);
+
+  const handleCloseModal = useCallback(() => {
+    setSelectedItem(null);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -612,17 +690,41 @@ export default function CircularGallery({
       font,
       scrollSpeed,
       scrollEase,
+      onSelectItem: handleSelectItem,
     });
 
     return () => {
       app.destroy();
     };
-  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase]);
+  }, [items, bend, textColor, borderRadius, font, scrollSpeed, scrollEase, handleSelectItem]);
 
   return (
     <div className="relative h-[420px] sm:h-[500px] md:h-[560px] lg:h-[620px]">
       <div ref={containerRef} className={`${styles.circularGallery} absolute inset-0`} />
       <div className="pointer-events-none absolute inset-0 rounded-[32px] border border-white/5 bg-gradient-to-b from-white/8 via-transparent to-black/30" />
+      {selectedItem && (
+        <Modal onClose={handleCloseModal}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="relative max-w-2xl p-6"
+          >
+            <div className="relative mb-4 h-64 w-full overflow-hidden rounded-lg">
+              <NextImage
+                src={selectedItem.image}
+                alt={selectedItem.text}
+                fill
+                sizes="(min-width: 768px) 600px, 90vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+            <h3 className="text-2xl font-semibold text-white">{selectedItem.text}</h3>
+            <p className="mt-3 text-white/75">{selectedItem.description}</p>
+          </motion.div>
+        </Modal>
+      )}
     </div>
   );
 }
