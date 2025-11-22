@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AccessibilityMenu from "@/components/AccessibilityMenu";
+import SmoothScrolling from "@/components/SmoothScrolling";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,14 +28,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#04060a] text-zinc-100`}
       >
-        <Navbar />
-        <div id="app-shell" className="a11y-filter-target min-h-screen flex flex-col">
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </div>
-        <AccessibilityMenu />
+        <SmoothScrolling>
+          <Navbar />
+          <div id="app-shell" className="a11y-filter-target min-h-screen flex flex-col">
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </div>
+          <AccessibilityMenu />
+        </SmoothScrolling>
       </body>
     </html>
   );
