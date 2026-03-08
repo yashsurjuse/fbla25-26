@@ -1,26 +1,318 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #ececeb;
+  --ink: #161616;
+  --accent: #e4002b;
+  --user-text-scale: 1;
+  --a11y-filter: none;
+  --a11y-font-family: var(--font-source-sans), "Trebuchet MS", "Segoe UI", sans-serif;
+  --a11y-display-font-family: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --a11y-cursor: auto;
+  --a11y-cursor-pointer: pointer;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--paper);
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-source-sans);
+  --font-display: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(16px * var(--user-text-scale));
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--a11y-font-family, var(--font-source-sans), "Trebuchet MS", "Segoe UI", sans-serif);
+  line-height: 1.5;
+}
+
+.a11y-filter-target {
+  filter: var(--a11y-filter, none);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--a11y-display-font-family, var(--font-cormorant), Georgia, "Times New Roman", serif);
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+.swoop-link {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0 1px;
+  transition:
+    background-size 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 180ms ease;
+}
+
+.swoop-link:hover,
+.swoop-link:focus-visible {
+  background-size: 100% 1px;
+}
+
+img {
+  display: block;
+}
+
+.app-root {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.museum-pattern {
+  background-image:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.55), transparent 48%),
+    radial-gradient(circle at 85% 0%, rgba(228, 0, 43, 0.08), transparent 35%);
+  background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+}
+
+.skip-link {
+  position: fixed;
+  left: 0.75rem;
+  top: -3rem;
+  z-index: 80;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 0.55rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  top: 0.75rem;
+}
+
+:root[data-contrast="high"] {
+  --paper: #ffffff;
+  --ink: #000000;
+  --accent: #b00025;
+}
+
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+.a11y-underline-links a {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+body,
+body * {
+  cursor: var(--a11y-cursor, auto);
+}
+
+body a,
+body button,
+body [role="button"],
+body input[type="button"],
+body input[type="submit"],
+body input[type="reset"],
+body label {
+  cursor: var(--a11y-cursor-pointer, pointer);
+}
+
+#a11y-cursor-highlight {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  margin-left: -24px;
+  pointer-events: none;
+  border-radius: 9999px;
+  border: 2px solid rgba(228, 0, 43, 0.52);
+  box-shadow: 0 0 16px rgba(228, 0, 43, 0.3);
+  transition: transform 0.08s ease-out;
+  z-index: 9999;
+}
+
+#a11y-cursor-highlight::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: inherit;
+  background: rgba(228, 0, 43, 0.2);
+  opacity: 0.4;
+}
+
+.popup-backdrop-enter {
+  animation: popup-fade-in 220ms ease-out both;
+}
+
+.popup-backdrop-exit {
+  animation: popup-fade-out 180ms ease-in both;
+}
+
+.popup-panel-enter {
+  animation: popup-rise-in 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.popup-panel-exit {
+  animation: popup-rise-out 200ms ease-in both;
+}
+
+.popup-drawer-enter {
+  animation: popup-slide-in-right 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.home-hero-banner {
+  transform-origin: top;
+  will-change: transform, opacity;
+  animation: hero-banner-reveal 980ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both;
+}
+
+.home-hero-logo {
+  opacity: 0;
+  animation: hero-logo-reveal 360ms ease-out 1320ms both;
+}
+
+.circulating-track {
+  animation: circulating-marquee 110s linear infinite;
+  will-change: transform;
+}
+
+.page-transition-enter {
+  animation: page-fade-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: opacity, transform, filter;
+}
+
+@keyframes popup-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popup-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes popup-rise-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes popup-rise-out {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0) scale(0.992);
+  }
+}
+
+@keyframes popup-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(14px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-banner-reveal {
+  from {
+    opacity: 0;
+    transform: scaleY(0.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hero-logo-reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes circulating-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .museum-pattern {
+    background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+  }
 }

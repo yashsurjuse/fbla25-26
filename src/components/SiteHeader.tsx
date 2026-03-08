@@ -1,0 +1,181 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { navItems } from "@/data/site";
+
+function isActiveRoute(pathname: string, href?: string) {
+  if (!href || href === "") {
+    return false;
+  }
+
+  if (href === "/") {
+    return pathname === "/";
+  }
+  return pathname.startsWith(href);
+}
+
+export default function SiteHeader() {
+  const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    });
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [pathname]);
+
+  return (
+    <header className="a11y-filter-target fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[color:var(--paper)] backdrop-blur-md">
+      <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
+        <Link
+          href="/"
+          className="inline-flex items-center"
+          aria-label="Go to museum home page"
+        >
+          <Image
+            src="/TheMetTrasparant.png"
+            alt="The Met logo"
+            width={236}
+            height={82}
+            priority
+            className="h-10 w-auto sm:h-12"
+          />
+        </Link>
+
+        <nav className="hidden items-center gap-7 text-[0.95rem] font-semibold lg:flex">
+          {navItems.map((item) => {
+            const active = isActiveRoute(pathname, item.href);
+
+            if (item.href === undefined) {
+              return (
+                <span key={item.label} className="cursor-default text-black/80" aria-disabled>
+                  {item.label}
+                </span>
+              );
+            }
+
+            if (item.href === "") {
+              return (
+                <a
+                  key={item.label}
+                  href=""
+                  onClick={(event) => event.preventDefault()}
+                  className="swoop-link text-black/70 transition-colors duration-200 hover:text-black"
+                >
+                  {item.label}
+                </a>
+              );
+            }
+
+            return (
+              <Link
+                key={item.label}
+                href={item.href}
+                scroll
+                aria-current={active ? "page" : undefined}
+                className={`swoop-link transition-colors duration-200 ${
+                  active ? "text-[color:var(--ink)]" : "text-black/70 hover:text-black"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="flex items-center gap-2">
+          <Link
+            href="/visit"
+            className="hidden rounded-none border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black sm:inline-flex"
+          >
+            Plan your visit
+          </Link>
+          <button
+            type="button"
+            className="inline-flex h-10 min-w-10 items-center justify-center border border-black/25 px-2 text-xs font-semibold uppercase tracking-[0.08em] text-black lg:hidden"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label="Toggle navigation menu"
+          >
+            {menuOpen ? "Close" : "Menu"}
+          </button>
+        </div>
+      </div>
+
+      {menuOpen ? (
+        <div className="lg:hidden" id="mobile-menu">
+          <button
+            type="button"
+            className="popup-backdrop-enter fixed inset-0 z-30 bg-black/40"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close navigation menu"
+          />
+          <nav className="popup-drawer-enter absolute right-0 z-40 flex w-72 max-w-[85vw] flex-col gap-1 border-l border-black/10 bg-[color:var(--paper)] p-6 shadow-xl">
+            {navItems.map((item) => {
+              const active = isActiveRoute(pathname, item.href);
+
+              if (item.href === undefined) {
+                return (
+                  <span
+                    key={item.label}
+                    aria-disabled
+                    className="border-b border-black/10 py-3 text-sm font-semibold text-black/80"
+                  >
+                    {item.label}
+                  </span>
+                );
+              }
+
+              if (item.href === "") {
+                return (
+                  <a
+                    key={item.label}
+                    href=""
+                    onClick={(event) => event.preventDefault()}
+                    className="swoop-link border-b border-black/10 py-3 text-sm font-semibold text-black/80"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  scroll
+                  onClick={() => setMenuOpen(false)}
+                  aria-current={active ? "page" : undefined}
+                  className={`swoop-link border-b border-black/10 py-3 text-sm font-semibold ${
+                    active ? "text-[color:var(--accent)]" : "text-black/80"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+            <Link
+              href="/visit"
+              className="mt-4 inline-flex justify-center border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black"
+            >
+              Plan your visit
+            </Link>
+          </nav>
+        </div>
+      ) : null}
+    </header>
+  );
+}
