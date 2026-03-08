@@ -134,12 +134,16 @@ body * {
 }
 
 body a,
+body a *,
 body button,
+body button *,
 body [role="button"],
+body [role="button"] *,
 body input[type="button"],
 body input[type="submit"],
 body input[type="reset"],
-body label {
+body label,
+body label * {
   cursor: var(--a11y-cursor-pointer, pointer);
 }
 
@@ -199,14 +203,26 @@ body label {
   animation: hero-logo-reveal 360ms ease-out 1320ms both;
 }
 
+.hero-cover-bg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
 .circulating-track {
   animation: circulating-marquee 110s linear infinite;
   will-change: transform;
 }
 
+.circulating-marquee:hover .circulating-track,
+.circulating-marquee:focus-within .circulating-track {
+  animation-play-state: paused;
+}
+
 .page-transition-enter {
   animation: page-fade-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  will-change: opacity, transform, filter;
+  will-change: opacity;
 }
 
 @keyframes popup-fade-in {
@@ -306,8 +322,8 @@ body label {
 
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
+    transform: none;
+    filter: none;
   }
 }
 

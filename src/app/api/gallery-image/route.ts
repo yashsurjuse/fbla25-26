@@ -23,8 +23,14 @@ export async function GET(request: NextRequest) {
     cache: "force-cache",
     headers: {
       Accept: "image/avif,image/webp,image/jpeg,image/png,image/*;q=0.8",
+      "User-Agent": "Mozilla/5.0 (compatible; TheMetGalleryBot/1.0)",
     },
   });
+
+  if (upstreamResponse.status === 403) {
+    // Fallback: let the browser fetch directly if worker egress is blocked by source host.
+    return NextResponse.redirect(targetUrl.toString(), { status: 302 });
+  }
 
   if (!upstreamResponse.ok || !upstreamResponse.body) {
     return NextResponse.json({ error: "Unable to fetch source image" }, { status: upstreamResponse.status || 502 });

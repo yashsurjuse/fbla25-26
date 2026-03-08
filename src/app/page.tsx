@@ -18,15 +18,10 @@ const collageImages = [
 export default function Home() {
   return (
     <div className="bg-[color:var(--paper)] text-[color:var(--ink)]">
-      <section className="relative isolate min-h-[74vh] overflow-hidden">
-        <Image
-          src={heroImage}
-          alt="The Metropolitan Museum of Art interior"
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-        />
+      <section
+        className="hero-cover-bg relative isolate min-h-[74vh] overflow-hidden"
+        style={{ backgroundImage: `url("${heroImage}")` }}
+      >
         <div className="absolute inset-0 bg-black/55" aria-hidden />
 
         <div className="relative mx-auto grid min-h-[74vh] w-full max-w-7xl items-center gap-8 px-4 py-12 text-white sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
@@ -140,17 +135,26 @@ export default function Home() {
 
       <section className="border-y border-black/15 bg-[#ececec] py-14">
         <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 sm:px-6 md:grid-cols-3 lg:px-10">
-          <Link href="/exhibitions" className="border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]">
+          <Link
+            href="/exhibitions"
+            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Explore</p>
             <h3 className="mt-2 font-display text-4xl font-semibold text-black">Exhibitions</h3>
             <p className="mt-2 text-sm text-black/75">Browse current and historical showcases curated from The Met timeline.</p>
           </Link>
-          <Link href="/artists" className="border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]">
+          <Link
+            href="/artists"
+            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Discover</p>
             <h3 className="mt-2 font-display text-4xl font-semibold text-black">Artists</h3>
             <p className="mt-2 text-sm text-black/75">Learn about the creators shaping painting, sculpture, fashion, and modern art.</p>
           </Link>
-          <Link href="/visit" className="border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]">
+          <Link
+            href="/visit"
+            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+          >
             <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Plan</p>
             <h3 className="mt-2 font-display text-4xl font-semibold text-black">Your Visit</h3>
             <p className="mt-2 text-sm text-black/75">

@@ -15,7 +15,7 @@ export default function CirculatingMarquee({ items }: CirculatingMarqueeProps) {
   const loopItems = [...items, ...items];
 
   return (
-    <div className="group relative overflow-hidden">
+    <div className="circulating-marquee relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-y-0 left-0 z-10 w-10 bg-gradient-to-r from-[#f3f3f3] to-transparent sm:w-14"
         aria-hidden
@@ -25,7 +25,7 @@ export default function CirculatingMarquee({ items }: CirculatingMarqueeProps) {
         aria-hidden
       />
 
-      <div className="circulating-track flex w-max gap-5 py-1 group-hover:[animation-play-state:paused] group-focus-within:[animation-play-state:paused]">
+      <div className="circulating-track flex w-max gap-5 py-1">
         {loopItems.map((artifact, index) => {
           const image = getImageSourceById(artifact.imageSourceId);
 
