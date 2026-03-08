@@ -1,0 +1,17 @@
+.circularGallery {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+  overscroll-behavior: contain;
+}
+
+.circularGallery:active {
+  cursor: grabbing;
+}
+
+@media (pointer: coarse) {
+  .circularGallery {
+    touch-action: none;
+  }
+}
