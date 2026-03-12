@@ -28,14 +28,6 @@ export default function SiteHeader() {
     };
   }, [menuOpen]);
 
-  useEffect(() => {
-    const frameId = window.requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    });
-
-    return () => window.cancelAnimationFrame(frameId);
-  }, [pathname]);
-
   return (
     <header className="a11y-filter-target fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[color:var(--paper)] backdrop-blur-md">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
@@ -83,7 +75,6 @@ export default function SiteHeader() {
               <Link
                 key={item.label}
                 href={item.href}
-                scroll
                 aria-current={active ? "page" : undefined}
                 className={`swoop-link transition-colors duration-200 ${
                   active ? "text-[color:var(--ink)]" : "text-black/70 hover:text-black"
@@ -156,7 +147,6 @@ export default function SiteHeader() {
                 <Link
                   key={item.label}
                   href={item.href}
-                  scroll
                   onClick={() => setMenuOpen(false)}
                   aria-current={active ? "page" : undefined}
                   className={`swoop-link border-b border-black/10 py-3 text-sm font-semibold ${

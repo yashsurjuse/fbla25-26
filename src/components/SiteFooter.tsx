@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { footerLinks, museumInfo } from "@/data/site";
+import ImageCreditsModal from "@/components/ImageCreditsModal";
 
 export default function SiteFooter() {
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [showCredits, setShowCredits] = useState(false);
 
   const handleSubscribe = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -18,11 +20,22 @@ export default function SiteFooter() {
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-10">
         <section className="space-y-8">
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold uppercase tracking-[0.06em] text-black/85">
-            {footerLinks.map((item) => (
-              <Link key={`${item.href}-${item.label}`} href={item.href} className="swoop-link hover:text-black">
-                {item.label}
-              </Link>
-            ))}
+            {footerLinks.map((item) =>
+              item.label === "Image Credits" ? (
+                <button
+                  key="image-credits"
+                  type="button"
+                  onClick={() => setShowCredits(true)}
+                  className="swoop-link bg-transparent p-0 text-left text-sm font-semibold uppercase tracking-[0.06em] text-black/85 hover:text-black"
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <Link key={`${item.href}-${item.label}`} href={item.href} className="swoop-link hover:text-black">
+                  {item.label}
+                </Link>
+              ),
+            )}
           </nav>
 
           <Image
@@ -91,6 +104,8 @@ export default function SiteFooter() {
           </a>
         </section>
       </div>
+
+      {showCredits && <ImageCreditsModal onClose={() => setShowCredits(false)} />}
 
       <div className="border-t border-black/15 py-4">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-2 px-4 text-sm font-semibold text-black/85 sm:px-6 md:flex-row md:justify-between lg:px-10">

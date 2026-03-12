@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
+        hostname: "store.metmuseum.org",
+      },
+      {
+        protocol: "https",
         hostname: "upload.wikimedia.org",
       },
       {

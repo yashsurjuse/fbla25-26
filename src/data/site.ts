@@ -9,7 +9,7 @@ export const navItems: NavItem[] = [
   { href: "/exhibitions", label: "Exhibitions" },
   { href: "/artists", label: "Artists" },
   { href: "/artifacts", label: "Artifacts" },
-  { href: "", label: "Shop" },
+  { href: "/store", label: "Shop" },
 ];
 
 export const museumInfo = {
