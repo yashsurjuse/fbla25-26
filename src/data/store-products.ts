@@ -8,6 +8,8 @@ export type StoreProduct = {
   image: string;
   badge?: "Best Seller";
   description: string;
+  material: string;
+  eraInspiration: string;
   pageUrl: string;
 };
 
@@ -15,7 +17,15 @@ export type StoreImageSource = ImageSource & {
   pageUrl: string;
 };
 
-export const storeCategories = ["All", "Jewelry", "Scarves", "Books", "Home Decor", "Kids", "Stationery"] as const;
+export const storeCategories = [
+  "All",
+  "Jewelry",
+  "Scarves",
+  "Books",
+  "Home Decor",
+  "Kids",
+  "Stationery",
+] as const;
 
 export const storeProducts: StoreProduct[] = [
   {
@@ -27,6 +37,8 @@ export const storeProducts: StoreProduct[] = [
       "https://store.metmuseum.org/media/catalog/product/8/0-209232-99398/pansy-pearl-stud-earrings.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     badge: "Best Seller",
     description: "Art-inspired earrings make great gifts.",
+    material: "Pearl and gold-tone metal",
+    eraInspiration: "European Decorative Arts",
     pageUrl: "https://store.metmuseum.org/pansy-pearl-stud-earrings-80061261",
   },
   {
@@ -38,6 +50,8 @@ export const storeProducts: StoreProduct[] = [
       "https://store.metmuseum.org/media/catalog/product/8/0-192898-84238/swiss-butterfly-brooch.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     badge: "Best Seller",
     description: "An artful brooch, only from The Met.",
+    material: "Enamel and metal alloy",
+    eraInspiration: "Swiss nature motifs",
     pageUrl: "https://store.metmuseum.org/swiss-butterfly-brooch-80057176",
   },
   {
@@ -49,6 +63,8 @@ export const storeProducts: StoreProduct[] = [
       "https://store.metmuseum.org/media/catalog/product/8/0-209106-99557/asian-flora-and-fauna-oversize-cotton-scarf.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     badge: "Best Seller",
     description: "An art scarf makes a unique gift for her.",
+    material: "100% cotton",
+    eraInspiration: "Asian decorative art",
     pageUrl: "https://store.metmuseum.org/asian-flora-and-fauna-oversize-cotton-scarf-80061228",
   },
   {
@@ -60,6 +76,8 @@ export const storeProducts: StoreProduct[] = [
       "https://store.metmuseum.org/media/catalog/product/8/0-207738-98625/seeing-silence-the-paintings-of-helene-schjerfbeck.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     badge: "Best Seller",
     description: "Pick up an art book from The Met's museum store.",
+    material: "Hardcover",
+    eraInspiration: "Modern painting scholarship",
     pageUrl: "https://store.metmuseum.org/seeing-silence-the-paintings-of-helene-schjerfbeck-80060786",
   },
   {
@@ -70,6 +88,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-207732-98091/divine-egypt.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "Met Museum publications make great gifts for art lovers.",
+    material: "Hardcover",
+    eraInspiration: "Ancient Egypt",
     pageUrl: "https://store.metmuseum.org/divine-egypt-80060784",
   },
   {
@@ -80,6 +100,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-9145-16411/the-metropolitan-museum-of-art-masterpiece-paintings.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "A monumental survey of 500 paintings from The Met collection.",
+    material: "Hardcover",
+    eraInspiration: "Global art history",
     pageUrl: "https://store.metmuseum.org/the-metropolitan-museum-of-art-masterpiece-paintings-80033268",
   },
   {
@@ -90,6 +112,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/0/6-9943-52371/egyptian-cat-sculpture.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "A reproduction based on an Egyptian sculpture in the Museum's collection.",
+    material: "Resin",
+    eraInspiration: "Ancient Egypt",
     pageUrl: "https://store.metmuseum.org/egyptian-cat-sculpture-06008395",
   },
   {
@@ -100,6 +124,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-198907-90826/met-favorites-rubik-039-s-cube.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "A classic puzzle cube reimagined with six Museum treasures.",
+    material: "ABS plastic",
+    eraInspiration: "Collection favorites",
     pageUrl: "https://store.metmuseum.org/met-favorites-rubik-s-cube-80059082",
   },
   {
@@ -110,6 +136,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-186406-77255/william-hippo-plush.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "A plush version of the beloved blue Egyptian hippo, William.",
+    material: "Polyester plush",
+    eraInspiration: "Ancient Egypt",
     pageUrl: "https://store.metmuseum.org/william-hippo-plush-80055298",
   },
   {
@@ -120,6 +148,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-195445-87507/met-museum-nesting-dolls-.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "A set of five nesting dolls inspired by objects across the collection.",
+    material: "Painted wood",
+    eraInspiration: "Global collection",
     pageUrl: "https://store.metmuseum.org/met-museum-nesting-dolls-80057964",
   },
   {
@@ -130,6 +160,8 @@ export const storeProducts: StoreProduct[] = [
     image:
       "https://store.metmuseum.org/media/catalog/product/8/0-205819-94572/louis-c-tiffany-garden-landscape-notecards.jpg?optimize=medium&bg-color=255,255,255&fit=bounds&height=502&width=502&canvas=502:502&dpr=1%201x",
     description: "Send an artful greeting with Metropolitan Museum of Art cards.",
+    material: "Premium cardstock",
+    eraInspiration: "American decorative arts",
     pageUrl: "https://store.metmuseum.org/louis-c-tiffany-garden-landscape-notecards-80060324",
   },
 ];

@@ -143,6 +143,25 @@ export default function ImageCreditsModal({ onClose }: { onClose: () => void }) 
 
           <section>
             <h3 className="mb-3 border-b border-black/10 pb-2 text-xs font-bold uppercase tracking-[0.12em] text-black/45">
+              Live Listing Data
+            </h3>
+            <ul className="mb-6 space-y-3">
+              <li className="border-b border-black/8 pb-3 last:border-0 last:pb-0">
+                <p className="font-semibold text-black">Exhibitions, Artists, Artifacts pages</p>
+                <a
+                  href="https://collectionapi.metmuseum.org/public/collection/v1"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="break-all text-black/50 underline decoration-black/25 underline-offset-2 hover:text-black"
+                >
+                  https://collectionapi.metmuseum.org/public/collection/v1
+                </a>
+              </li>
+            </ul>
+          </section>
+
+          <section>
+            <h3 className="mb-3 border-b border-black/10 pb-2 text-xs font-bold uppercase tracking-[0.12em] text-black/45">
               Museum Branding &amp; Local Assets
             </h3>
             <ul className="space-y-3">

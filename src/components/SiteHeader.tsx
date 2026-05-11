@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useCart } from "@/components/CartContext";
 import { navItems } from "@/data/site";
 
 function isActiveRoute(pathname: string, href?: string) {
@@ -20,6 +21,7 @@ function isActiveRoute(pathname: string, href?: string) {
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const { openCart, cartCount } = useCart();
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -95,6 +97,33 @@ export default function SiteHeader() {
           </Link>
           <button
             type="button"
+            onClick={openCart}
+            aria-label="Open cart"
+            className="relative hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+              <circle cx="9" cy="20" r="1.7" />
+              <circle cx="18" cy="20" r="1.7" />
+              <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H7.2" />
+            </svg>
+            {cartCount > 0 ? (
+              <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-5 items-center justify-center bg-black px-1 text-[11px] font-semibold text-white">
+                {cartCount}
+              </span>
+            ) : null}
+          </button>
+          <Link
+            href="/account"
+            aria-label="Member account"
+            className="hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+            </svg>
+          </Link>
+          <button
+            type="button"
             className="inline-flex h-10 min-w-10 items-center justify-center border border-black/25 px-2 text-xs font-semibold uppercase tracking-[0.08em] text-black lg:hidden"
             onClick={() => setMenuOpen((open) => !open)}
             aria-expanded={menuOpen}
@@ -162,6 +191,23 @@ export default function SiteHeader() {
               className="mt-4 inline-flex justify-center border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black"
             >
               Plan your visit
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                openCart();
+              }}
+              className="mt-2 inline-flex justify-center border border-black/20 bg-white px-4 py-2 text-sm font-semibold text-black"
+            >
+              View Cart {cartCount > 0 ? `(${cartCount})` : ""}
+            </button>
+            <Link
+              href="/account"
+              onClick={() => setMenuOpen(false)}
+              className="mt-2 inline-flex justify-center border border-black/20 bg-white px-4 py-2 text-sm font-semibold text-black"
+            >
+              Member Login
             </Link>
           </nav>
         </div>

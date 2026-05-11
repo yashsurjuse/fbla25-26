@@ -19,10 +19,6 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "upload.wikimedia.org",
       },
-      {
-        protocol: "https",
-        hostname: "encrypted-tbn2.gstatic.com",
-      },
     ],
   },
 };

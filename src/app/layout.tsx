@@ -1,10 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
-import AccessibilityControls from "@/components/AccessibilityControls";
-import PageTransitionShell from "@/components/PageTransitionShell";
+import AppChrome from "@/components/AppChrome";
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
@@ -39,14 +36,7 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <SiteHeader />
-        <div className="app-root a11y-filter-target">
-          <main id="main-content" className="pt-20">
-            <PageTransitionShell>{children}</PageTransitionShell>
-          </main>
-          <SiteFooter />
-        </div>
-        <AccessibilityControls />
+        <AppChrome>{children}</AppChrome>
       </body>
     </html>
   );

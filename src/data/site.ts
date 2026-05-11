@@ -65,6 +65,7 @@ export const footerLinks = [
   { href: "/exhibitions", label: "Exhibitions and Events" },
   { href: "/artists", label: "Art" },
   { href: "/artifacts", label: "Collection" },
+  { href: "/store", label: "Shop" },
   { href: "/visit", label: "Tickets" },
-  { href: "", label: "Image Credits" },
+  { href: "/image-credits", label: "Image Credits" },
 ];

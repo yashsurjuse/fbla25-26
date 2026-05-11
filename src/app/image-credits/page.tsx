@@ -93,6 +93,25 @@ export default function ImageCreditsPage() {
 
         <section className="mt-8">
           <h2 className="border-b border-black/10 pb-2 text-xs font-bold uppercase tracking-[0.12em] text-black/45">
+            Live Listing Data
+          </h2>
+          <ul className="mt-3 space-y-3 text-sm text-black/80">
+            <li className="border-b border-black/10 pb-3 last:border-0 last:pb-0">
+              <p className="font-semibold text-black">Exhibitions, Artists, Artifacts pages</p>
+              <a
+                href="https://collectionapi.metmuseum.org/public/collection/v1"
+                target="_blank"
+                rel="noreferrer"
+                className="break-all text-black/70 underline decoration-black/35 underline-offset-2"
+              >
+                https://collectionapi.metmuseum.org/public/collection/v1
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        <section className="mt-8">
+          <h2 className="border-b border-black/10 pb-2 text-xs font-bold uppercase tracking-[0.12em] text-black/45">
             Museum Branding &amp; Local Assets
           </h2>
           <ul className="mt-3 space-y-3 text-sm text-black/80">

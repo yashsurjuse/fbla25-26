@@ -1,13 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { storeCategories, storeProducts } from "@/data/store-products";
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
 
 export default function StorePage() {
   const [activeCategory, setActiveCategory] = useState<(typeof storeCategories)[number]>("All");
@@ -99,13 +95,6 @@ export default function StorePage() {
                 className="object-contain p-5 transition-transform duration-500 group-hover:scale-[1.03]"
                 sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
               />
-              {product.badge && (
-                <span
-                  className="absolute left-3 top-3 bg-[color:var(--accent)] px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-[0.12em] text-white"
-                >
-                  {product.badge}
-                </span>
-              )}
             </div>
 
             <div className="flex flex-1 flex-col p-4">
@@ -118,15 +107,12 @@ export default function StorePage() {
               <p className="mt-2 line-clamp-2 text-xs leading-5 text-black/55">{product.description}</p>
 
               <div className="mt-4 flex items-center justify-between gap-3">
-                <span className="text-base font-bold text-black">{currencyFormatter.format(product.price)}</span>
-                <a
-                  href={product.pageUrl}
-                  target="_blank"
-                  rel="noreferrer"
+                <Link
+                  href={`/store/${product.id}`}
                   className="shrink-0 border border-black bg-black px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.06em] !text-white transition-colors duration-150 hover:bg-transparent hover:!text-black"
                 >
                   View Item
-                </a>
+                </Link>
               </div>
             </div>
           </article>

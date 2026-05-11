@@ -9,6 +9,7 @@ type DatePickerProps = {
   onChange: (value: string) => void;
   placeholder?: string;
   label?: string;
+  theme?: "dark" | "light";
 };
 
 type CalendarDay = {
@@ -81,7 +82,7 @@ const displayFormatter = new Intl.DateTimeFormat("en-US", {
   year: "numeric",
 });
 
-export default function DatePicker({ value, onChange, placeholder = "Select a date" }: DatePickerProps) {
+export default function DatePicker({ value, onChange, placeholder = "Select a date", theme = "dark" }: DatePickerProps) {
   const [open, setOpen] = useState(false);
   const selectedDate = useMemo(() => parseISODate(value), [value]);
   const [visibleMonth, setVisibleMonth] = useState<Date>(() =>
@@ -149,13 +150,16 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
           })
         }
         className={cn(
-          "flex w-full items-center justify-between gap-3 rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-left text-sm text-white/80 transition focus:outline-none focus-visible:border-white/40 focus-visible:ring-2 focus-visible:ring-cyan-300/40",
-          selectedDate ? "text-white" : "text-white/60",
+          "flex w-full items-center justify-between gap-3 rounded-xl px-4 py-2 text-left text-sm transition focus:outline-none focus-visible:ring-2",
+          theme === "dark"
+            ? "border border-white/15 bg-white/10 text-white/80 focus-visible:border-white/40 focus-visible:ring-cyan-300/40"
+            : "border border-black/20 bg-white text-black/80 focus-visible:border-black/45 focus-visible:ring-black/15",
+          selectedDate ? (theme === "dark" ? "text-white" : "text-black") : theme === "dark" ? "text-white/60" : "text-black/50",
         )}
       >
         <span>{displayValue}</span>
         <svg
-          className="h-4 w-4 text-white/60"
+          className={cn("h-4 w-4", theme === "dark" ? "text-white/60" : "text-black/60")}
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -181,7 +185,10 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 12 }}
             transition={{ duration: 0.22, ease }}
-            className="absolute z-50 mt-3 w-72 rounded-2xl border border-white/10 bg-[#0b1220] p-4 text-white shadow-2xl shadow-black/35 backdrop-blur"
+            className={cn(
+              "absolute z-50 mt-3 w-72 rounded-2xl p-4 shadow-2xl backdrop-blur",
+              theme === "dark" ? "border border-white/10 bg-[#0b1220] text-white shadow-black/35" : "border border-black/10 bg-white text-black shadow-black/20",
+            )}
           >
             <header className="mb-4 flex items-center justify-between">
               <button
@@ -189,12 +196,17 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
                 onClick={() =>
                   setVisibleMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
                 }
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:border-white/25 hover:bg-white/15"
+                className={cn(
+                  "inline-flex h-8 w-8 items-center justify-center rounded-full transition",
+                  theme === "dark"
+                    ? "border border-white/10 bg-white/10 text-white/80 hover:border-white/25 hover:bg-white/15"
+                    : "border border-black/10 bg-black/5 text-black/80 hover:border-black/25 hover:bg-black/10",
+                )}
                 aria-label="Previous month"
               >
                 <span aria-hidden>‹</span>
               </button>
-              <div className="text-sm font-medium uppercase tracking-[0.24em] text-white/70">
+              <div className={cn("text-sm font-medium uppercase tracking-[0.24em]", theme === "dark" ? "text-white/70" : "text-black/70")}>
                 {monthFormatter.format(visibleMonth)}
               </div>
               <button
@@ -202,14 +214,19 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
                 onClick={() =>
                   setVisibleMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))
                 }
-                className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white/80 transition hover:border-white/25 hover:bg-white/15"
+                className={cn(
+                  "inline-flex h-8 w-8 items-center justify-center rounded-full transition",
+                  theme === "dark"
+                    ? "border border-white/10 bg-white/10 text-white/80 hover:border-white/25 hover:bg-white/15"
+                    : "border border-black/10 bg-black/5 text-black/80 hover:border-black/25 hover:bg-black/10",
+                )}
                 aria-label="Next month"
               >
                 <span aria-hidden>›</span>
               </button>
             </header>
 
-            <div className="mb-3 grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.2em] text-white/40">
+            <div className={cn("mb-3 grid grid-cols-7 gap-2 text-center text-xs uppercase tracking-[0.2em]", theme === "dark" ? "text-white/40" : "text-black/40")}>
               {dayLabels.map((day) => (
                 <span key={day}>{day}</span>
               ))}
@@ -226,12 +243,18 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
                     onClick={() => handleSelect(day.date)}
                     className={cn(
                       "flex h-9 items-center justify-center rounded-full border border-transparent transition",
-                      day.inMonth ? "text-white" : "text-white/40",
+                      day.inMonth ? (theme === "dark" ? "text-white" : "text-black") : theme === "dark" ? "text-white/40" : "text-black/40",
                       isSelected
-                        ? "border-cyan-300/60 bg-cyan-400/15 text-white shadow-[0_0_20px_rgba(72,211,255,0.25)]"
+                        ? theme === "dark"
+                          ? "border-cyan-300/60 bg-cyan-400/15 text-white shadow-[0_0_20px_rgba(72,211,255,0.25)]"
+                          : "border-black/50 bg-black text-white"
                         : isToday
-                        ? "border-white/15 bg-white/10"
-                        : "hover:border-white/20 hover:bg-white/10",
+                        ? theme === "dark"
+                          ? "border-white/15 bg-white/10"
+                          : "border-black/20 bg-black/5"
+                        : theme === "dark"
+                          ? "hover:border-white/20 hover:bg-white/10"
+                          : "hover:border-black/20 hover:bg-black/5",
                     )}
                   >
                     {day.date.getDate()}
@@ -240,18 +263,23 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
               })}
             </div>
 
-            <div className="mt-4 flex items-center justify-between text-xs text-white/60">
+            <div className={cn("mt-4 flex items-center justify-between text-xs", theme === "dark" ? "text-white/60" : "text-black/60")}>
               <button
                 type="button"
                 onClick={() => handleSelect(today)}
-                className="rounded-full border border-white/10 bg-white/10 px-3 py-1.5 font-medium text-white/80 transition hover:border-white/25 hover:bg-white/20"
+                className={cn(
+                  "rounded-full px-3 py-1.5 font-medium transition",
+                  theme === "dark"
+                    ? "border border-white/10 bg-white/10 text-white/80 hover:border-white/25 hover:bg-white/20"
+                    : "border border-black/10 bg-black/5 text-black/80 hover:border-black/25 hover:bg-black/10",
+                )}
               >
                 Today
               </button>
               <button
                 type="button"
                 onClick={handleClear}
-                className="text-white/50 underline-offset-4 transition hover:text-white/80 hover:underline"
+                className={cn("underline-offset-4 transition hover:underline", theme === "dark" ? "text-white/50 hover:text-white/80" : "text-black/50 hover:text-black/80")}
               >
                 Clear
               </button>

@@ -143,6 +143,6 @@ export const artists: Artist[] = [
     name: "John Singer Sargent",
     bio: "American expatriate portrait painter featured throughout The Met, admired for luminous brushwork and striking society portraits.",
     image:
-      "https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcTUEsaCikkS7aUsZBeBgU_Ea20ObskYpn-PeLV5mKjcPDoeBY92T3z7Ky9S_TQf9eEqVWjJmEgRFHIXrCg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/57/John_Singer_Sargent_1903.jpg",
   },
 ];
