@@ -50,7 +50,7 @@ export const metStats = [
   },
   {
     label: "since",
-    value: "187",
+    value: "1870",
     detail: "The Met has aspired to be more than a treasury of rare and beautiful objects.",
   },
   {
