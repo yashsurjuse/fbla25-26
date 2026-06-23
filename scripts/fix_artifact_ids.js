@@ -1,0 +1,16 @@
+const fs = require('fs');
+let data = fs.readFileSync('src/data/artifacts.ts', 'utf-8');
+data = data.replace('id: "washington-crossing-delaware"', 'id: "11417"');
+data = data.replace('id: "death-of-socrates"', 'id: "436105"');
+data = data.replace('id: "the-harvesters"', 'id: "435809"');
+data = data.replace('id: "under-wave-kanagawa"', 'id: "45434"');
+data = data.replace('id: "temple-of-dendur"', 'id: "544692"');
+data = data.replace('id: "unicorn-rests-garden"', 'id: "467642"');
+data = data.replace('id: "armor-henry-ii"', 'id: "23936"');
+data = data.replace('id: "young-woman-water-pitcher"', 'id: "437881"');
+data = data.replace('id: "standing-bodhisattva"', 'id: "38245"');
+data = data.replace('id: "sphinx-hatshepsut"', 'id: "544442"');
+data = data.replace('id: "shah-jahan-horseback"', 'id: "451268"');
+data = data.replace('id: "eros-sleeping"', 'id: "254924"');
+data = data.replace('id: "van-gogh-irises"', 'id: "436528"');
+fs.writeFileSync('src/data/artifacts.ts', data);

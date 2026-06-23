@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Artifact } from "@/data/artifacts";
-import { getImageSourceById } from "@/data/image-sources";
+import type { Artifact } from "@/data/artifacts";
 
 type CirculatingMarqueeProps = {
   items: Artifact[];
@@ -27,13 +27,11 @@ export default function CirculatingMarquee({ items }: CirculatingMarqueeProps) {
 
       <div className="circulating-track flex w-max gap-5 py-1">
         {loopItems.map((artifact, index) => {
-          const image = getImageSourceById(artifact.imageSourceId);
-
           return (
             <article key={`${artifact.id}-${index}`} className="group/card w-[16.75rem] shrink-0 border border-black/15 bg-white p-3">
               <div className="relative mb-4 aspect-[3/4] overflow-hidden bg-black/5">
                 <Image
-                  src={image.url}
+                  src={artifact.image || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"}
                   alt={artifact.title}
                   fill
                   className="object-cover transition-transform duration-300 ease-out group-hover/card:scale-[1.03]"
@@ -41,7 +39,8 @@ export default function CirculatingMarquee({ items }: CirculatingMarqueeProps) {
                 />
                 <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100">
                   <Link
-                    href="/artifacts"
+                    href={`?artifactId=${artifact.id}`}
+                    scroll={false}
                     className="border border-white bg-white/10 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] !text-white visited:!text-white backdrop-blur-[1px] transition-colors duration-200 hover:bg-white hover:!text-black"
                   >
                     View

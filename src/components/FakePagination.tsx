@@ -5,12 +5,18 @@ type FakePaginationProps = {
   onPageChange: (page: number) => void;
 };
 
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
+
 export default function FakePagination({
   totalPages,
   currentPage,
   label,
   onPageChange,
 }: FakePaginationProps) {
+  const [showGoToModal, setShowGoToModal] = useState(false);
+  const [goToInput, setGoToInput] = useState("");
+  
   const start = Math.max(1, currentPage - 2);
   const end = Math.min(totalPages, currentPage + 2);
   const middlePages = Array.from({ length: end - start + 1 }, (_, index) => start + index);
@@ -38,9 +44,12 @@ export default function FakePagination({
             >
               1
             </button>
-            <span className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70">
+            <button 
+              onClick={() => setShowGoToModal(true)}
+              className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70 hover:bg-black/5"
+            >
               ...
-            </span>
+            </button>
           </>
         ) : null}
 
@@ -61,9 +70,12 @@ export default function FakePagination({
 
         {end < totalPages ? (
           <>
-          <span className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70">
+          <button 
+            onClick={() => setShowGoToModal(true)}
+            className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70 hover:bg-black/5"
+          >
             ...
-          </span>
+          </button>
           <button
             type="button"
             onClick={() => onPageChange(totalPages)}
@@ -85,6 +97,45 @@ export default function FakePagination({
           <span aria-hidden>›</span>
         </button>
       </div>
+
+      {showGoToModal && typeof document !== "undefined" && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm">
+          <div className="w-full max-w-sm rounded-xl border border-black/10 bg-white p-6 shadow-2xl">
+            <h3 className="mb-4 font-display text-xl font-bold text-black">Go to page</h3>
+            <form 
+              onSubmit={(e) => {
+                e.preventDefault();
+                const pageNum = parseInt(goToInput, 10);
+                if (!isNaN(pageNum) && pageNum >= 1 && pageNum <= totalPages) {
+                  onPageChange(pageNum);
+                  setShowGoToModal(false);
+                  setGoToInput("");
+                }
+              }}
+              className="flex gap-2"
+            >
+              <input 
+                type="number" 
+                min={1} 
+                max={totalPages}
+                value={goToInput}
+                onChange={(e) => setGoToInput(e.target.value)}
+                placeholder={`1 - ${totalPages}`}
+                className="flex-1 rounded-lg border border-black/20 bg-black/5 px-4 py-2 text-black focus:border-black focus:outline-none"
+                autoFocus
+              />
+              <button type="submit" className="rounded-lg bg-black px-6 py-2 font-semibold text-white hover:bg-black/80">Go</button>
+            </form>
+            <button 
+              onClick={() => setShowGoToModal(false)}
+              className="mt-4 w-full rounded-lg py-2 text-sm font-medium text-black/60 hover:text-black hover:bg-black/5 transition"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>,
+        document.body
+      )}
     </nav>
   );
 }

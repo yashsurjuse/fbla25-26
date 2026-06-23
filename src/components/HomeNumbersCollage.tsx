@@ -3,6 +3,7 @@
 import Image from "next/image";
 import type { MouseEvent } from "react";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import type { ImageSource } from "@/data/image-sources";
@@ -19,6 +20,7 @@ type TooltipState = {
 };
 
 export default function HomeNumbersCollage({ images }: HomeNumbersCollageProps) {
+  const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [tooltip, setTooltip] = useState<TooltipState | null>(null);
 
@@ -71,6 +73,13 @@ export default function HomeNumbersCollage({ images }: HomeNumbersCollageProps) 
               onMouseEnter={(event) => updateTooltip(image, event)}
               onMouseMove={(event) => updateTooltip(image, event)}
               onMouseLeave={() => setTooltip(null)}
+              onClick={() => {
+                let objectId = 436105;
+                if (image.id === "washington-crossing-delaware") objectId = 11417;
+                if (image.id === "sphinx-hatshepsut") objectId = 544442;
+                router.push(`?artifactId=${objectId}`, { scroll: false });
+              }}
+              style={{ cursor: "pointer" }}
             >
               <Image
                 src={image.url}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import AppChrome from "@/components/AppChrome";
+import GlobalModalProvider from "@/components/GlobalModalProvider";
 
 const sourceSans = Source_Sans_3({
   variable: "--font-source-sans",
@@ -36,7 +37,11 @@ export default function RootLayout({
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>
-        <AppChrome>{children}</AppChrome>
+        <AppChrome>
+          <GlobalModalProvider>
+            {children}
+          </GlobalModalProvider>
+        </AppChrome>
       </body>
     </html>
   );
