@@ -31,6 +31,14 @@ export type CartStoreItem = {
 
 export type CartItem = CartVisitItem | CartMembershipItem | CartStoreItem;
 
+export type PastOrder = {
+  id: string;
+  date: string;
+  total: number;
+  status: "Processing" | "Shipped" | "Delivered";
+  items: CartItem[];
+};
+
 type CartContextValue = {
   items: CartItem[];
   isOpen: boolean;
@@ -47,16 +55,20 @@ type CartContextValue = {
   cartCount: number;
   activeTab: "cart" | "wishlist";
   setActiveTab: (tab: "cart" | "wishlist") => void;
+  pastOrders: PastOrder[];
+  addPastOrder: (order: PastOrder) => void;
 };
 
 const STORAGE_KEY = "met-cart-v1";
 const WISHLIST_STORAGE_KEY = "met-wishlist-v1";
+const ORDERS_STORAGE_KEY = "met-orders-v1";
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [wishlistItems, setWishlistItems] = useState<CartStoreItem[]>([]);
+  const [pastOrders, setPastOrders] = useState<PastOrder[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"cart" | "wishlist">("cart");
 
@@ -81,6 +93,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     } catch {
       setWishlistItems([]);
     }
+
+    try {
+      const oRaw = window.localStorage.getItem(ORDERS_STORAGE_KEY);
+      if (oRaw) {
+        const oParsed = JSON.parse(oRaw) as PastOrder[];
+        if (Array.isArray(oParsed)) setPastOrders(oParsed);
+      }
+    } catch {
+      setPastOrders([]);
+    }
   }, []);
 
   useEffect(() => {
@@ -90,6 +112,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     window.localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlistItems));
   }, [wishlistItems]);
+
+  useEffect(() => {
+    window.localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(pastOrders));
+  }, [pastOrders]);
 
   const addVisitItem: CartContextValue["addVisitItem"] = (item) => {
     setItems((prev) => [
@@ -170,6 +196,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       ];
     });
   };
+  const addPastOrder: CartContextValue["addPastOrder"] = (order) => {
+    setPastOrders((prev) => [order, ...prev]);
+  };
 
   const value = useMemo<CartContextValue>(() => {
     const cartCount = items.reduce((count, item) => {
@@ -201,8 +230,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       cartCount,
       activeTab,
       setActiveTab,
+      pastOrders,
+      addPastOrder,
     };
-  }, [isOpen, items, wishlistItems, activeTab]);
+  }, [isOpen, items, wishlistItems, pastOrders, activeTab]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }

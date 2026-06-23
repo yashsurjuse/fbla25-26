@@ -21,7 +21,18 @@ function isActiveRoute(pathname: string, href?: string) {
 export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const { openCart, cartCount } = useCart();
+
+  useEffect(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+      if (!(e.target as Element).closest("#account-menu-container")) {
+        setAccountMenuOpen(false);
+      }
+    };
+    if (accountMenuOpen) document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, [accountMenuOpen]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -112,16 +123,37 @@ export default function SiteHeader() {
               </span>
             ) : null}
           </button>
-          <Link
-            href="/account"
-            aria-label="Member account"
-            className="hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex"
-          >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-              <circle cx="12" cy="8" r="3.5" />
-              <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
-            </svg>
-          </Link>
+          <div id="account-menu-container" className="relative hidden sm:inline-block">
+            <button
+              type="button"
+              onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+              aria-label="Member account"
+              className="hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex hover:bg-black/5 transition-colors"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+                <circle cx="12" cy="8" r="3.5" />
+                <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
+              </svg>
+            </button>
+            {accountMenuOpen && (
+              <div className="popup-rise-in absolute right-0 top-full mt-2 w-48 border border-black/15 bg-white py-2 shadow-xl z-50">
+                <Link
+                  href="/account"
+                  onClick={() => setAccountMenuOpen(false)}
+                  className="block px-4 py-2 text-sm font-semibold text-black hover:bg-black/5"
+                >
+                  My Account
+                </Link>
+                <Link
+                  href="/orders"
+                  onClick={() => setAccountMenuOpen(false)}
+                  className="block px-4 py-2 text-sm font-semibold text-black hover:bg-black/5"
+                >
+                  Past Orders
+                </Link>
+              </div>
+            )}
+          </div>
           <button
             type="button"
             className="inline-flex h-10 min-w-10 items-center justify-center border border-black/25 px-2 text-xs font-semibold uppercase tracking-[0.08em] text-black lg:hidden"

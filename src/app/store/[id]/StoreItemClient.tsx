@@ -31,6 +31,7 @@ export default function StoreItemClient({
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [policyModal, setPolicyModal] = useState<"privacy" | "shipping" | "size" | "reviews" | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [sizeError, setSizeError] = useState(false);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,7 +45,8 @@ export default function StoreItemClient({
 
   const handleAddToCart = () => {
     if (sizeGuideType && !selectedSize) {
-      alert("Please select a size before adding to cart.");
+      setSizeError(true);
+      setTimeout(() => setSizeError(false), 3000);
       return;
     }
     addStoreItem({
@@ -60,7 +62,8 @@ export default function StoreItemClient({
 
   const handleAddToWishlist = () => {
     if (sizeGuideType && !selectedSize) {
-      alert("Please select a size before adding to wishlist.");
+      setSizeError(true);
+      setTimeout(() => setSizeError(false), 3000);
       return;
     }
     addWishlistItem({
@@ -200,13 +203,14 @@ export default function StoreItemClient({
                 {sizeOptions.map(sz => (
                   <button
                     key={sz}
-                    onClick={() => setSelectedSize(sz)}
+                    onClick={() => { setSelectedSize(sz); setSizeError(false); }}
                     className={`border px-4 py-2 text-sm font-semibold transition-colors ${selectedSize === sz ? "border-black bg-black text-white" : "border-gray-300 bg-white text-black hover:border-gray-500"}`}
                   >
                     {sz}
                   </button>
                 ))}
               </div>
+              {sizeError && <p className="text-[#e22b2b] text-sm font-semibold mt-2">Please select a size first.</p>}
             </div>
           )}
 

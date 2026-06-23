@@ -16,10 +16,10 @@ function getMembershipDiscount(years: number): number {
 export default function MembershipPage() {
   const { addMembershipItem, openCart } = useCart();
   const router = useRouter();
-  const [checkoutTierId, setCheckoutTierId] = useState<string | null>(null);
+  const [actionTier, setActionTier] = useState<{ id: string; action: "cart" | "checkout" } | null>(null);
   const [years, setYears] = useState(1);
 
-  const checkoutTier = membershipTiers.find((tier) => tier.id === checkoutTierId) ?? null;
+  const checkoutTier = membershipTiers.find((tier) => tier.id === actionTier?.id) ?? null;
   const discount = getMembershipDiscount(years);
   const total = checkoutTier ? checkoutTier.price * years * (1 - discount) : 0;
 
@@ -47,20 +47,20 @@ export default function MembershipPage() {
                 <button
                   type="button"
                   onClick={() => {
-                    addMembershipItem({ tierId: tier.id, tierName: tier.name, price: tier.price });
-                    openCart();
+                    setActionTier({ id: tier.id, action: "cart" });
+                    setYears(1);
                   }}
-                  className="w-full border border-black/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-black"
+                  className="w-full border border-black/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-black hover:bg-black/5 transition-colors"
                 >
                   Save to Cart
                 </button>
                 <button
                   type="button"
                   onClick={() => {
-                    setCheckoutTierId(tier.id);
+                    setActionTier({ id: tier.id, action: "checkout" });
                     setYears(1);
                   }}
-                  className="inline-flex w-full items-center justify-center border border-black bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] !text-white"
+                  className="inline-flex w-full items-center justify-center border border-black bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors"
                 >
                   Checkout
                 </button>
@@ -108,8 +108,8 @@ export default function MembershipPage() {
               <div className="mt-6 flex gap-2">
                 <button
                   type="button"
-                  onClick={() => setCheckoutTierId(null)}
-                  className="inline-flex flex-1 items-center justify-center border border-black/20 px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black"
+                  onClick={() => setActionTier(null)}
+                  className="inline-flex flex-1 items-center justify-center border border-black/20 px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black hover:bg-black/5 transition-colors"
                 >
                   Cancel
                 </button>
@@ -121,12 +121,16 @@ export default function MembershipPage() {
                       tierName: `${checkoutTier.name} (${years} year${years > 1 ? "s" : ""})`,
                       price: Number(total.toFixed(2)),
                     });
-                    setCheckoutTierId(null);
-                    router.push("/checkout");
+                    setActionTier(null);
+                    if (actionTier?.action === "cart") {
+                      openCart("cart");
+                    } else {
+                      router.push("/checkout");
+                    }
                   }}
-                  className="inline-flex flex-1 items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white"
+                  className="inline-flex flex-1 items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors"
                 >
-                  Continue
+                  {actionTier?.action === "cart" ? "Add to Cart" : "Continue"}
                 </button>
               </div>
             </div>

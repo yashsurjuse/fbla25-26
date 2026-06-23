@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { getCartItemTotal, useCart } from "@/components/CartContext";
+import { useRouter } from "next/navigation";
+import { getCartItemTotal, useCart, CartItem } from "@/components/CartContext";
 import { ticketTypes } from "@/lib/tickets";
 
 export default function CheckoutPage() {
-  const { items, clearCart } = useCart();
-  const [placed, setPlaced] = useState(false);
+  const { items, clearCart, addPastOrder } = useCart();
+  const router = useRouter();
   const checkoutFormRef = useRef<HTMLFormElement | null>(null);
 
   const totals = useMemo(() => {
@@ -23,8 +24,17 @@ export default function CheckoutPage() {
     if (!checkoutFormRef.current?.reportValidity()) {
       return;
     }
-    setPlaced(true);
+    const finalItems = [...items];
+    const orderId = `MET-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+    addPastOrder({
+      id: orderId,
+      date: new Date().toISOString(),
+      total: totals.total,
+      status: "Processing",
+      items: finalItems,
+    });
     clearCart();
+    router.push(`/?orderSuccess=${orderId}`);
   };
 
   return (
@@ -42,7 +52,7 @@ export default function CheckoutPage() {
             <h2 className="font-display text-4xl font-semibold text-black">Your cart is empty</h2>
             <p className="mt-3 text-black/75">Add tickets or a membership plan before checking out.</p>
             <div className="mt-5 flex flex-wrap gap-2">
-              <Link href="/visit" className="border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white">
+              <Link href="/visit" className="border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white">
                 Plan Your Visit
               </Link>
               <Link href="/membership" className="border border-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black">
@@ -143,7 +153,7 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={handlePlaceOrder}
-                className="mt-5 w-full border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white"
+                className="mt-5 w-full border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white"
               >
                 Place Order
               </button>
@@ -151,36 +161,6 @@ export default function CheckoutPage() {
           </form>
         )}
       </div>
-
-      {placed ? (
-        <div className="fixed inset-0 z-[90] grid place-items-center bg-black/45 px-4" role="dialog" aria-modal="true" aria-label="Thank you">
-          <div className="w-full max-w-xl border border-black/20 bg-white p-6 shadow-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Order Confirmed</p>
-            <h2 className="mt-2 font-display text-5xl font-semibold text-black">Thank you for your order</h2>
-            <p className="mt-2 text-black/75">Your confirmation and digital tickets have been prepared.</p>
-
-            <div className="mt-5 border border-dashed border-black/30 bg-[#f7f7f7] p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Admission Pass</p>
-              <p className="mt-1 text-xl font-semibold text-black">The Metropolitan Museum of Art</p>
-              <p className="mt-1 text-sm text-black/75">Booking reference: MET-{Date.now().toString().slice(-6)}</p>
-              <p className="mt-1 text-sm text-black/75">Present this pass at ticketing or member services.</p>
-            </div>
-
-            <div className="mt-6 flex gap-2">
-              <Link href="/" className="inline-flex flex-1 items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white">
-                Return Home
-              </Link>
-              <button
-                type="button"
-                onClick={() => setPlaced(false)}
-                className="inline-flex flex-1 items-center justify-center border border-black/20 px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black"
-              >
-                Continue Browsing
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
     </div>
   );
 }
