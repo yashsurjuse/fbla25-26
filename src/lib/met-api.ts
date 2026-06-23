@@ -11,6 +11,9 @@ export type MetObject = {
   department: string;
   objectName: string;
   culture: string;
+  country?: string;
+  region?: string;
+  city?: string;
   tags?: string[];
 };
 
