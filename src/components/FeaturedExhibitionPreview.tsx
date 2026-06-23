@@ -6,7 +6,7 @@ import type { KeyboardEvent, MouseEvent } from "react";
 import { useRef, useState } from "react";
 
 const previewVideoSrc =
-  "https://cdn.prod.website-files.com/627a18b45c52392f93ad57c8/62838a6d48b08503f8882915_Exhibition%20Preview%E2%80%94In%20America%20%20An%20Anthology%20Of%20Fashion-transcode.mp4";
+  "https://rr3---sn-j5caxoxu-hh0s.googlevideo.com/videoplayback/expire/1782251264/ei/n6o6aqn_O_3Pp-oPyc3N-QU/ip/172.71.164.122/id/o-ALqLL0WSbFsrdhGA0HJuN_R1OugFh5lkELL1HNSdowEk/source/youtube/requiressl/yes/xpc/EgVo2aDSNQ%3D%3D/rms/au,au/ctier/A/pfa/5/hightc/yes/siu/1/bui/ARmQxEW8KRUgTDZqVPhpttGUbcVDbGW0PjCJcKI_uVSDikdBrKUObfDKftBrsjCpL9EX6cWN5w/spc/SQ-umsMXSgU_RnrMmQlRusHy_DUnSeUQgt7VcMTc5zziJR1jsism5BRWiw/vprv/1/svpuc/1/mime/video%2Fmp4/rqh/1/gir/yes/clen/41506985/dur/198.565/lmt/1781301013617508/itag/137/keepalive/yes/fexp/51565116,51565681,51987687,51993077/txp/5309224/sparams/expire,ei,ip,id,itag,source,requiressl,xpc,ctier,pfa,hightc,siu,bui,spc,vprv,svpuc,mime,rqh,gir,clen,dur,lmt/sig/AHEqNM4wRAIgU64OgW4mnvfkeVwC9eo6cNF3uC6hqFbdjLfc8ZuFdiwCIFELvWVbAHPEqhnEB7U-ggQzAm1vsEKz5T0LYBuI5r9Y/redirect_counter/1/rm/sn-4g5eke7z/rrc/104/req_id/d1a06362557aa3ee/cms_redirect/yes/cmsv/e/cps/100/ipbypass/yes/met/1782229678,/mh/T4/mip/74.90.233.58/mm/31/mn/sn-j5caxoxu-hh0s/ms/au/mt/1782228594/mv/u/mvi/3/pcm2cms/yes/pl/20/lsparams/cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pcm2cms,pl,rms/lsig/APaTxxMwRAIgE2KWBy8exBCm73tuklucC7pN7wRriTdOwwdH3WLaHfICIGFe5XGp88BZreAjgQY6PpD-AZmtrpZp2NwDttjo-o2H";
 
 export default function FeaturedExhibitionPreview() {
   const router = useRouter();
@@ -114,15 +114,14 @@ export default function FeaturedExhibitionPreview() {
 
         <div className="border-b border-black/20 py-7">
           <div className="grid gap-6 lg:grid-cols-[0.33fr_0.47fr_0.2fr] lg:items-start">
-            <h3 className="font-display text-5xl font-semibold leading-[0.9] sm:text-6xl">IN AMERICA</h3>
+            <h3 className="font-display text-5xl font-semibold leading-[0.9] sm:text-6xl">RAPHAEL: SUBLIME POETRY</h3>
             <p className="pt-1 text-lg leading-snug text-black/90 sm:text-xl">
-              The Costume Institute&apos;s In America: An Anthology of Fashion is the second portion of a two-part
-              exhibition exploring fashion in the United States.
+              This landmark exhibition explores Raphael&apos;s sublime and poetic approach to painting, showcasing his masterful drawings, portraits, and religious works that defined the High Renaissance.
             </p>
             <p className="pt-1 text-base text-black/85 sm:text-lg">
               Out of Public:
               <br />
-              <span className="font-semibold text-black">January 19, 2026</span>
+              <span className="font-semibold text-black">March 29, 2026</span>
             </p>
           </div>
         </div>

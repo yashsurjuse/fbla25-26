@@ -108,7 +108,7 @@ async function loadStaticArtifacts(): Promise<MetObject[]> {
   }
 }
 
-export async function fetchMetObjectIds(params: { q?: string; departmentId?: string; medium?: string; artistOrCulture?: boolean }): Promise<number[]> {
+export async function fetchMetObjectIds(params: { q?: string; departmentId?: string; medium?: string; culture?: string; geo?: string; artistOrCulture?: boolean }): Promise<number[]> {
   const artifacts = await loadStaticArtifacts();
   
   let filtered = artifacts;
@@ -148,6 +148,20 @@ export async function fetchMetObjectIds(params: { q?: string; departmentId?: str
     });
   }
   
+  if (params.culture) {
+    const c = params.culture.toLowerCase();
+    filtered = filtered.filter(a => a.culture?.toLowerCase().includes(c));
+  }
+  
+  if (params.geo) {
+    const g = params.geo.toLowerCase();
+    filtered = filtered.filter(a => 
+      a.country?.toLowerCase().includes(g) || 
+      a.region?.toLowerCase().includes(g) ||
+      a.city?.toLowerCase().includes(g)
+    );
+  }
+
   return filtered.map(a => a.objectID);
 }
 

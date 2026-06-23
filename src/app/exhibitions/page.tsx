@@ -15,6 +15,7 @@ export default function ExhibitionsPage() {
   const [exhibitionsData, setExhibitionsData] = useState<any[]>([]);
   const [selectedExhibition, setSelectedExhibition] = useState<any | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "current" | "past" | "future">("all");
   const [featuredWorks, setFeaturedWorks] = useState<MetObject[]>([]);
   const [loadingWorks, setLoadingWorks] = useState(false);
   const router = useRouter();
@@ -42,12 +43,15 @@ export default function ExhibitionsPage() {
 
   const filteredData = useMemo(() => {
     let data = exhibitionsData;
+    if (statusFilter !== "all") {
+      data = data.filter(e => (e.status || "past") === statusFilter);
+    }
     if (searchQuery) {
         const q = searchQuery.toLowerCase();
         data = data.filter(e => e.title?.toLowerCase().includes(q) || e.description?.toLowerCase().includes(q));
     }
     return data;
-  }, [exhibitionsData, searchQuery]);
+  }, [exhibitionsData, searchQuery, statusFilter]);
 
   const totalPages = Math.ceil(filteredData.length / PAGE_SIZE) || 1;
 
@@ -56,10 +60,10 @@ export default function ExhibitionsPage() {
     return filteredData.slice(start, start + PAGE_SIZE);
   }, [currentPage, filteredData]);
 
-  // Reset to page 1 when search changes
+  // Reset to page 1 when search or status changes
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchQuery]);
+  }, [searchQuery, statusFilter]);
 
   const handlePageChange = (page: number) => setCurrentPage(Math.max(1, Math.min(totalPages, page)));
 
@@ -79,6 +83,21 @@ export default function ExhibitionsPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full max-w-md border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none placeholder:text-black/40 focus:border-black/30 transition-colors"
             />
+            <div className="flex flex-wrap gap-2">
+              {(["all", "current", "future", "past"] as const).map((status) => (
+                <button
+                  key={status}
+                  onClick={() => setStatusFilter(status)}
+                  className={`px-4 py-2 border text-sm font-semibold uppercase tracking-wider transition-colors ${
+                    statusFilter === status
+                      ? "border-black bg-black text-white"
+                      : "border-black/20 bg-white text-black hover:border-black"
+                  }`}
+                >
+                  {status}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -109,6 +128,15 @@ export default function ExhibitionsPage() {
               <div className="space-y-4 p-6">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/60">{item.dates}</p>
+                  {item.status && (
+                    <span className={`px-2 py-1 text-[0.65rem] font-bold uppercase tracking-wider ${
+                      item.status === 'current' ? 'bg-green-100 text-green-800' :
+                      item.status === 'future' ? 'bg-blue-100 text-blue-800' :
+                      'bg-black/10 text-black/60'
+                    }`}>
+                      {item.status}
+                    </span>
+                  )}
                 </div>
 
                 <h2 className="font-display text-4xl font-semibold leading-tight text-black">{item.title}</h2>

@@ -26,6 +26,8 @@ export default function ArtifactsPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDept, setSelectedDept] = useState("");
   const [selectedMedium, setSelectedMedium] = useState("");
+  const [selectedCulture, setSelectedCulture] = useState("");
+  const [selectedGeo, setSelectedGeo] = useState("");
   const [selectedArtist, setSelectedArtist] = useState("");
 
   const [departments, setDepartments] = useState<{ departmentId: number; displayName: string }[]>([]);
@@ -61,7 +63,9 @@ export default function ArtifactsPage() {
       const ids = await fetchMetObjectIds({
         q: searchQuery || "*",
         departmentId: selectedDept || undefined,
-        medium: selectedMedium || undefined
+        medium: selectedMedium || undefined,
+        culture: selectedCulture || undefined,
+        geo: selectedGeo || undefined
       });
       if (active) {
         setObjectIds(ids);
@@ -71,7 +75,7 @@ export default function ArtifactsPage() {
 
     loadIds();
     return () => { active = false; };
-  }, [searchQuery, selectedDept, selectedMedium, selectedArtist, artistsData]);
+  }, [searchQuery, selectedDept, selectedMedium, selectedCulture, selectedGeo, selectedArtist, artistsData]);
 
   // Load objects for the current page
   useEffect(() => {
@@ -113,7 +117,7 @@ export default function ArtifactsPage() {
             bronzes, and much more.
           </p>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
             <input
               type="text"
               placeholder="Search..."
@@ -145,6 +149,45 @@ export default function ArtifactsPage() {
               <option value="Steel|Iron|Brass">Armor</option>
             </select>
             <select
+              value={selectedCulture}
+              onChange={(e) => { setSelectedCulture(e.target.value); setSelectedArtist(""); }}
+              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
+            >
+              <option value="">All Cultures</option>
+              <option value="Roman">Roman</option>
+              <option value="Greek">Greek</option>
+              <option value="Egyptian">Egyptian</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Chinese">Chinese</option>
+              <option value="French">French</option>
+              <option value="Italian">Italian</option>
+              <option value="American">American</option>
+              <option value="Indian">Indian</option>
+              <option value="British">British</option>
+              <option value="German">German</option>
+              <option value="Dutch">Dutch</option>
+              <option value="Spanish">Spanish</option>
+            </select>
+            <select
+              value={selectedGeo}
+              onChange={(e) => { setSelectedGeo(e.target.value); setSelectedArtist(""); }}
+              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
+            >
+              <option value="">All Regions</option>
+              <option value="Egypt">Egypt</option>
+              <option value="France">France</option>
+              <option value="Italy">Italy</option>
+              <option value="Japan">Japan</option>
+              <option value="China">China</option>
+              <option value="United States">United States</option>
+              <option value="India">India</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Germany">Germany</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="Spain">Spain</option>
+              <option value="Greece">Greece</option>
+            </select>
+            <select
               value={selectedArtist}
               onChange={(e) => {
                 setSelectedArtist(e.target.value);
@@ -152,6 +195,8 @@ export default function ArtifactsPage() {
                   setSearchQuery("");
                   setSelectedDept("");
                   setSelectedMedium("");
+                  setSelectedCulture("");
+                  setSelectedGeo("");
                 }
               }}
               className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
