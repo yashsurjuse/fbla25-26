@@ -116,6 +116,7 @@ export default function CheckoutPage() {
                       <>
                         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-black/60">Store</p>
                         <p className="mt-1 text-sm font-semibold text-black">{item.productName}</p>
+                        {item.size && <p className="text-xs text-black/60 font-semibold mt-1">Size: {item.size}</p>}
                         <p className="text-sm text-black/70">Qty {item.quantity}</p>
                       </>
                     )}

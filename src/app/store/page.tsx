@@ -2,14 +2,84 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
-import { storeCategories, storeProducts } from "@/data/store-products";
+import { useState, useEffect, useMemo } from "react";
+
+type StoreProduct = {
+  id: string;
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+  category: string;
+  rating: number;
+  reviews: number;
+};
 
 export default function StorePage() {
-  const [activeCategory, setActiveCategory] = useState<(typeof storeCategories)[number]>("All");
+  const [storeProducts, setStoreProducts] = useState<StoreProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [visibleCount, setVisibleCount] = useState(24);
 
-  const filtered =
-    activeCategory === "All" ? storeProducts : storeProducts.filter((product) => product.category === activeCategory);
+  useEffect(() => {
+    fetch('/data/store_master.json')
+      .then(res => res.json())
+      .then((data: StoreProduct[]) => {
+         setStoreProducts(data);
+         setLoading(false);
+      })
+      .catch(err => {
+         console.error("Failed to load store data", err);
+         setLoading(false);
+      });
+  }, []);
+
+  const storeCategories = useMemo(() => {
+    const cats = new Set(storeProducts.map(p => p.category));
+    return ["All", ...Array.from(cats)].filter(c => c && c.trim() !== "");
+  }, [storeProducts]);
+
+  const filtered = useMemo(() => {
+     let data = storeProducts;
+     if (activeCategory !== "All") {
+       data = data.filter(p => p.category === activeCategory);
+     }
+     if (searchQuery) {
+       const q = searchQuery.toLowerCase();
+       data = data.filter(p => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
+     }
+     // Sort by relevancy
+     const getRelevancy = (title: string) => {
+        const t = title.toLowerCase();
+        // High priority everyday items
+        if (t.includes("shirt") || t.includes("tote") || t.includes("mug") || t.includes("cap") || t.includes("sweatshirt") || t.includes("hoodie") || t.includes("umbrella") || t.includes("socks")) return 5;
+        // High priority accessories
+        if (t.includes("necklace") || t.includes("earrings") || t.includes("bracelet") || t.includes("pin") || t.includes("watch") || t.includes("scarf")) return 4;
+        // Books & Prints
+        if (t.includes("book") || t.includes("guide") || t.includes("poster") || t.includes("print")) return 3;
+        // Toys & Kids
+        if (t.includes("puzzle") || t.includes("toy") || t.includes("plush") || t.includes("game")) return 2;
+        // Niche items (sculptures, reproductions, etc)
+        return 1;
+     };
+
+     return [...data].sort((a, b) => getRelevancy(b.title) - getRelevancy(a.title));
+  }, [storeProducts, activeCategory, searchQuery]);
+
+  useEffect(() => {
+    setVisibleCount(24);
+  }, [activeCategory, searchQuery]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 800) {
+        setVisibleCount((prev) => prev + 12);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div className="bg-[#f4f4f4] pb-16">
@@ -28,11 +98,12 @@ export default function StorePage() {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="relative w-full sm:max-w-xs">
             <input
-              type="search"
+              type="text"
               placeholder="Search the store..."
-              aria-label="Search store (display only)"
-              readOnly
-              className="w-full border border-black/25 bg-white px-4 py-2.5 pr-10 text-sm text-black placeholder:text-black/45 outline-none"
+              aria-label="Search store"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full border border-black/25 bg-white px-4 py-2.5 pr-10 text-sm text-black placeholder:text-black/45 outline-none focus:border-black"
             />
             <svg
               className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/35"
@@ -69,8 +140,12 @@ export default function StorePage() {
 
       <div className="mx-auto mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         <p className="text-sm text-black/50">
-          Showing <span className="font-semibold text-black">{filtered.length}</span>{" "}
-          {filtered.length === 1 ? "item" : "items"}
+          {loading ? "Loading store..." : (
+          <>
+            Showing <span className="font-semibold text-black">{filtered.length}</span>{" "}
+            {filtered.length === 1 ? "item" : "items"}
+          </>
+          )}
           {activeCategory !== "All" && (
             <>
               {" "}
@@ -84,13 +159,13 @@ export default function StorePage() {
         className="mx-auto mt-4 grid w-full max-w-7xl gap-5 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-10 xl:grid-cols-4"
         aria-label="Store products"
       >
-        {filtered.map((product) => (
+        {filtered.slice(0, visibleCount).map((product) => (
           <article key={product.id} className="group flex flex-col overflow-hidden border border-black/15 bg-white">
             <div className="relative aspect-square overflow-hidden bg-[#f8f5ef]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.98),_rgba(232,232,232,0.72))]" aria-hidden />
               <Image
                 src={product.image}
-                alt={product.name}
+                alt={product.title}
                 fill
                 className="object-contain p-5 transition-transform duration-500 group-hover:scale-[1.03]"
                 sizes="(min-width: 1280px) 22vw, (min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
@@ -98,15 +173,23 @@ export default function StorePage() {
             </div>
 
             <div className="flex flex-1 flex-col p-4">
-              <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-black/45">
-                {product.category}
-              </p>
-              <h2 className="mt-1 flex-1 font-display text-xl font-semibold leading-snug text-black">
-                {product.name}
+              <div className="mt-1 flex items-center justify-between">
+                <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-black/45 line-clamp-1">
+                  {product.category}
+                </p>
+                <div className="flex items-center gap-1">
+                    <span className="text-[0.7rem] font-semibold text-black/60">{product.rating.toFixed(1)}</span>
+                    <svg className="h-3 w-3 text-yellow-500 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    <span className="text-[0.65rem] text-black/40">({product.reviews})</span>
+                </div>
+              </div>
+              <h2 className="mt-1.5 flex-1 font-display text-xl font-semibold leading-snug text-black">
+                {product.title}
               </h2>
               <p className="mt-2 line-clamp-2 text-xs leading-5 text-black/55">{product.description}</p>
 
-              <div className="mt-4 flex items-center justify-between gap-3">
+              <div className="mt-4 flex items-center justify-between gap-3 border-t border-black/10 pt-4">
+                <span className="font-semibold text-lg">{product.price}</span>
                 <Link
                   href={`/store/${product.id}`}
                   className="shrink-0 border border-black bg-black px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.06em] !text-white transition-colors duration-150 hover:bg-transparent hover:!text-black"

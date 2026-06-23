@@ -97,7 +97,7 @@ export default function SiteHeader() {
           </Link>
           <button
             type="button"
-            onClick={openCart}
+            onClick={() => openCart()}
             aria-label="Open cart"
             className="relative hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex"
           >

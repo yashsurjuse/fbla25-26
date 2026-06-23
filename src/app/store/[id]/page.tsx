@@ -1,73 +1,65 @@
-import Image from "next/image";
-import Link from "next/link";
+import fs from "fs/promises";
+import path from "path";
 import { notFound } from "next/navigation";
-import AddStoreToCartButton from "@/components/AddStoreToCartButton";
-import { storeProducts } from "@/data/store-products";
+import StoreItemClient from "./StoreItemClient";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+type StoreProduct = {
+  id: string;
+  title: string;
+  price: string;
+  image: string;
+  description: string;
+  category: string;
+  rating: number;
+  reviews: number;
+};
 
-export function generateStaticParams() {
-  return storeProducts.map((product) => ({ id: product.id }));
+export async function generateStaticParams() {
+  try {
+    const jsonPath = path.join(process.cwd(), "public/data/store_master.json");
+    const data = await fs.readFile(jsonPath, "utf-8");
+    const products: StoreProduct[] = JSON.parse(data);
+    return products.map((p) => ({
+      id: p.id,
+    }));
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function StoreItemPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = storeProducts.find((entry) => entry.id === id);
+  let product: StoreProduct | null = null;
+  let allProducts: StoreProduct[] = [];
+  
+  try {
+    const jsonPath = path.join(process.cwd(), "public/data/store_master.json");
+    const data = await fs.readFile(jsonPath, "utf-8");
+    allProducts = JSON.parse(data);
+    product = allProducts.find(p => p.id === id) || null;
+  } catch (e) {
+    console.error(e);
+  }
 
   if (!product) {
-    notFound();
+    return notFound();
+  }
+
+  // Get related items (same category or random)
+  const related = allProducts
+    .filter(p => p.category === product?.category && p.id !== product?.id)
+    .slice(0, 8); // Grab up to 8 for the carousel
+
+  // If not enough related, pad with others
+  if (related.length < 8) {
+    const others = allProducts.filter(p => p.category !== product?.category && p.id !== product?.id);
+    related.push(...others.slice(0, 8 - related.length));
   }
 
   return (
-    <div className="bg-[#f4f4f4] px-4 py-14 sm:px-6 lg:px-10">
-      <div className="mx-auto w-full max-w-6xl">
-        <Link href="/store" className="text-sm font-semibold uppercase tracking-[0.08em] text-black/70 hover:text-black">
-          Back to Store
-        </Link>
-
-        <div className="mt-5 grid gap-6 border border-black/15 bg-white p-6 lg:grid-cols-[1fr_1fr]">
-          <div className="relative aspect-square overflow-hidden border border-black/10 bg-[#f8f5ef]">
-            <Image
-              src={product.image}
-              alt={product.name}
-              fill
-              className="object-contain p-7"
-              sizes="(min-width: 1024px) 40vw, 90vw"
-            />
-          </div>
-
-          <section>
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">{product.category}</p>
-            <h1 className="mt-2 font-display text-5xl font-semibold leading-tight text-black">{product.name}</h1>
-            <p className="mt-3 text-3xl font-semibold text-black">{currencyFormatter.format(product.price)}</p>
-
-            <p className="mt-4 text-base text-black/75">{product.description}</p>
-
-            <dl className="mt-6 space-y-2 border-t border-black/10 pt-4 text-sm text-black/75">
-              <div className="flex justify-between gap-4">
-                <dt className="font-semibold text-black">Material</dt>
-                <dd>{product.material}</dd>
-              </div>
-              <div className="flex justify-between gap-4">
-                <dt className="font-semibold text-black">Inspiration</dt>
-                <dd>{product.eraInspiration}</dd>
-              </div>
-            </dl>
-
-            <div className="mt-6 flex gap-2">
-              <AddStoreToCartButton product={product} />
-              <Link
-                href="/checkout"
-                className="inline-flex flex-1 items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white"
-              >
-                Checkout
-              </Link>
-            </div>
-          </section>
-        </div>
+    <div className="min-h-screen bg-white text-black font-sans pb-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10">
+        <StoreItemClient product={product} relatedProducts={related} />
       </div>
     </div>
   );

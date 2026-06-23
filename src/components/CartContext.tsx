@@ -25,6 +25,7 @@ export type CartStoreItem = {
   image: string;
   price: number;
   quantity: number;
+  size?: string;
   createdAt: string;
 };
 
@@ -33,23 +34,31 @@ export type CartItem = CartVisitItem | CartMembershipItem | CartStoreItem;
 type CartContextValue = {
   items: CartItem[];
   isOpen: boolean;
-  openCart: () => void;
+  openCart: (tab?: "cart" | "wishlist") => void;
   closeCart: () => void;
   addVisitItem: (item: Omit<CartVisitItem, "type" | "createdAt">) => void;
   addMembershipItem: (item: Omit<CartMembershipItem, "type" | "createdAt">) => void;
   addStoreItem: (item: Omit<CartStoreItem, "type" | "createdAt" | "quantity"> & { quantity?: number }) => void;
   removeItem: (index: number) => void;
   clearCart: () => void;
+  wishlistItems: CartStoreItem[];
+  addWishlistItem: (item: Omit<CartStoreItem, "type" | "createdAt">) => void;
+  removeWishlistItem: (index: number) => void;
   cartCount: number;
+  activeTab: "cart" | "wishlist";
+  setActiveTab: (tab: "cart" | "wishlist") => void;
 };
 
 const STORAGE_KEY = "met-cart-v1";
+const WISHLIST_STORAGE_KEY = "met-wishlist-v1";
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [wishlistItems, setWishlistItems] = useState<CartStoreItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<"cart" | "wishlist">("cart");
 
   useEffect(() => {
     try {
@@ -62,11 +71,25 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     } catch {
       setItems([]);
     }
+    
+    try {
+      const wRaw = window.localStorage.getItem(WISHLIST_STORAGE_KEY);
+      if (wRaw) {
+        const wParsed = JSON.parse(wRaw) as CartStoreItem[];
+        if (Array.isArray(wParsed)) setWishlistItems(wParsed);
+      }
+    } catch {
+      setWishlistItems([]);
+    }
   }, []);
 
   useEffect(() => {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
+
+  useEffect(() => {
+    window.localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlistItems));
+  }, [wishlistItems]);
 
   const addVisitItem: CartContextValue["addVisitItem"] = (item) => {
     setItems((prev) => [
@@ -97,7 +120,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setItems((prev) => {
       const quantityToAdd = item.quantity ?? 1;
       const existingIndex = prev.findIndex(
-        (entry) => entry.type === "store" && entry.productId === item.productId,
+        (entry) => entry.type === "store" && entry.productId === item.productId && entry.size === item.size,
       );
 
       if (existingIndex === -1) {
@@ -110,6 +133,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             image: item.image,
             price: item.price,
             quantity: quantityToAdd,
+            size: item.size,
           },
           ...prev,
         ];
@@ -127,6 +151,26 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     });
   };
 
+  const addWishlistItem: CartContextValue["addWishlistItem"] = (item) => {
+    setWishlistItems((prev) => {
+      const existingIndex = prev.findIndex((entry) => entry.productId === item.productId && entry.size === item.size);
+      if (existingIndex !== -1) return prev; // Already in wishlist
+      return [
+        {
+          type: "store",
+          createdAt: new Date().toISOString(),
+          productId: item.productId,
+          productName: item.productName,
+          image: item.image,
+          price: item.price,
+          quantity: item.quantity,
+          size: item.size,
+        },
+        ...prev,
+      ];
+    });
+  };
+
   const value = useMemo<CartContextValue>(() => {
     const cartCount = items.reduce((count, item) => {
       if (item.type === "visit") {
@@ -141,16 +185,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return {
       items,
       isOpen,
-      openCart: () => setIsOpen(true),
+      openCart: (tab?: "cart" | "wishlist") => {
+        if (tab) setActiveTab(tab);
+        setIsOpen(true);
+      },
       closeCart: () => setIsOpen(false),
       addVisitItem,
       addMembershipItem,
       addStoreItem,
       removeItem: (index) => setItems((prev) => prev.filter((_, itemIndex) => itemIndex !== index)),
       clearCart: () => setItems([]),
+      wishlistItems,
+      addWishlistItem,
+      removeWishlistItem: (index) => setWishlistItems((prev) => prev.filter((_, itemIndex) => itemIndex !== index)),
       cartCount,
+      activeTab,
+      setActiveTab,
     };
-  }, [isOpen, items]);
+  }, [isOpen, items, wishlistItems, activeTab]);
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
