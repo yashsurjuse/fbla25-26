@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Artifact } from "@/data/artifacts";
-import type { Artifact } from "@/data/artifacts";
 
 type CirculatingMarqueeProps = {
   items: Artifact[];
