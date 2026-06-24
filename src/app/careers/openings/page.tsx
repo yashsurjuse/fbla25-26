@@ -12,7 +12,7 @@ export default function OpeningsPage() {
     <div className="bg-[#f3f4f4] min-h-screen pb-24 text-black">
       <section className="relative w-full h-[40vh] min-h-[350px]">
         <Image
-          src="https://cdn.sanity.io/images/cctd4ker/production/8a74fa97cc00d08a3ea26a042bab5bc6dfb4e2a8-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+          src="https://images.metmuseum.org/CRDImages/es/original/DP225514.jpg"
           alt="Career Openings at The Met"
           fill
           className="object-cover"

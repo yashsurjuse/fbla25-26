@@ -12,7 +12,7 @@ export default function FilmingPolicyPage() {
     <div className="bg-[#f3f4f4] min-h-screen pb-24 text-black">
       <section className="relative w-full h-[40vh] min-h-[350px]">
         <Image
-          src="https://cdn.sanity.io/images/cctd4ker/production/12f42a251bfd2f79c72a28712d369c4e2351a049-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+          src="https://images.metmuseum.org/CRDImages/md/original/DP359502.jpg"
           alt="Filming Policy"
           fill
           className="object-cover"

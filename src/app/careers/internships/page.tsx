@@ -12,7 +12,7 @@ export default function InternshipsPage() {
     <div className="bg-[#f3f4f4] min-h-screen pb-24 text-black">
       <section className="relative w-full h-[40vh] min-h-[350px]">
         <Image
-          src="https://cdn.sanity.io/images/cctd4ker/production/201492f88a42d5c13dbcabbf79520a3c8a36e751-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+          src="https://images.metmuseum.org/CRDImages/ep/original/DP-19363-001.jpg"
           alt="Internships at The Met"
           fill
           className="object-cover"

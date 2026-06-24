@@ -12,7 +12,7 @@ export default function Page() {
       <div className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 lg:px-10">
         
       <div className="relative w-full h-[50vh] min-h-[400px] mb-16 rounded-3xl overflow-hidden shadow-2xl border border-black/5">
-        <img src="https://cdn.sanity.io/images/cctd4ker/production/fc460c2783c573bd0904b742d433178a4cc8856d-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" alt="Conservation Hero" className="object-cover w-full h-full" />
+        <img src="https://images.metmuseum.org/CRDImages/an/original/DP-43237-001.jpg" alt="Conservation Hero" className="object-cover w-full h-full" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
         <div className="absolute bottom-10 left-10 right-10">
             <h1 className="font-display text-5xl font-bold tracking-tight text-white sm:text-7xl shadow-black/50 drop-shadow-md">

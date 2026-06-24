@@ -13,7 +13,7 @@ export default function AboutPage() {
       {/* Hero Header */}
       <section className="relative w-full h-[50vh] min-h-[400px]">
         <Image 
-          src="https://cdn.sanity.io/images/cctd4ker/production/8085b5b608bffc5be90cd079c676c53790c91762-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" 
+          src="https://images.metmuseum.org/CRDImages/es/original/DP341255.jpg" 
           alt="The Metropolitan Museum of Art" 
           fill 
           className="object-cover" 

@@ -8,21 +8,21 @@ export const metadata: Metadata = {
 };
 
 const pressImages = [
-  { id: 1, title: "The Met Fifth Avenue Exterior", url: "https://cdn.sanity.io/images/cctd4ker/production/3f24056c69dc0374665a30f7787024d4e08f849f-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 2, title: "The Great Hall", url: "https://cdn.sanity.io/images/cctd4ker/production/201492f88a42d5c13dbcabbf79520a3c8a36e751-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 3, title: "The Met Cloisters", url: "https://cdn.sanity.io/images/cctd4ker/production/d25918d32e91614f036dc86e1e6624c790860b0b-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 4, title: "European Paintings Gallery", url: "https://cdn.sanity.io/images/cctd4ker/production/17308c995fb6ca1441655fd1bbfa540b20fc7093-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 5, title: "The Charles Engelhard Court", url: "https://cdn.sanity.io/images/cctd4ker/production/1421654e887b123f803467dc6f4f82ff77a915dd-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 6, title: "Asian Art Gallery", url: "https://cdn.sanity.io/images/cctd4ker/production/faa31bd035c2df01bca661cac8934bdfd331b28d-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 7, title: "Temple of Dendur", url: "https://cdn.sanity.io/images/cctd4ker/production/a56b5ff19bc515b19343cefb343afb8dd323cc78-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 8, title: "Greek and Roman Art", url: "https://cdn.sanity.io/images/cctd4ker/production/83100b590676a73c594316ef9b773588aacd7300-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 9, title: "Arms and Armor Court", url: "https://cdn.sanity.io/images/cctd4ker/production/5f1166f560eedf7957467f6d3346b460d48c4a6a-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 10, title: "The American Wing", url: "https://cdn.sanity.io/images/cctd4ker/production/8a74fa97cc00d08a3ea26a042bab5bc6dfb4e2a8-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 11, title: "Islamic Art Gallery", url: "https://cdn.sanity.io/images/cctd4ker/production/12f42a251bfd2f79c72a28712d369c4e2351a049-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 12, title: "Musical Instruments", url: "https://cdn.sanity.io/images/cctd4ker/production/cc2e2443d1815abb80bd98c978f539d46bcb38b8-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 13, title: "Modern and Contemporary", url: "https://cdn.sanity.io/images/cctd4ker/production/00c6c30771901a6238b8c2a990405a51ce84158c-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 14, title: "Costume Institute", url: "https://cdn.sanity.io/images/cctd4ker/production/dba30c5c3a2889f7130dd033391e0773a43638c1-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" },
-  { id: 15, title: "Medieval Art", url: "https://cdn.sanity.io/images/cctd4ker/production/279f7fd3af413e3f03737dedfea527fe55810af7-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format" }
+  { id: 1, title: "The Met Fifth Avenue Exterior", url: "https://images.metmuseum.org/CRDImages/es/original/DP238533.jpg" },
+  { id: 2, title: "The Great Hall", url: "https://images.metmuseum.org/CRDImages/gr/original/DP333700.jpg" },
+  { id: 3, title: "The Met Cloisters", url: "https://images.metmuseum.org/CRDImages/es/original/DP248871.jpg" },
+  { id: 4, title: "European Paintings Gallery", url: "https://images.metmuseum.org/CRDImages/gr/original/DT276.jpg" },
+  { id: 5, title: "The Charles Engelhard Court", url: "https://images.metmuseum.org/CRDImages/gr/original/DP-43517-001.jpg" },
+  { id: 6, title: "Asian Art Gallery", url: "https://images.metmuseum.org/CRDImages/gr/original/DP-39853-001.jpg" },
+  { id: 7, title: "Temple of Dendur", url: "https://images.metmuseum.org/CRDImages/gr/original/DP-14287-132.jpg" },
+  { id: 8, title: "Greek and Roman Art", url: "https://images.metmuseum.org/CRDImages/gr/original/DP109258.jpg" },
+  { id: 9, title: "Arms and Armor Court", url: "https://images.metmuseum.org/CRDImages/gr/original/DP-39819-001.jpg" },
+  { id: 10, title: "The American Wing", url: "https://images.metmuseum.org/CRDImages/gr/original/DT281.jpg" },
+  { id: 11, title: "Islamic Art Gallery", url: "https://images.metmuseum.org/CRDImages/ep/original/DP146455.jpg" },
+  { id: 12, title: "Musical Instruments", url: "https://images.metmuseum.org/CRDImages/gr/original/DT7205.jpg" },
+  { id: 13, title: "Modern and Contemporary", url: "https://images.metmuseum.org/CRDImages/ep/original/DP-25460-001.jpg" },
+  { id: 14, title: "Costume Institute", url: "https://images.metmuseum.org/CRDImages/aa/original/DP-12881-004.jpg" },
+  { id: 15, title: "Medieval Art", url: "https://images.metmuseum.org/CRDImages/ep/original/DP259921.jpg" }
 ];
 
 export default function ImageLibraryPage() {

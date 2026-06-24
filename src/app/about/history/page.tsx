@@ -14,7 +14,7 @@ export default function AboutHistoryPage() {
       <section className="relative h-[60vh] min-h-[400px] w-full bg-black">
         <div className="absolute inset-0">
           <Image
-            src="https://cdn.sanity.io/images/cctd4ker/production/3f24056c69dc0374665a30f7787024d4e08f849f-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+            src="https://images.metmuseum.org/CRDImages/es/original/DP-14939-001.jpg"
             alt="The Met exterior"
             fill
             className="object-cover opacity-60"

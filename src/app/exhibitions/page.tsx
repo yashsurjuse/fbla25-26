@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 import FakePagination from "@/components/FakePagination";
 import Modal from "@/components/Modal";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { fetchMetObject, MetObject } from "@/lib/met-api";
 
 const PAGE_SIZE = 26;

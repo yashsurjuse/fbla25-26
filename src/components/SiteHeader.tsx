@@ -29,6 +29,7 @@ export default function SiteHeader() {
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
+      window.scrollTo(0, 0);
       router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
       setSearchQuery("");
       setMenuOpen(false);
