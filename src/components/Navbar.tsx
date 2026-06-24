@@ -1,19 +1,32 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/exhibitions", label: "Exhibitions" },
     { href: "/artists", label: "Artists" },
     { href: "/artifacts", label: "Artifacts" },
-    { href: "/visit", label: "Visit" },
+    { href: "/store", label: "Shop" },
+    { href: "/research", label: "Research" },
   ];
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+      setOpen(false);
+    }
+  };
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -57,6 +70,25 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
+          <form onSubmit={handleSearch} className="relative flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-10 w-48 rounded-full border border-white/20 bg-white/10 px-4 pr-10 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="absolute right-1 flex h-8 w-8 items-center justify-center text-white/60 hover:text-white"
+              aria-label="Submit search"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </button>
+          </form>
           <Button
             asChild
             className="rounded-full border border-white/20 bg-white px-5 py-2 text-black shadow-sm backdrop-blur transition hover:brightness-[0.92]"
@@ -102,6 +134,25 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
+          <form onSubmit={handleSearch} className="mb-4 relative flex items-center">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-11 w-full rounded-md border border-white/20 bg-white/10 px-4 pr-11 text-sm text-white placeholder:text-white/60 focus:border-white focus:outline-none"
+            />
+            <button
+              type="submit"
+              className="absolute right-1 flex h-9 w-9 items-center justify-center text-white/60 hover:text-white bg-transparent border-none"
+              aria-label="Submit search"
+            >
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </button>
+          </form>
           <div className="flex flex-col gap-1 text-base">
             {navLinks.map((link) => (
               <Link key={link.href} href={link.href} className="py-2" onClick={() => setOpen(false)}>

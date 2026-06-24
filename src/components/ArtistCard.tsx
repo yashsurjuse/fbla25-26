@@ -2,8 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useState } from "react";
-import Modal from "@/components/Modal";
+import Link from "next/link";
 import SpotlightCard from "@/components/SpotlightCard";
 
 type Artist = {
@@ -14,16 +13,14 @@ type Artist = {
 };
 
 export default function ArtistCard({ artist }: { artist: Artist }) {
-  const [open, setOpen] = useState(false);
-
   return (
-    <>
+    <Link href={`/artists?artistName=${encodeURIComponent(artist.name)}`}>
       <motion.div
         whileHover={{ scale: 1.025, rotate: 0.3 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
       >
-        <SpotlightCard className="group rounded-2xl border border-white/10 bg-white/6 p-4 backdrop-blur-md shadow-lg shadow-black/25" spotlightColor="rgba(255, 255, 255, 0.28)">
-          <div className="relative h-40 w-full overflow-hidden rounded-lg bg-gradient-to-tr from-white/10 to-white/5">
+        <SpotlightCard className="group rounded-2xl border border-black/10 bg-white p-4 shadow-sm shadow-black/5 hover:shadow-md transition-shadow" spotlightColor="rgba(0, 0, 0, 0.05)">
+          <div className="relative h-48 w-full overflow-hidden rounded-lg bg-black/5">
           <Image
             src={artist.image}
             alt={artist.name}
@@ -32,43 +29,19 @@ export default function ArtistCard({ artist }: { artist: Artist }) {
             className="object-cover"
           />
           </div>
-          <div className="mt-3">
-            <h4 className="font-semibold text-white">{artist.name}</h4>
-            <p className="mt-2 line-clamp-3 text-sm text-white/75">{artist.bio}</p>
+          <div className="mt-4">
+            <h4 className="font-display text-2xl font-semibold text-black">{artist.name}</h4>
+            <p className="mt-2 line-clamp-3 text-sm text-black/75">{artist.bio}</p>
           </div>
-          <div className="mt-4 flex items-center gap-3">
-            <button
-              onClick={() => setOpen(true)}
-              className="rounded-full border border-white/20 bg-white px-4 py-1.5 text-sm font-medium text-black shadow-sm transition-transform hover:-translate-y-0.5"
+          <div className="mt-5 flex items-center gap-3">
+            <span
+              className="rounded-full border border-black px-5 py-2 text-sm font-semibold uppercase tracking-wider text-black transition-colors hover:bg-black hover:text-white"
             >
-              View
-            </button>
+              View Artist
+            </span>
           </div>
         </SpotlightCard>
       </motion.div>
-
-      {open && (
-        <Modal onClose={() => setOpen(false)}>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 16 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-2xl p-6"
-          >
-            <div className="relative mb-4 h-64 w-full overflow-hidden rounded-lg">
-              <Image
-                src={artist.image}
-                alt={artist.name}
-                fill
-                sizes="(min-width: 768px) 600px, 90vw"
-                className="object-cover"
-              />
-            </div>
-            <h3 className="text-2xl font-semibold text-white">{artist.name}</h3>
-            <p className="mt-3 text-white/75">{artist.bio}</p>
-          </motion.div>
-        </Modal>
-      )}
-    </>
+    </Link>
   );
 }

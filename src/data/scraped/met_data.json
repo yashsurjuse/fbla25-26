@@ -1,0 +1,789 @@
+{
+  "about": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "About The Met"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art collects, studies, conserves, and presents significant works of art across time and cultures in order to connect all people to creativity, knowledge, ideas, and one another."
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art presents over 5,000 years of art from around the world for everyone to experience and enjoy. The Museum lives in two iconic sites in New York City\u2014The Met Fifth Avenue\u00a0and\u00a0The Met Cloisters. Millions of people also take part in The Met experience online.\n\nSince its founding in 1870, The Met has always aspired to be more than a treasury of rare and beautiful objects. Every day, art comes alive in the Museum's galleries and through its exhibitions and events, revealing new ideas and unexpected connections across time and across cultures."
+      },
+      {
+        "tag": "h2",
+        "text": "Who We Are"
+      },
+      {
+        "tag": "h2",
+        "text": "Our Past, Present, and Future"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art was founded in 1870 by a group of businessmen, financiers, and leading artists and thinkers of the day who wanted to create a museum to bring art and art education to the American people."
+      },
+      {
+        "tag": "h2",
+        "text": "The Met Collection"
+      },
+      {
+        "tag": "li",
+        "text": "Opportunities"
+      },
+      {
+        "tag": "li",
+        "text": "Press"
+      },
+      {
+        "tag": "li",
+        "text": "Policies, reports, and documents"
+      },
+      {
+        "tag": "h2",
+        "text": "Land Acknowledgement"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art is situated in Lenapehoking, homeland of the Lenape diaspora, and historically a gathering and trading place for many diverse Native peoples, who continue to live and work on this island."
+      },
+      {
+        "tag": "p",
+        "text": "We respectfully acknowledge and honor all Indigenous communities\u2014past, present, and future\u2014for their ongoing and fundamental relationships to the region. In May 2021, The Met installed a plaque on the Fifth Avenue facade recognizing Lenapehoking, the homeland of the Indigenous Lenape peoples."
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/5d59a34a496a3a7881f238069bff52f0b35d1d36-5119x5119.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/f4785b84447903b0afc2b2032a5a968c19d04435-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/14a9e3b4183c6445bca4edb7bd6f73377d1f083e-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/e5e01bc8377551330f09bd01ea2f6aca9199dda5-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/8e5146cf88164e79ec9af2bc5691b566862b03dc-1520x855.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/88cf11aef300a2a71d141f03e5bb5090b232b951-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/4b8d02ebd8a1e126b2aa9a5615e266d5ac57237c-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/0e1031da1fc516029c5a2df9c8b9c87d13e06738-7952x4473.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/8a9c1a083ebd4e2886c3dc9fbb500806fa190cfa-5120x2881.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/dd3f88de42acf32938f35c0153c9e29a96d729f3-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "history": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "History of The Met"
+      },
+      {
+        "tag": "h2",
+        "text": "The Met"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art's earliest roots date back to 1866 in Paris, France, when a group of Americans agreed to create a \"national institution and gallery of art\" to bring art and art education to the American people. The lawyer John Jay, who proposed the idea, swiftly moved forward with the project upon his return to the United States from France. Under Jay's presidency, the Union League Club in New York rallied civic leaders, businessmen, artists, art collectors, and philanthropists to the cause. On April 13, 1870, The Metropolitan Museum of Art was incorporated, opening to the public in the Dodworth Building at 681 Fifth Avenue. On November 20 of that same year, the Museum acquired its first object, a Roman sarcophagus. In 1871, 174 European paintings, including works by Anthony van Dyck, Nicolas Poussin, and Giovanni Battista Tiepolo, entered the collection."
+      },
+      {
+        "tag": "p",
+        "text": "On March 30, 1880, after a brief move to the Douglas Mansion at 128 West 14th Street, the Museum opened to the public at its current site on Fifth Avenue and 82nd Street. The architects Calvert Vaux and Jacob Wrey Mould designed the initial Ruskinian Gothic structure, the west facade of which is still visible in the Robert Lehman Wing. The building has since expanded greatly, and the various additions\u2014built as early as 1888\u2014now completely surround the original structure."
+      },
+      {
+        "tag": "p",
+        "text": "The Museum's collection continued to grow throughout the rest of the 19th century. The 1874\u201376 purchase of the Cesnola Collection of Cypriot art\u2014works dating from the Bronze Age to the end of the Roman period\u2014helped to establish The Met's reputation as a major repository of classical antiquities. When the American painter John Kensett died in 1872, 38 of his canvases came to the Museum, and in 1889, the Museum acquired two works by \u00c9douard Manet."
+      },
+      {
+        "tag": "p",
+        "text": "The Museum's Beaux-Arts Fifth Avenue facade and Great Hall, designed by the architect and founding Museum Trustee Richard Morris Hunt, opened to the public in December 1902. The Evening Post reported that at last New York had a neoclassical palace of art, \"one of the finest in the world, and the only public building in recent years which approaches in dignity and grandeur the museums of the old world.\""
+      },
+      {
+        "tag": "p",
+        "text": "By the 20th century, the Museum had become one of the world's great art centers. In 1907, the Museum acquired a work by Auguste Renoir, and in 1910, The Met was the first public institution in the world to acquire a work of art by Henri Matisse. The ancient Egyptian hippopotamus statuette that is now the Museum's unofficial mascot, \"William,\" entered the collection in 1917. Today, almost all of the Museum's 30,000 ancient Egyptian objects, one of the largest collection of Egyptian art outside of Cairo, are on display. By 1979, the Museum owned five of the fewer than 35 known paintings by Johannes Vermeer, and now The Met's 2,500 European paintings comprise one of the greatest such collections in the world. The American Wing now houses the world's most comprehensive collection of American paintings, sculpture, and decorative arts."
+      },
+      {
+        "tag": "p",
+        "text": "Other major collections belonging to the Museum include arms and armor, the arts of Africa, Oceania, and the Americas, ancient West Asian art, Asian art, costume, drawings and prints, European sculpture and decorative arts, Greek and Roman art, Islamic art, medieval art, modern and contemporary art, musical instruments, photographs, and the Robert Lehman Collection."
+      },
+      {
+        "tag": "p",
+        "text": "Today, tens of thousands of objects are on view at any given time in the Museum's two-million-square-foot building."
+      },
+      {
+        "tag": "p",
+        "text": "A comprehensive architectural plan for the Museum by the architects Kevin Roche John Dinkeloo and Associates was approved in 1971 and completed in 1991. Among the additions to the Museum as part of the master plan are the Robert Lehman Wing (1975), which houses an extraordinary collection of Old Masters, as well as Impressionist and Post-Impressionist art; a wing to house the Temple of Dendur (1978); The American Wing (1980), whose diverse collection includes 25 recently renovated period rooms; The Michael C. Rockefeller Wing (1982) displaying the arts of Africa, Oceania, and the Americas; the Lila Acheson Wallace Wing (1987) of modern and contemporary art; and the Henry R. Kravis Wing (1991) devoted to European sculpture and decorative arts from the Renaissance to the beginning of the 20th century."
+      },
+      {
+        "tag": "p",
+        "text": "With the expansion of the building complete, The Met has continued to refine and reorganize its collection. In 1998, the Arts of Korea gallery opened to the public, completing a major suite of galleries devoted to the arts of Asia. The Ancient Near Eastern Art galleries reopened to the public in 1999 following a renovation. In 2007, several major projects at the south end of the building were completed, most notably the 15-year renovation and reinstallation of the entire suite of Greek and Roman Art galleries. Galleries for Oceanic and Native North American Art also opened in 2007, as well as the new Galleries for Nineteenth- and Early Twentieth-Century Paintings and Sculpture and the Ruth and Harold D. Uris Center for Education."
+      },
+      {
+        "tag": "p",
+        "text": "On November 1, 2011, the Museum's New Galleries for the Art of the Arab Lands, Turkey, Iran, Central Asia, and Later South Asia opened to the public. On the north side of the Museum, The Met's New American Wing Galleries for Paintings, Sculpture, and Decorative Arts reopened on January 16, 2012, signaling the completion of the third and final phase of The American Wing's renovation."
+      },
+      {
+        "tag": "p",
+        "text": "In May 2021, The Met installed a plaque on the Fifth Avenue facade recognizing Lenapehoking, the homeland of the Indigenous Lenape peoples."
+      },
+      {
+        "tag": "h2",
+        "text": "The Met Cloisters"
+      },
+      {
+        "tag": "p",
+        "text": "The Met Cloisters, view looking north. Photographed in April 1938"
+      },
+      {
+        "tag": "p",
+        "text": "The Met Cloisters, which opened to the public in 1938, is the branch of The Metropolitan Museum of Art devoted to the art and architecture of medieval Europe. Located in Fort Tryon Park in northern Manhattan, on a spectacular four-acre lot overlooking the Hudson River, the modern museum building is not a copy of any specific medieval structure but is rather an ensemble informed by a selection of historical precedents, with a deliberate combination of ecclesiastical and secular spaces arranged in chronological order. Elements from medieval cloisters\u2014Saint-Michel-de-Cuxa, Saint-Guilhem-le-D\u00e9sert, Trie-sur-Ba\u00efse, Froville, and elements once thought to have come from Bonnefont-en-Comminges\u2014and from other sites in Europe have been incorporated into the fabric of the building."
+      },
+      {
+        "tag": "p",
+        "text": "This silent film features footage of The Met Cloisters being constructed."
+      },
+      {
+        "tag": "p",
+        "text": "Three of the reconstructed cloisters feature gardens planted according to horticultural information found in medieval treatises and poetry, garden documents and herbals, and medieval works of art such as tapestries, stained-glass windows, and column capitals. Approximately 2,000 works of art from medieval Europe, largely dating from the 12th through the 15th century and including exquisite illuminated manuscripts, stained glass, metalwork, enamels, ivories, and tapestries, are exhibited in this unique context."
+      },
+      {
+        "tag": "p",
+        "text": "Much of the sculpture at The Met Cloisters was acquired by George Grey Barnard (1863\u20131938), a prominent American sculptor, and an avid collector and dealer of medieval art. Barnard opened his original Cloisters on Fort Washington Avenue to the public in 1914. Through the generosity of John D. Rockefeller, Jr. (1874\u20131960), the Museum acquired Barnard's Cloisters and most of its contents in 1925. Early on, it was clear that a new, larger building would be needed to display the collection in a more scholarly fashion. Rockefeller donated to New York City, and financed the conversion of, some 56 acres of land just north of Barnard's museum, which became Fort Tryon Park\u2014approximately four acres of which was destined as the site for the new museum. Following J. Pierpont Morgan's purchase of 12 miles of the New Jersey Palisades in 1901 to preserve the cliffs and shoreline from excessive quarrying, Rockefeller in 1933 donated some 700 additional acres of the Palisades' plateau to preserve the view from The Met Cloisters. In addition to providing the grounds and building to house the Barnard collection, Rockefeller contributed works of art from his own collection\u2014including the celebrated Unicorn Tapestries\u2014and established an endowment for operations and future acquisitions."
+      },
+      {
+        "tag": "p",
+        "text": "The new Cloisters museum building was designed by Charles Collens (1873\u20131956) who, together with Henry C. Pelton, designed the Riverside Church in New York City. Joseph Breck (1885\u20131933), a curator of decorative arts and assistant director of The Metropolitan Museum of Art, and James J. Rorimer (1905\u20131966), who would later be named the Museum's director, were primarily responsible for overseeing the building's design and construction. Balancing Collens's interpretation with strict attention to historical accuracy, Breck and Rorimer created in the galleries a clear and logical flow from the Romanesque (ca. 1000\u2013ca. 1150) through the Gothic period (ca. 1150\u20131520)."
+      },
+      {
+        "tag": "p",
+        "text": "This 28-minute documentary chronicles the dismantling of the 12th-century apse from the church of San Mart\u00edn in Fuentidue\u00f1a, Spain, and its reconstruction at The Met Cloisters between 1958 and 1961."
+      },
+      {
+        "tag": "p",
+        "text": "The Cloisters opened to the public on May 10, 1938. In 1958, the 12th-century limestone apse from the church in Fuentidue\u00f1a, Spain, arrived to become part of the structure. The Treasury, which contains objects created for liturgical celebrations, personal devotions, and secular uses, was renovated in 1988. Major improvement to the infrastructure, climatization, and gallery spaces has continued to this day, including a new skylight in the cloister from Saint-Guilhem-le-D\u00e9sert, a new objects conservation lab, the preservation of limestone windows in the Early Gothic and Late Gothic Halls, and many others."
+      },
+      {
+        "tag": "p",
+        "text": "The collection at The Met Cloisters continues to grow, thanks to Rockefeller's endowment and other significant gifts. Among its masterpieces are an early 15th-century French illuminated book of hours, The Belles Heures of Jean de France, Duc de Berry; a richly carved, 12th-century ivory cross attributed by some to the English abbey of Bury Saint Edmunds; stained-glass windows from the castle chapel at Ebreichsdorf, Austria; a stone Virgin of the mid-13th century from the choir screen of Strasbourg Cathedral in France; and the Merode Triptych, representing the Annunciation, by the workshop of the 15th-century Netherlandish master Robert Campin."
+      },
+      {
+        "tag": "h2",
+        "text": "The Met Breuer"
+      },
+      {
+        "tag": "p",
+        "text": "On March 18, 2016, The Metropolitan Museum of Art opened The Met Breuer, a space dedicated to modern and contemporary art. The landmark building was originally designed by the great Bauhaus architect Marcel Breuer for The Whitney Museum of American Art."
+      },
+      {
+        "tag": "p",
+        "text": "For four years, The Met Breuer exhibited global art of the twentieth and twenty-first centuries, enhanced by the historical reach of The Met's unparalleled collection, through a range of exhibitions, commissions, performances, and artist residencies."
+      },
+      {
+        "tag": "p",
+        "text": "In Summer 2020, The Met closed The Met Breuer, transferring its lease to The Frick Collection, while they renovate their primary building on East 70th Street."
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/d9559d6f7c9b715c3a2e7b293785ebc04e869456-1440x1059.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/c45d6fc32aa0c8de33928082f6b514ccab7c8039-720x661.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "conservation": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Departments"
+      },
+      {
+        "tag": "h2",
+        "text": "Curatorial"
+      },
+      {
+        "tag": "p",
+        "text": "Curatorial departments study, exhibit, and care for over two million objects in The Met Collection."
+      },
+      {
+        "tag": "h2",
+        "text": "Conservation and Scientific Research"
+      },
+      {
+        "tag": "p",
+        "text": "Conservators and scientists collaborate with curators to study, preserve, and conserve the works in The Met Collection."
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/fc460c2783c573bd0904b742d433178a4cc8856d-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/44403543f49abe362b8a85b493e7558396592ab1-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/8085b5b608bffc5be90cd079c676c53790c91762-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/61c991ae269103d4b22ba7ab85d3dbf98ed28086-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/a997555f04a3f04913f5371872189f54f48b2634-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/8d444b05b042dcbdd1c317fc8e3ecf27efad830b-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/2b08e1eb0aebef011d6714992a3f9f855e6a4b40-3200x1800.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/cb1c1fd13c449316c4ff9d7c99c228b764cbc2db-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/ef4e325e9e9b0f121c79b168300f5c9d6cc6d32f-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/258a0b2d9b5e9d007e4b6498f71d46deb5a4aa69-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/db9d9d374eb7ed521854067c04a3695d8d6044a6-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/3513bc5d23fe1cc24c46f03d1b3900cd3caa26ee-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/e15cf1b84c1d4d74bd5db0c4dc0302686bdb3b60-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/b7eeadbd8219688fa395d328b113db973717cbfb-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/8f6a196a7cfdb83188d27e8aa5eb2272e1c74ebf-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/fec87f7618e3b2c8946179ab4df67b1e9845f968-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/bd19c9299e817c2ffff4e6c01e21cf4e8684a302-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/efba12cab6c410e377aa25f94a8066977c65d9f6-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/cc6fdb9de730f6db3ec82e20a1862893b1082bd3-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/d0b7337db73fa0d7e20379acde2bce5cd7c2801a-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/d1ba79a1b3888c336e115d809b399f72278ea584-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/ccb257d5437a0cd134e91be7474a386e5101c14f-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/6b99875ac925bedbd09282309f4337c186663533-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/9ac0238be6c8d911a7ed7180f37fadb21032a925-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/860aec64106dbdb3d2f375d6fb6e1d07d51987b0-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/96bfa025a6e10678978f7273b2c51da4a3d0beb0-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/15ed2486b3864a51ea1d9b3f6724760eab12372a-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/95478a7d7c1eb490d261f56c17dad54d40baec3a-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/261feec4dfb9756c815550b146a46338691b1122-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "accessibility": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Accessibility"
+      },
+      {
+        "tag": "h2",
+        "text": "The Museum is committed to making its collection, buildings, programs, and services accessible to all audiences. Learn more about services and accessibility for visitors with disabilities at The Met Fifth Avenue."
+      },
+      {
+        "tag": "p",
+        "text": "The Museum is committed to making its collection, buildings, programs, and services accessible to all audiences. Learn more about services and accessibility for visitors with disabilities at The Met Fifth Avenue."
+      },
+      {
+        "tag": "h2",
+        "text": "Know Before You Go"
+      },
+      {
+        "tag": "p",
+        "text": "This information is specific to The Met Fifth Avenue. For information about our other location, please visit accessibility at The Met Cloisters.\n\nThe principles of diversity, equity, inclusion, and accessibility apply to all aspects of The Met's operations, across all categories of individuals. Please see the Museum's Institutional Diversity, Inclusion, and Equal Access Policy Statement."
+      },
+      {
+        "tag": "p",
+        "text": "Where are the accessible entrances?"
+      },
+      {
+        "tag": "p",
+        "text": "Are assistive listening devices available for exhibitions, tours, and programs?"
+      },
+      {
+        "tag": "p",
+        "text": "Are Audio Guides and transcripts available?"
+      },
+      {
+        "tag": "p",
+        "text": "Is captioning and Real-Time captioning available?"
+      },
+      {
+        "tag": "p",
+        "text": "Where can I eat and drink?"
+      },
+      {
+        "tag": "p",
+        "text": "Where can I find Large Print Information?"
+      },
+      {
+        "tag": "p",
+        "text": "Where can I park?"
+      },
+      {
+        "tag": "p",
+        "text": "Are there accessible routes within the museum for wheelchair users?"
+      },
+      {
+        "tag": "p",
+        "text": "Is seating available in the galleries?"
+      },
+      {
+        "tag": "p",
+        "text": "Are service animals welcome?"
+      },
+      {
+        "tag": "p",
+        "text": "Are there Sign Language services available?"
+      },
+      {
+        "tag": "p",
+        "text": "Does my accompanying care partner have to purchase a ticket?"
+      },
+      {
+        "tag": "p",
+        "text": "Are verbal description and imaging tours available?"
+      },
+      {
+        "tag": "p",
+        "text": "What wheelchair and mobility devices are allowed?"
+      },
+      {
+        "tag": "p",
+        "text": "Website Accessibility Statement"
+      },
+      {
+        "tag": "li",
+        "text": "See all visitor FAQs"
+      },
+      {
+        "tag": "li",
+        "text": "See our DEIA policy"
+      },
+      {
+        "tag": "h3",
+        "text": "Contact"
+      },
+      {
+        "tag": "p",
+        "text": "For more information or to request accommodations, please call 212-650-2010 (voice) or email access@metmuseum.org."
+      },
+      {
+        "tag": "h2",
+        "text": "Events and Activities"
+      },
+      {
+        "tag": "h3",
+        "text": "Programs"
+      },
+      {
+        "tag": "h3",
+        "text": "Plan a Group or School Visit"
+      },
+      {
+        "tag": "h3",
+        "text": "Upcoming Events"
+      },
+      {
+        "tag": "h3",
+        "text": "Learn from Home"
+      },
+      {
+        "tag": "h2",
+        "text": "Stay Updated!"
+      },
+      {
+        "tag": "h3",
+        "text": "Looking for The Met Cloisters?"
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/99f15742bc7544fb07537255ddbc23fc4f90117a-2432x1368.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/4446e63b7ee33f551b2a7e4cf838fd8418664663-2464x1386.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F5obeux5q%2Fstorytime-at-the-met-cloisters.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fnakfbywr%2Ffor-tech_metescapes-template-image.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F4qppsr5i%2Ffilipwolak_gardenday2023_0054_9578.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fza4dagah%2Ffilipwolak-met-dogdays-7981.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fkmhhc05h%2F5-13_metdiscoveries_byfilipwolak_0020_1189-3.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fcqhktnei%2F14-22_metdiscoveries_byfilipwolak_0324_1903-update.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F3fqknrrw%2Fdfe431d7-d36e-4f2c-a22f-bbe0a44730b3.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fyjbhhdtk%2F23plus_metdiscoveries_byfilipwolak_0760_2860.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F5obeux5q%2Fstorytime-at-the-met-cloisters.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fqokfznjp%2Fmktg-tours-filipwolak-032726-44-jpg-original-300dpi.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F2qxj0cjy%2Fbassmannew-1.png&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2F3k2ga1e5%2Fthe-observant-eye.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fcifjxru4%2F2025_08_09_argenis_apolinario_met_open_studio_5916.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fwdwk1frm%2Fdiscoveries-5-13_filipwolak_march2026_2.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fu52gx0sn%2Fdiscoveries-14-22_filipwolak_march2026_2.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fiaghm1dh%2Fdiscoveries-23plus_filipwolak_march2026_1.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fza4dagah%2Ffilipwolak-met-dogdays-7981.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Ffhjhbtb0%2Fselenaminogueedited-cropped-1.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Ffhjhbtb0%2Fselenaminogueedited-cropped-1.jpg&w=3840&q=75",
+      "https://www.metmuseum.org/_next/image?url=https%3A%2F%2Fengage.metmuseum.org%2Fmedia%2Fj2ldyhga%2F721-cloisters-hdtdt.jpg&w=3840&q=75",
+      "https://cdn.sanity.io/images/cctd4ker/production/33d32b2f6206a22c4795cd5e3e534923d9417595-1920x983.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/2563c31ab43393c9e180091e95263c24a122bd40-1920x983.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/1fa147f9f89a3cc923e28e037c1f78440679397e-1920x983.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/054f584e11dd15bf052f14770def5a437a325d90-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "press": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Press"
+      },
+      {
+        "tag": "h2",
+        "text": "Featured"
+      },
+      {
+        "tag": "h2",
+        "text": "Browse by Topic"
+      },
+      {
+        "tag": "li",
+        "text": "Acquisitions Gifts and Loans"
+      },
+      {
+        "tag": "li",
+        "text": "Events"
+      },
+      {
+        "tag": "li",
+        "text": "Exhibitions"
+      },
+      {
+        "tag": "li",
+        "text": "Institutional Announcements"
+      },
+      {
+        "tag": "li",
+        "text": "Trustee and Staff Appointments"
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "p",
+        "text": "How can I obtain permission to film or photograph at The Metropolitan Museum of Art and/or The Cloisters museum and gardens?"
+      },
+      {
+        "tag": "p",
+        "text": "How can I obtain publicity images to reproduce in a magazine, newspaper, or website?"
+      },
+      {
+        "tag": "p",
+        "text": "How can I get a press pass to visit the Museum?"
+      },
+      {
+        "tag": "h3",
+        "text": "Contact"
+      },
+      {
+        "tag": "p",
+        "text": "Press requests for information, images, and interview opportunities can be directed to the Communications Department:\n\nEmail:\u00a0Communications@metmuseum.org\nPhone: (212) 570-3951"
+      },
+      {
+        "tag": "p",
+        "text": "The Communications Department is\u00a0located at 1000 Fifth Avenue, New York, NY 10028-0198."
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/0721d28e1f78a06202babf709cc243ef9592b2f6-1799x758.png?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/cca3f8a98beb107f9c647bb946bbbe3b6740b6ed-3200x1800.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "contact": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Contact Information"
+      },
+      {
+        "tag": "li",
+        "text": "Buy Admission Tickets"
+      },
+      {
+        "tag": "li",
+        "text": "Become a Member"
+      },
+      {
+        "tag": "li",
+        "text": "Image Request Form"
+      }
+    ],
+    "images": []
+  },
+  "careers": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Careers"
+      },
+      {
+        "tag": "h3",
+        "text": "The Met\u2019s mission is to collect, study, conserve, and present significant works of art across time and cultures in order to connect all people to creativity, knowledge, ideas, and one another."
+      },
+      {
+        "tag": "h2",
+        "text": "Working at The Met"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art, also known as The Met, presents over 5,000 years of art from around the world for everyone to experience and enjoy. The Museum lives in two iconic sites in New York City\u2014The Met Fifth Avenue and The Met Cloisters. Millions of people also take part in The Met experience online.\n\nSince its founding in 1870, The Met has aspired to be more than a treasury of rare and beautiful objects. We are committed to fostering a collaborative and respectful work environment with a staff as diverse as the audiences we engage. Our staff members are art lovers who are passionate about working toward a common goal: creating the most dynamic and inspiring art museum in the world.\n\nEvery day, art comes alive in the Museum's galleries and through its exhibitions and events, revealing both new ideas and unexpected connections across time and across cultures.\n\nThe Museum is committed to fostering a workplace that is inclusive, welcoming, supportive, and collaborative. One way we build community is through Employee Resource Groups centered around shared identities. Throughout the year, we also acknowledge and celebrate staff heritage and identity through collection-based events, activities with community-based organizations, artmaking, and more."
+      },
+      {
+        "tag": "h2",
+        "text": "Core Values"
+      },
+      {
+        "tag": "h3",
+        "text": "Collaboration"
+      },
+      {
+        "tag": "h3",
+        "text": "Excellence"
+      },
+      {
+        "tag": "h3",
+        "text": "Respect"
+      },
+      {
+        "tag": "h3",
+        "text": "Inclusivity"
+      },
+      {
+        "tag": "h3",
+        "text": "Integrity"
+      },
+      {
+        "tag": "h2",
+        "text": "Benefits"
+      },
+      {
+        "tag": "p",
+        "text": "The Met provides competitive compensation and generous benefits for all eligible employees.\n\n\u2022 Flexible Spending Accounts & Health Savings Account (pre-tax income for eligible health care expenses)\n\u2022 Commuter benefits (pre-tax income for parking or mass transit expenses) and discounted parking at The Met Fifth Avenue\n\u2022 Free financial-planning services\n\nNote: Benefits Offering may differ based on Employee Status."
+      },
+      {
+        "tag": "h2",
+        "text": "Applying For Positions"
+      },
+      {
+        "tag": "p",
+        "text": "Career opportunities at The Met are as varied as the cultures represented in the Museum\u2019s collection, and require all levels of training, experience, and education. When you visit The Met, sometimes it feels hard to figure out where to start because there is just so much to do and see. Your job search may feel the same way, so we want to provide you with a glimpse of our recruitment process."
+      },
+      {
+        "tag": "h2",
+        "text": "Other Ways to Join The Met"
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/75443a61183e0542800ba0c4ab1fccdb0c2980f6-5120x5120.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/277193abdb5b90966aa612ea61e79e22fd2779d5-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/12c6e9c330e95cc86413f963b74ad7f70d6cca13-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/f26ef486198b65821f4cb38b48bcbb99f12a0312-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/08ff213bd25dcaaf1318791dd8532915c070354e-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format",
+      "https://cdn.sanity.io/images/cctd4ker/production/e4ac42be0882b84ea46f8281999e18eca8a35241-5120x2880.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "terms": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Terms and Conditions/ Terms of Use"
+      },
+      {
+        "tag": "h2",
+        "text": "Policy"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art (the \"Museum\") provides www.metmuseum.org and its subdomains (including websites accessed through mobile devices as well as downloadable mobile applications) and application program interfaces (\"APIs\") (collectively, the \"Websites\") in support of the Museum's mission to collect, preserve, study, exhibit, and encourage appreciation for and advance knowledge of works of art. By accessing the Websites, users agree to be bound by the following terms and conditions, which the Museum may revise at any time. Users are encouraged to visit this page from time to time to review current terms and conditions."
+      },
+      {
+        "tag": "p",
+        "text": "Last updated October 25, 2018"
+      },
+      {
+        "tag": "li",
+        "text": "Copyright and Proprietary Rights. The text, images, trademarks, data, audio files, video files and clips, software, documentation or other information contained in these files, and other content on the Websites (collectively, the \"Materials\") are proprietary to the Museum or its licensors unless identified by an Open Access (OA) icon. Materials identified as OA are either those that the Museum believes to be in the public domain, or those to which the Museum waives any copyright it might have. Copyright and other proprietary rights may be held by individuals or entities other than, or in addition to, the Museum."
+      },
+      {
+        "tag": "li",
+        "text": "Trademarks. Many of the trademarks, service marks, and logos (collectively, the \"Trademarks\") displayed on the Websites, including THE METROPOLITAN MUSEUM OF ART, MMA, \"THE MET\" LOGO, the RENAISSANCE M logo, THE MET BREUER, THE MET CLOISTERS, THE MET STORE, WILLIAM, and the HIPPO DESIGN, are registered and/or unregistered marks of The Metropolitan Museum of Art. The Trademarks of third parties may also be displayed on the Websites. Nothing contained in the Websites should be construed as granting, by implication, estoppel, or otherwise, any license or right to use any Trademarks displayed on the Websites without the express written permission of the Museum or any third party that may own the Trademarks displayed on the Websites. Without limiting the foregoing, the Trademarks may not be used in an URL. Any unauthorized use of the Trademarks or any other Materials, except as authorized in these Terms and Conditions, is strictly prohibited."
+      },
+      {
+        "tag": "li",
+        "text": "Authorized Uses. Materials for authorized use fall into two categories: a) materials identified by an OA icon, or b) materials the Museum believes to be under copyright or other restrictions.\n\na) Materials Identified as Open Access. By waiving any rights to Materials identified as Open Access, the Museum makes those Materials available for any purpose, including commercial and noncommercial use, free of charge and without requiring permission from the Museum.\u00a0Open Access works are made available under a Creative Commons Zero (CC0) license.\n\nb) Materials the Museum Believes to be Under Copyright or Other Restrictions. Materials the Museum believes to be under copyright or other restrictions are available for limited noncommercial, educational, and personal use only, or for fair use as defined in the United States copyright laws. Users may download these files for their own use, subject to any additional terms or restrictions which may be applicable to the individual file or program. Users must, however, cite the author and source of the Materials as they would material from any work, and the citations should include the URL \"www.metmuseum.org,\" but not in any way that implies endorsement of the user or the user's use of the Materials. By downloading, printing, or otherwise using Materials, whether accessed directly from the Websites or via other sites or mechanisms, users agree that they will limit their use of such files to non-commercial, educational, personal or for fair use, and will not violate the Museum's or any other party's proprietary rights. Users may not remove any copyright, trademark, or other proprietary notices, including without limitation attribution information, credits, and copyright notices that have been placed on or near the Materials by the Museum. Downloading, printing, copying, distributing or otherwise using Materials for commercial purposes, including commercial publication or personal gain, is expressly prohibited.\n\nAll rights not expressly granted herein by the Museum are specifically and completely reserved, unless the Material is identified by an Open Access icon.\n\nThe Museum does not warrant that use of any Materials displayed on the Websites will not infringe the rights of third parties not owned by or affiliated with the Museum. For example, some works may be under copyright by the artist or the artist's heirs holding rights to these works, or may include third-party trademarks or rights of publicity. In many instances the caption may offer more information about the rights status; such works may not be used in any form; they may not be copied or downloaded without prior permission from the holder of the underlying rights. For permission to reproduce images that include \"\u00a9 ARS\" in their credit line, please contact the Artists Rights Society (ARS), at 212-420-9160, info@arsny.com, or www.arsny.com.\nThe Frequently Asked Questions answered below may assist you in interpreting permitted uses in these Terms and Conditions."
+      },
+      {
+        "tag": "li",
+        "text": "User Responsibility. From time to time the Museum may invite users to share content. Please know that shared content will be reviewed by Museum staff and may be reproduced by the Museum in all media now known or hereinafter devised.\n\nSecurity. By creating accounts and passwords on the Websites, users agree to maintain the confidentiality of their login credentials and are responsible for restricting access to their personal computer and mobile devices. User agrees to use the Websites for lawful purposes only and will not participate in any action that will compromise the security of the Websites or damage the Websites and their content.\n\nUser-Generated Content. By posting content, including but not limited to comments, photographs, product reviews, and links to external sites, on the Websites, and by using our messaging services, such as Met Store gift messaging and email-a-friend, users agree to comply with all requirements and procedures for posting and messaging, and to avoid abusive and offensive language and to refrain from posting any content that is commercial in nature, advocates for a political cause or legislation, or infringes upon any third party's rights, including privacy, copyright, trademark, or patent. The Museum does not endorse any opinions or recommendations posted by users or third parties. The Museum requires users to obtain all necessary permissions, such as a copyrighted work by an artist or a copyrighted story or a news article written by another person, before posting or distributing any content on the Websites.\n\nIt is strictly prohibited to post or transmit any unlawful, threatening, or infringing material that could constitute conduct that would be considered a criminal offense, give rise to civil liability, a violation of privacy or publicity, or otherwise violate law. The Museum shall have the right, but not the obligation, to inspect, monitor, review, edit, remove, refuse or delete any content for any reason whatsoever. Access and accounts of repeat infringers will, in appropriate circumstances, be terminated. The Museum does not warrant that the use of the materials on the Websites will not infringe the rights of any third party, and assumes no responsibility or liability arising from such content or materials or for any error, defamation, libel, slander, omission, falsehood, obscenity, pornography, danger, or inaccuracy contained in information within such locations of the Websites.\n\nPlease note: the Museum may discontinue any portion of the Websites at any time. It will not remove comments upon a user's request. By submitting comments, users acknowledge that they will be posted on the Internet. Users grant the Museum the right to quote from comments in all media now known and hereinafter devised. By posting or distributing information or material on the Websites, users expressly abandon any proprietary rights in their comments, and such information or material may be freely copied and distributed by others without your permission."
+      },
+      {
+        "tag": "li",
+        "text": "Purchasing on the Websites. The Museum has the right to refuse, limit, or cancel any orders placed on the Websites. Errors in pricing or description are subject to correction and may be adjusted at any time. Errors in order processing are also subject to correction. A user must be 18 or older to make a purchase on the Websites."
+      },
+      {
+        "tag": "li",
+        "text": "Met Store Product Representation. Every attempt is made to provide accurate information about Met Store products. The Museum does not warrant that any information, including product descriptions, promotions, and product availability, is correct, complete, current, or without typographical errors. All typographical errors, inaccuracies, and omissions are subject to correction.\n\nThe Museum makes every effort to present the colors of products as accurately as possible. The display of color depends on the settings of a user's particular monitor; the Museum cannot guarantee that the colors displayed on an individual's monitor will be correct."
+      },
+      {
+        "tag": "li",
+        "text": "API.The Met Collection API provides access to images in the Museum's collection that it believes is in the public domain, and to certain other content that the Museum to which the Museum waives any copyright it might have, which images and content are designated on the Museum's website with an Open Access icon and are made available under a CC0 license.\n1. Use of The Met Collection API is subject to the provisions of these Terms and Conditions, including without limitation the provisions on Trademarks, Authorized Uses, Security, Privacy, Links to Third Party Sites, Disclaimer of Warranties, Limitation of Liability, DMCA, Indemnity and Applicable Law and Jurisdiction.\n\n2. The Museum's Privacy Policy applies to The Met Collection API. The Museum will monitor, collect and store IP addresses, usage information to monitor service load and analyze and improve the API.\n\n3. The Museum will not provide technical support in connection with The Met Collection API and does not guarantee availability of the service or accuracy of the content. There may be times when the API is not available due to development, maintenance or otherwise.\n\n4. At its discretion the Museum may restrict access to or discontinue The Met Collection API or any functionality associated with the API. The Museum may limit the number of transactions a user may send or receive through the API, which may, for example, ensure even performance for all users, or may in the future require access through assigned keys.\n\n5. Users are encouraged to refresh API data regularly for the most updated content available; information may change and the Museum may add to, delete, or otherwise modify content."
+      },
+      {
+        "tag": "li",
+        "text": "Privacy. The Museum is committed to protecting the privacy of visitors to the Websites in accordance with applicable laws and regulations. All information gathered from users in connection with use of the Websites is governed by the Museum's Privacy Policy. Please note that the Websites are not specifically dedicated to children and the Museum does not actively solicit information from children. Children under the age of 13 are required to obtain permission from an adult before submitting personally identifiable information or other content to the Websites."
+      },
+      {
+        "tag": "li",
+        "text": "Links to Third-Party Sites. The Museum has not reviewed all of the sites linked to or from the Websites and is not responsible for the content or privacy policies of any off-site pages or other sites linked to or from the Websites. The Museum provides these links as a convenience, and linking to any off-site pages or other sites is at the user's own risk. A link does not imply endorsement or affiliation with the linked site by the Museum."
+      },
+      {
+        "tag": "li",
+        "text": "Integrated Third-Party Tools. The Museum offers integrated tools and other social sharing features on the Websites. By accessing the integrated tools and features users agree to be bound by the third party\u2019s terms of service. For more information please visit the terms of use:\u00a0YouTube <https://www.youtube.com/t/terms>."
+      },
+      {
+        "tag": "li",
+        "text": "Disclaimer of Warranties. Without limiting the foregoing, all Materials on the Websites are provided \"AS IS\" WITHOUT A WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR USE, COPYRIGHT OWNERSHIP AND/OR NON-INFRINGEMENT OR OTHER THIRD PARTY PROPRIETARY RIGHTS. The Museum may update, change, or delete content at any time. The Museum makes reasonable, ongoing efforts to revise and update the Websites, but does not warrant that the Websites will provide continuous, prompt, secure, or error-free service, and assumes no responsibility for any errors or omissions, including the inaccuracy of content, or for any damages or losses that users or any third party may incur as a result of the unavailability of the Websites. The Museum assumes no responsibility, and shall not be liable for, any damages to or viruses that may infect a user's computer equipment or other property resulting from use of the Websites or downloading of any Materials from the Websites. At its discretion the Museum may discontinue or take down the Websites or any section or Material within the Websites at any time."
+      },
+      {
+        "tag": "li",
+        "text": "Limitation of Liability. NEITHER THE MUSEUM, ITS AFFILIATES, TRUSTEES, DIRECTORS, OFFICERS, EMPLOYEES, OR AGENTS SHALL HAVE ANY LIABILITY FOR ANY DAMAGES, INCLUDING WITHOUT LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, COMPENSATORY, PUNITIVE, SPECIAL, OR CONSEQUENTIAL DAMAGES (EVEN IF THE MUSEUM HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES) ARISING FROM OR RELATED TO USE OF THE WEBSITES, CONTENT, AND/OR COMPILATION."
+      },
+      {
+        "tag": "li",
+        "text": "Digital Millennium Copyright Act (DMCA). The Museum is committed to complying with U.S. copyright and related laws, and requires all users of the Websites to comply with these laws. Owners of copyrighted works who believe that their rights under U.S. copyright law have been infringed may take advantage of certain provisions of the Digital Millennium Copyright Act of 1998 (\"DMCA\") to report alleged infringements. A copyright owner of any content should contact the Museum immediately to report any concerns of infringement by providing notice to the Museum's Designated Agent as required by the DMCA, Title 17 U.S.C. \u00a7 512. If such notice is provided by email, please address it to image.licensing@metmuseum.org; if such notice is provided by mail, please address it to: Designated Copyright Agent, Office of the General Counsel, The Metropolitan Museum of Art, 1000 Fifth Avenue, New York, NY 10028."
+      },
+      {
+        "tag": "li",
+        "text": "Indemnity. The user agrees to indemnify, defend, and hold the Museum and its respective supervisors, trustees, officers, agents, and employees harmless from all claims, causes, allegations, costs, expenses, fees (including reasonable attorneys' fees), judgments, liabilities, losses, and damages arising from or relating to your use of or operation of the Websites or any of its Materials."
+      },
+      {
+        "tag": "li",
+        "text": "Entire Agreement; Severance; Waiver. These Terms and Conditions incorporate by reference any notices on the Websites and, together with the Privacy Policy and any end-user license agreements, constitute the entire agreement regarding user access to the Websites. If any provision of the terms and conditions or the Privacy Policy is deemed unlawful, void, or unenforceable, that provision will be severable from the remaining provisions and will not affect their validity and enforceability. The Museum's failure to enforce a provision on any occasion shall not be construed as a waiver of such provision."
+      },
+      {
+        "tag": "li",
+        "text": "Applicable Law and Jurisdiction. These Terms and Conditions and any amendments thereto shall be governed and construed in accordance with the laws of the State of New York, without regard to principles of conflicts of laws. Any dispute arising out of, in connection with, or related to this Agreement shall be brought in any Federal or State court located in New York County and the State of New York, and the parties hereby waive any objection that they may have to personal jurisdiction in these courts."
+      },
+      {
+        "tag": "h2",
+        "text": "Frequently Asked Questions"
+      },
+      {
+        "tag": "h3",
+        "text": "May I put images or text from www.metmuseum.org on my school or museum website, or on the cover of my book, for example?"
+      },
+      {
+        "tag": "h3",
+        "text": "May I use selected images or text excerpts from www.metmuseum.org for a school report?"
+      },
+      {
+        "tag": "h3",
+        "text": "How do I obtain permission to reproduce images of works of art not identified as OA, images not available on the Websites, or any text displayed on the Websites?"
+      },
+      {
+        "tag": "h3",
+        "text": "What is Print on Demand (POD)?"
+      },
+      {
+        "tag": "h3",
+        "text": "Why can't I read, download, or print the full text of all out-of-print publications on the MetPublications section of the Websites?"
+      }
+    ],
+    "images": [
+      "https://cdn.sanity.io/images/cctd4ker/production/f9b94dd2401dc0c3cf75402dd0ae714a666d3332-760x583.jpg?w=3840&q=75&fit=clip&auto=format"
+    ]
+  },
+  "privacy": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Privacy Policy"
+      },
+      {
+        "tag": "h2",
+        "text": "Policy"
+      },
+      {
+        "tag": "p",
+        "text": "The Metropolitan Museum of Art (the \u201cMuseum\u201d) is committed to protecting your privacy. This privacy policy governs the way we collect and use your information both online and onsite, including at www.metmuseum.org and its subdomains, websites, and social media platforms accessed through your mobile devices as well as downloadable mobile applications. Collectively, we refer to our websites, apps, social media pages, emails, online and offline business interactions, including onsite interactions, as the \u201cServices.\u201d A link to this policy is included in the footer information on every page of our websites."
+      },
+      {
+        "tag": "p",
+        "text": "Last Updated"
+      },
+      {
+        "tag": "p",
+        "text": "This policy was last updated in 2025."
+      },
+      {
+        "tag": "h3",
+        "text": "Personal Information"
+      },
+      {
+        "tag": "h3",
+        "text": "How We Collect and Use the Information You Provide"
+      },
+      {
+        "tag": "h3",
+        "text": "When You Register"
+      },
+      {
+        "tag": "h3",
+        "text": "Email Communication"
+      },
+      {
+        "tag": "h3",
+        "text": "Third-Party Service Providers"
+      },
+      {
+        "tag": "h3",
+        "text": "Job Applicants"
+      },
+      {
+        "tag": "h3",
+        "text": "Integrated Third-Party Tools"
+      },
+      {
+        "tag": "h3",
+        "text": "Other Information"
+      },
+      {
+        "tag": "h3",
+        "text": "Cookies and Pixel Tags"
+      },
+      {
+        "tag": "h3",
+        "text": "Analytics"
+      },
+      {
+        "tag": "h3",
+        "text": "Third-Party Advertising"
+      },
+      {
+        "tag": "h3",
+        "text": "Third-Party Payment Service"
+      },
+      {
+        "tag": "h3",
+        "text": "Children Under Thirteen Years of Age"
+      },
+      {
+        "tag": "h3",
+        "text": "Data Security"
+      },
+      {
+        "tag": "h3",
+        "text": "Changes to the Privacy Policy"
+      },
+      {
+        "tag": "h3",
+        "text": "Contact Us"
+      }
+    ],
+    "images": []
+  },
+  "research": {
+    "paragraphs": [
+      {
+        "tag": "h1",
+        "text": "Page Not Found"
+      },
+      {
+        "tag": "p",
+        "text": "You may have gotten lost. It's a big museum. It happens to the best of us."
+      },
+      {
+        "tag": "li",
+        "text": "Plan your visit"
+      },
+      {
+        "tag": "li",
+        "text": "See what's on view"
+      },
+      {
+        "tag": "li",
+        "text": "Explore the collection"
+      },
+      {
+        "tag": "li",
+        "text": "Browse the Timeline of Art History"
+      }
+    ],
+    "images": [
+      "https://collectionapi.metmuseum.org/api/collection/v1/iiif/316715/2105464/main-image"
+    ]
+  }
+}

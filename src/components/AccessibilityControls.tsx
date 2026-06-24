@@ -19,6 +19,10 @@ type AccessibilitySettings = {
   contrastBoost: number;
   fontFamily: FontFamilyOption;
   highlightCursor: boolean;
+  letterSpacing: number;
+  lineHeight: number;
+  screenReaderMode: boolean;
+  keyboardHints: boolean;
 };
 
 const STORAGE_KEY = "met-a11y-settings-v3";
@@ -37,6 +41,10 @@ const defaultSettings: AccessibilitySettings = {
   contrastBoost: 100,
   fontFamily: "default",
   highlightCursor: false,
+  letterSpacing: 0,
+  lineHeight: 1.5,
+  screenReaderMode: false,
+  keyboardHints: false,
 };
 
 function getFontFamily(option: FontFamilyOption) {
@@ -203,7 +211,11 @@ function applySettings(settings: AccessibilitySettings) {
   root.style.setProperty("--a11y-display-font-family", getDisplayFontFamily(settings.fontFamily));
   root.style.setProperty("--a11y-cursor", "auto");
   root.style.setProperty("--a11y-cursor-pointer", "pointer");
+  root.style.setProperty("--a11y-letter-spacing", `${settings.letterSpacing}px`);
+  root.style.setProperty("--a11y-line-height", settings.lineHeight.toString());
   root.classList.toggle("a11y-underline-links", settings.underlineLinks);
+  root.classList.toggle("a11y-screen-reader-mode", settings.screenReaderMode);
+  root.classList.toggle("a11y-keyboard-hints", settings.keyboardHints);
 }
 
 export default function AccessibilityControls() {
@@ -388,7 +400,9 @@ export default function AccessibilityControls() {
       | "reduceMotion"
       | "underlineLinks"
       | "invertColors"
-      | "highlightCursor",
+      | "highlightCursor"
+      | "screenReaderMode"
+      | "keyboardHints",
   ) => {
     setSettings((prev) => ({ ...prev, [key]: !prev[key] }));
   };
@@ -647,6 +661,56 @@ export default function AccessibilityControls() {
                 <span>Highlight cursor</span>
                 <span>{settings.highlightCursor ? "On" : "Off"}</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => toggleSetting("screenReaderMode")}
+                className="flex w-full items-center justify-between rounded-lg border border-black/20 bg-white px-3 py-2 text-left transition-colors hover:bg-black/5"
+                aria-pressed={settings.screenReaderMode}
+              >
+                <span>Screen reader optimization</span>
+                <span>{settings.screenReaderMode ? "On" : "Off"}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => toggleSetting("keyboardHints")}
+                className="flex w-full items-center justify-between rounded-lg border border-black/20 bg-white px-3 py-2 text-left transition-colors hover:bg-black/5"
+                aria-pressed={settings.keyboardHints}
+              >
+                <span>Keyboard navigation hints</span>
+                <span>{settings.keyboardHints ? "On" : "Off"}</span>
+              </button>
+
+              <label className="block rounded-lg border border-black/20 bg-white px-3 py-2">
+                <span className="mb-1 block font-medium">Letter spacing: {settings.letterSpacing}px</span>
+                <input
+                  type="range"
+                  min={0}
+                  max={5}
+                  step={0.5}
+                  value={settings.letterSpacing}
+                  onChange={(event) =>
+                    setSettings((prev) => ({ ...prev, letterSpacing: Number(event.target.value) }))
+                  }
+                  className="w-full"
+                />
+              </label>
+
+              <label className="block rounded-lg border border-black/20 bg-white px-3 py-2">
+                <span className="mb-1 block font-medium">Line height: {settings.lineHeight}</span>
+                <input
+                  type="range"
+                  min={1}
+                  max={2.5}
+                  step={0.1}
+                  value={settings.lineHeight}
+                  onChange={(event) =>
+                    setSettings((prev) => ({ ...prev, lineHeight: Number(event.target.value) }))
+                  }
+                  className="w-full"
+                />
+              </label>
 
               <div className="rounded-lg border border-black/20 bg-white px-3 py-2">
                 <p className="mb-2 font-medium text-black">Text to speech</p>

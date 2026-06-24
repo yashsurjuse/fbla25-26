@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 import { useCart } from "@/components/CartContext";
 import { navItems } from "@/data/site";
 
@@ -20,9 +20,20 @@ function isActiveRoute(pathname: string, href?: string) {
 
 export default function SiteHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const { openCart, cartCount } = useCart();
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery("");
+      setMenuOpen(false);
+    }
+  };
 
   useEffect(() => {
     const handleOutsideClick = (e: MouseEvent) => {
@@ -99,7 +110,27 @@ export default function SiteHeader() {
           })}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <form onSubmit={handleSearch} className="hidden items-center lg:flex relative">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="h-10 w-48 border border-black/20 bg-white/50 px-4 pr-10 text-sm focus:border-black focus:outline-none focus:ring-1 focus:ring-black"
+            />
+            <button
+              type="submit"
+              className="absolute right-0 flex h-10 w-10 items-center justify-center text-black/60 hover:text-black"
+              aria-label="Submit search"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </button>
+          </form>
+
           <Link
             href="/visit"
             className="hidden rounded-none border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black sm:inline-flex"
@@ -218,6 +249,27 @@ export default function SiteHeader() {
                 </Link>
               );
             })}
+            
+            <form onSubmit={handleSearch} className="mt-4 flex relative border-b border-black/10 pb-4">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="h-11 w-full border border-black/20 bg-white px-4 pr-11 text-sm focus:border-black focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="absolute right-0 flex h-11 w-11 items-center justify-center text-black/60 hover:text-black bg-transparent"
+                aria-label="Submit search"
+              >
+                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.35-4.35" />
+                </svg>
+              </button>
+            </form>
+            
             <Link
               href="/visit"
               className="mt-4 inline-flex justify-center border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black"

@@ -37,7 +37,15 @@ export default function ExhibitionsPage() {
   useEffect(() => {
     fetch("/data/exhibitions_master.json")
       .then((res) => res.json())
-      .then((data) => setExhibitionsData(data))
+      .then((data) => {
+        setExhibitionsData(data);
+        const params = new URLSearchParams(window.location.search);
+        const urlId = params.get("id");
+        if (urlId) {
+          const found = data.find((e: any) => e.title === urlId || e.id === urlId);
+          if (found) setSelectedExhibition(found);
+        }
+      })
       .catch((err) => console.error("Failed to load exhibitions", err));
   }, []);
 

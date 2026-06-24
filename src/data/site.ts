@@ -10,6 +10,7 @@ export const navItems: NavItem[] = [
   { href: "/artists", label: "Artists" },
   { href: "/artifacts", label: "Artifacts" },
   { href: "/store", label: "Shop" },
+  { href: "/research", label: "Research" },
 ];
 
 export const museumInfo = {
@@ -60,12 +61,20 @@ export const metStats = [
   },
 ];
 
-export const footerLinks = [
-  { href: "/visit", label: "Visit" },
-  { href: "/exhibitions", label: "Exhibitions and Events" },
-  { href: "/artists", label: "Art" },
-  { href: "/artifacts", label: "Collection" },
-  { href: "/store", label: "Shop" },
-  { href: "/visit", label: "Tickets" },
-  { href: "/image-credits", label: "Image Credits" },
-];
+export const footerLinks = {
+  about: [
+    { href: "/about", label: "About The Met" },
+    { href: "/mission", label: "Mission and History" },
+    { href: "/collection-areas", label: "Collection Areas" },
+    { href: "/accessibility", label: "Accessibility" },
+  ],
+  support: [
+    { href: "/contact", label: "Contact Information" },
+    { href: "/press", label: "Press" },
+    { href: "/careers", label: "Careers" },
+  ],
+  legal: [
+    { href: "/terms", label: "Terms and Conditions" },
+    { href: "/privacy", label: "Privacy Policy" },
+  ]
+};
