@@ -26,6 +26,17 @@ export default function CollectionAreasPage() {
       });
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const deptTitle = params.get("dept");
+    if (deptTitle) {
+      const found = departmentsData.find(d => d.title === deptTitle || d.title.includes(deptTitle));
+      if (found) {
+        setSelectedDept(found);
+      }
+    }
+  }, []);
+
   const getDeptArtifacts = (title: string) => {
     const nameMap: Record<string, string | string[]> = {
       "African Art in The Michael C. Rockefeller Wing": "Arts of Africa, Oceania, and the Americas",

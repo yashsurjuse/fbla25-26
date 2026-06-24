@@ -98,7 +98,7 @@ export default function Home() {
                 </article>
               ))}
             </div>
-            <div className="group mt-auto flex cursor-default select-none items-center justify-between border-b border-black pb-1 pt-8">
+            <Link href="/mission" className="group mt-auto flex cursor-pointer select-none items-center justify-between border-b border-black pb-1 pt-8">
               <span className="origin-left text-xl font-semibold uppercase tracking-[0.02em] text-black transition-all duration-200 group-hover:scale-[1.03] group-hover:font-bold sm:text-2xl">
                 Mission and History
               </span>
@@ -116,7 +116,7 @@ export default function Home() {
                   <path d="m13 6 6 6-6 6" />
                 </svg>
               </span>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

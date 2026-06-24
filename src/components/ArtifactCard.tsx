@@ -10,11 +10,22 @@ type ArtifactCardProps = {
   index?: number;
 };
 
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ArtifactCard({ artifact, index = 0 }: ArtifactCardProps) {
+  const router = useRouter();
+
+  const handleCardClick = () => {
+    router.push(`/artifacts?artifactId=${artifact.id}`);
+  };
+
+  const handleDeptClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    router.push(`/collection-areas?dept=${encodeURIComponent(artifact.location)}`);
+  };
+
   return (
-    <Link href={`/artifacts?artifactId=${artifact.id}`}>
+    <div onClick={handleCardClick} className="cursor-pointer">
       <motion.article
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
@@ -28,11 +39,16 @@ export default function ArtifactCard({ artifact, index = 0 }: ArtifactCardProps)
           <div className="text-sm uppercase tracking-[0.2em] text-black/60">{artifact.era}</div>
           <div>
             <h3 className="font-display text-2xl font-semibold text-black">{artifact.title}</h3>
-            <div className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/50">{artifact.location}</div>
+            <div 
+              onClick={handleDeptClick} 
+              className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/50 hover:text-black hover:underline w-fit"
+            >
+              {artifact.location}
+            </div>
           </div>
           <p className="text-sm text-black/75 line-clamp-4">{artifact.description}</p>
         </div>
       </motion.article>
-    </Link>
+    </div>
   );
 }

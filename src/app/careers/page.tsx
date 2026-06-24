@@ -27,7 +27,7 @@ export default function CareersPage() {
             <p className="text-black/80 mb-8 flex-1">
               Explore our current job opportunities across all departments, including Curatorial, Education, Security, Facilities, Technology, and Administration. We are an equal opportunity employer committed to diversity and inclusion.
             </p>
-            <a href="/careers/openings" className="inline-block w-full text-center bg-black text-white px-6 py-4 rounded-full font-semibold hover:bg-black/80 transition-colors">
+            <a href="https://metmuseum.wd5.myworkdayjobs.com/en-US/metmuseumcareers" target="_blank" rel="noopener noreferrer" className="inline-block w-full text-center bg-black text-white px-6 py-4 rounded-full font-semibold hover:bg-black/80 transition-colors" style={{ color: 'white' }}>
               View All Openings &rarr;
             </a>
           </div>
@@ -37,7 +37,7 @@ export default function CareersPage() {
             <p className="text-black/80 mb-8 flex-1">
               The Met offers paid internship opportunities for undergraduate and graduate students, as well as recent graduates. Interns gain hands-on experience and insight into museum professions.
             </p>
-            <a href="/careers/internships" className="inline-block w-full text-center border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-colors">
+            <a href="/careers/internships" className="inline-block w-full text-center border-2 border-black !text-black hover:!text-white px-6 py-4 rounded-full font-semibold hover:bg-black transition-colors">
               Learn About Internships &rarr;
             </a>
           </div>
@@ -47,7 +47,7 @@ export default function CareersPage() {
             <p className="text-black/80 mb-8 flex-1">
               The Museum hosts a vibrant community of scholars from around the world. We offer an array of fellowships for predoctoral and postdoctoral researchers in art history, conservation, and scientific research.
             </p>
-            <a href="/careers/fellowships" className="inline-block w-full text-center border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-colors">
+            <a href="/careers/fellowships" className="inline-block w-full text-center border-2 border-black !text-black hover:!text-white px-6 py-4 rounded-full font-semibold hover:bg-black transition-colors">
               Fellowship Programs &rarr;
             </a>
           </div>
@@ -57,7 +57,7 @@ export default function CareersPage() {
             <p className="text-black/80 mb-8 flex-1">
               Volunteers are an essential part of The Met community. We offer various volunteer roles, including guiding tours, assisting visitors at information desks, and providing administrative support.
             </p>
-            <a href="/careers/volunteer" className="inline-block w-full text-center border-2 border-black text-black px-6 py-4 rounded-full font-semibold hover:bg-black hover:text-white transition-colors">
+            <a href="/careers/volunteer" className="inline-block w-full text-center border-2 border-black !text-black hover:!text-white px-6 py-4 rounded-full font-semibold hover:bg-black transition-colors">
               Become a Volunteer &rarr;
             </a>
           </div>

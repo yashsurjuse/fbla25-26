@@ -70,7 +70,7 @@ export default function AccessibilityPage() {
             <h2 className="font-display text-3xl font-bold mb-2">Need further assistance?</h2>
             <p className="text-white/80">Our Access team is here to help plan your visit.</p>
           </div>
-          <a href="mailto:access@metmuseum.org" className="mt-6 sm:mt-0 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors">
+          <a href="mailto:access@metmuseum.org" className="mt-6 sm:mt-0 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-gray-200 transition-colors" style={{ color: 'black' }}>
             Contact Access Team
           </a>
         </div>

@@ -57,7 +57,7 @@ export default function SearchClient() {
 
   const [activeCategory, setActiveCategory] = useState<"all" | "artifacts" | "artists" | "exhibitions">("all");
 
-  const filteredExhibitions = query && (activeCategory === "all" || activeCategory === "exhibitions")
+  const allExhibitions = query
     ? exhibitions.filter(
         (e) =>
           e.title?.toLowerCase().includes(lowerQuery) ||
@@ -65,7 +65,7 @@ export default function SearchClient() {
       )
     : [];
 
-  const filteredArtists = query && (activeCategory === "all" || activeCategory === "artists")
+  const allArtists = query
     ? artists.filter(
         (a) =>
           a.name?.toLowerCase().includes(lowerQuery) ||
@@ -73,20 +73,27 @@ export default function SearchClient() {
       )
     : [];
 
-  const filteredArtifacts = query && (activeCategory === "all" || activeCategory === "artifacts")
+  const allArtifacts = query
     ? artifacts.filter(
         (a) =>
           a.title?.toLowerCase().includes(lowerQuery) ||
           a.artistDisplayName?.toLowerCase().includes(lowerQuery) ||
           a.department?.toLowerCase().includes(lowerQuery) ||
           a.medium?.toLowerCase().includes(lowerQuery)
-      ).slice(0, 40) // Limit to 40 so it doesn't crash on broad queries
+      ).slice(0, 40)
     : [];
 
+  const filteredExhibitions = (activeCategory === "all" || activeCategory === "exhibitions") ? allExhibitions : [];
+  const filteredArtists = (activeCategory === "all" || activeCategory === "artists") ? allArtists : [];
+  const filteredArtifacts = (activeCategory === "all" || activeCategory === "artifacts") ? allArtifacts : [];
+
   const hasResults =
-    filteredExhibitions.length > 0 ||
-    filteredArtists.length > 0 ||
-    filteredArtifacts.length > 0;
+    allExhibitions.length > 0 ||
+    allArtists.length > 0 ||
+    allArtifacts.length > 0;
+    
+  const totalCount = allExhibitions.length + allArtists.length + allArtifacts.length;
+
 
   return (
     <>
@@ -110,25 +117,25 @@ export default function SearchClient() {
                 onClick={() => setActiveCategory("all")}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeCategory === "all" ? "bg-black text-white" : "bg-black/5 text-black hover:bg-black/10"}`}
               >
-                All
+                All ({totalCount})
               </button>
               <button 
                 onClick={() => setActiveCategory("artifacts")}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeCategory === "artifacts" ? "bg-black text-white" : "bg-black/5 text-black hover:bg-black/10"}`}
               >
-                Artifacts
+                Artifacts ({allArtifacts.length})
               </button>
               <button 
                 onClick={() => setActiveCategory("artists")}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeCategory === "artists" ? "bg-black text-white" : "bg-black/5 text-black hover:bg-black/10"}`}
               >
-                Artists
+                Artists ({allArtists.length})
               </button>
               <button 
                 onClick={() => setActiveCategory("exhibitions")}
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${activeCategory === "exhibitions" ? "bg-black text-white" : "bg-black/5 text-black hover:bg-black/10"}`}
               >
-                Exhibitions
+                Exhibitions ({allExhibitions.length})
               </button>
             </div>
           )}
@@ -141,35 +148,30 @@ export default function SearchClient() {
         </div>
       )}
 
-      {filteredExhibitions.length > 0 && (
+      {hasResults && (
         <section className="mb-16">
-          <h2 className="mb-6 font-display text-3xl font-semibold text-black">Exhibitions ({filteredExhibitions.length})</h2>
+          {activeCategory !== "all" ? (
+            <h2 className="mb-6 font-display text-3xl font-semibold text-black">
+              {activeCategory === "artifacts" ? "Collection Artifacts" : activeCategory === "artists" ? "Artists" : "Exhibitions"} ({
+                activeCategory === "artifacts" ? filteredArtifacts.length : activeCategory === "artists" ? filteredArtists.length : filteredExhibitions.length
+              })
+            </h2>
+          ) : (
+             <h2 className="mb-6 font-display text-3xl font-semibold text-black">
+               All Results ({totalCount})
+             </h2>
+          )}
+          
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredExhibitions.map((exhibition) => (
-              <ExhibitionCard key={exhibition.id} ex={exhibition} />
+            {filteredExhibitions.map((exhibition, idx) => (
+              <ExhibitionCard key={`exh-${exhibition.id}-${idx}`} ex={exhibition} />
             ))}
-          </div>
-        </section>
-      )}
-
-      {filteredArtists.length > 0 && (
-        <section className="mb-16">
-          <h2 className="mb-6 font-display text-3xl font-semibold text-black">Artists ({filteredArtists.length})</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredArtists.map((artist) => (
-              <ArtistCard key={artist.id} artist={artist} />
+            {filteredArtists.map((artist, idx) => (
+              <ArtistCard key={`art-${artist.id}-${idx}`} artist={artist} />
             ))}
-          </div>
-        </section>
-      )}
-
-      {filteredArtifacts.length > 0 && (
-        <section className="mb-16">
-          <h2 className="mb-6 font-display text-3xl font-semibold text-black">Collection Artifacts ({filteredArtifacts.length})</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredArtifacts.map((artifact) => (
+            {filteredArtifacts.map((artifact, idx) => (
               <ArtifactCard 
-                key={artifact.objectID} 
+                key={`obj-${artifact.objectID}-${idx}`} 
                 artifact={{
                   id: String(artifact.objectID),
                   title: artifact.title || "Untitled",

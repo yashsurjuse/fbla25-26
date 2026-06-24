@@ -34,20 +34,27 @@ export default function ExhibitionsPage() {
     loadFeatured();
   }, [selectedExhibition]);
 
+  const searchParams = useSearchParams();
+  const urlId = searchParams.get("id");
+
   useEffect(() => {
-    fetch("/data/exhibitions_master.json")
-      .then((res) => res.json())
-      .then((data) => {
+    async function loadExhibitions() {
+      try {
+        const res = await fetch("/data/exhibitions_master.json");
+        const data = await res.json();
         setExhibitionsData(data);
-        const params = new URLSearchParams(window.location.search);
-        const urlId = params.get("id");
         if (urlId) {
           const found = data.find((e: any) => e.title === urlId || e.id === urlId);
-          if (found) setSelectedExhibition(found);
+          if (found) {
+            setSelectedExhibition(found);
+          }
         }
-      })
-      .catch((err) => console.error("Failed to load exhibitions", err));
-  }, []);
+      } catch (err) {
+        console.error("Failed to load exhibitions", err);
+      }
+    }
+    loadExhibitions();
+  }, [urlId]);
 
   const filteredData = useMemo(() => {
     let data = exhibitionsData;

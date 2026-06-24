@@ -3,10 +3,13 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent, MouseEvent } from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import Modal from "@/components/Modal";
+import Image from "next/image";
+import { fetchMetObject, MetObject } from "@/lib/met-api";
 
 const previewVideoSrc =
-  "https://rr3---sn-j5caxoxu-hh0s.googlevideo.com/videoplayback/expire/1782251264/ei/n6o6aqn_O_3Pp-oPyc3N-QU/ip/172.71.164.122/id/o-ALqLL0WSbFsrdhGA0HJuN_R1OugFh5lkELL1HNSdowEk/source/youtube/requiressl/yes/xpc/EgVo2aDSNQ%3D%3D/rms/au,au/ctier/A/pfa/5/hightc/yes/siu/1/bui/ARmQxEW8KRUgTDZqVPhpttGUbcVDbGW0PjCJcKI_uVSDikdBrKUObfDKftBrsjCpL9EX6cWN5w/spc/SQ-umsMXSgU_RnrMmQlRusHy_DUnSeUQgt7VcMTc5zziJR1jsism5BRWiw/vprv/1/svpuc/1/mime/video%2Fmp4/rqh/1/gir/yes/clen/41506985/dur/198.565/lmt/1781301013617508/itag/137/keepalive/yes/fexp/51565116,51565681,51987687,51993077/txp/5309224/sparams/expire,ei,ip,id,itag,source,requiressl,xpc,ctier,pfa,hightc,siu,bui,spc,vprv,svpuc,mime,rqh,gir,clen,dur,lmt/sig/AHEqNM4wRAIgU64OgW4mnvfkeVwC9eo6cNF3uC6hqFbdjLfc8ZuFdiwCIFELvWVbAHPEqhnEB7U-ggQzAm1vsEKz5T0LYBuI5r9Y/redirect_counter/1/rm/sn-4g5eke7z/rrc/104/req_id/d1a06362557aa3ee/cms_redirect/yes/cmsv/e/cps/100/ipbypass/yes/met/1782229678,/mh/T4/mip/74.90.233.58/mm/31/mn/sn-j5caxoxu-hh0s/ms/au/mt/1782228594/mv/u/mvi/3/pcm2cms/yes/pl/20/lsparams/cps,ipbypass,met,mh,mip,mm,mn,ms,mv,mvi,pcm2cms,pl,rms/lsig/APaTxxMwRAIgE2KWBy8exBCm73tuklucC7pN7wRriTdOwwdH3WLaHfICIGFe5XGp88BZreAjgQY6PpD-AZmtrpZp2NwDttjo-o2H";
+  "https://www.image2url.com/r2/default/videos/1782309825103-9449f126-3fda-458a-8ec2-a170141c3c0f.mp4";
 
 export default function FeaturedExhibitionPreview() {
   const router = useRouter();
@@ -14,26 +17,51 @@ export default function FeaturedExhibitionPreview() {
   const [isHovering, setIsHovering] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedExhibition, setSelectedExhibition] = useState<any | null>(null);
+  const [featuredWorks, setFeaturedWorks] = useState<MetObject[]>([]);
+  const [loadingWorks, setLoadingWorks] = useState(false);
+
+  useEffect(() => {
+    fetch("/data/exhibitions_master.json")
+      .then((res) => res.json())
+      .then((data) => {
+        const found = data.find((e: any) => e.title === "Raphael: Sublime Poetry");
+        if (found) setSelectedExhibition(found);
+      })
+      .catch((err) => console.error("Failed to load exhibitions", err));
+  }, []);
+
+  useEffect(() => {
+    async function loadFeatured() {
+      if (!selectedExhibition || !selectedExhibition.featured_object_ids) {
+        setFeaturedWorks([]);
+        return;
+      }
+      setLoadingWorks(true);
+      const objects = await Promise.all(
+        selectedExhibition.featured_object_ids.map((id: number) => fetchMetObject(id))
+      );
+      setFeaturedWorks(objects.filter((o): o is MetObject => o !== null));
+      setLoadingWorks(false);
+    }
+    if (isModalOpen) {
+      loadFeatured();
+    }
+  }, [isModalOpen, selectedExhibition]);
+
   const handleEnter = () => {
     setIsHovering(true);
-    if (!videoRef.current) {
-      return;
-    }
-
+    if (!videoRef.current) return;
     const playPromise = videoRef.current.play();
     if (playPromise) {
-      playPromise.catch(() => {
-        // Some browsers block autoplay interactions until a direct media gesture.
-      });
+      playPromise.catch(() => {});
     }
   };
 
   const handleLeave = () => {
     setIsHovering(false);
-    if (!videoRef.current) {
-      return;
-    }
-
+    if (!videoRef.current) return;
     videoRef.current.pause();
   };
 
@@ -127,14 +155,74 @@ export default function FeaturedExhibitionPreview() {
         </div>
 
         <div className="flex justify-end pt-5">
-          <Link href="/exhibitions" className="swoop-link inline-flex items-center gap-2 text-lg font-semibold uppercase tracking-[0.06em] text-black sm:text-xl">
+          <button onClick={() => setIsModalOpen(true)} className="swoop-link inline-flex items-center gap-2 text-lg font-semibold uppercase tracking-[0.06em] text-black sm:text-xl hover:text-black">
             View Details
             <span className="ml-1 inline-flex h-7 w-7 items-center justify-center rounded-full border-2 border-black text-base leading-none" aria-hidden>
               →
             </span>
-          </Link>
+          </button>
         </div>
       </div>
+
+      {isModalOpen && selectedExhibition && (
+        <Modal onClose={() => setIsModalOpen(false)}>
+          <div className="flex max-h-[85vh] flex-col overflow-y-auto bg-[#f3f2f0]">
+            <div className="relative aspect-[21/9] w-full bg-[#e7e4df]">
+              <Image
+                src={selectedExhibition.image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"}
+                alt={selectedExhibition.title}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#050b16] to-transparent opacity-90" />
+              <div className="absolute bottom-6 left-8 right-8">
+                <span className="inline-flex rounded-full bg-white/20 px-3 py-1 mb-4 text-xs font-semibold uppercase tracking-widest text-white backdrop-blur-md border border-white/10">
+                  {selectedExhibition.dates}
+                </span>
+                <h2 className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl">
+                  {selectedExhibition.title}
+                </h2>
+              </div>
+            </div>
+            
+            <div className="p-8 space-y-8">
+              <div>
+                <h3 className="font-display text-2xl font-semibold text-black mb-3">About the Exhibition</h3>
+                <p className="text-black/80 leading-relaxed text-lg">{selectedExhibition.description}</p>
+              </div>
+              
+              <div className="pt-6 border-t border-black/10">
+                <h3 className="font-display text-2xl font-semibold text-black mb-6">Featured Works</h3>
+                {loadingWorks ? (
+                  <div className="text-black/50">Loading works...</div>
+                ) : (
+                  <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+                    {featuredWorks.map((art) => (
+                      <div 
+                         key={art.objectID} 
+                         onClick={() => router.push(`/collection-areas?artifactId=${art.objectID}`)}
+                         className="group cursor-pointer relative flex flex-col overflow-hidden rounded-lg bg-black/5 border border-black/10 hover:shadow-md transition-shadow"
+                      >
+                        <div className="relative aspect-square bg-black/40">
+                          {art.primaryImageSmall ? (
+                            <Image src={art.primaryImageSmall} alt={art.title || "Artwork"} fill className="object-cover transition-transform group-hover:scale-105" />
+                          ) : (
+                            <div className="flex h-full items-center justify-center text-xs text-black/30">No Image</div>
+                          )}
+                        </div>
+                        <div className="p-3">
+                          <div className="truncate text-sm font-semibold text-black">{art.title || "Untitled"}</div>
+                          <div className="truncate text-xs text-black/60">{art.objectDate || "Unknown Date"}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </Modal>
+      )}
     </section>
   );
 }
