@@ -1,19 +1,17 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Source_Sans_3 } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import AppChrome from "@/components/AppChrome";
 import GlobalModalProvider from "@/components/GlobalModalProvider";
 
-const sourceSans = Source_Sans_3({
-  variable: "--font-source-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" id="top" suppressHydrationWarning>
-      <body suppressHydrationWarning className={`${sourceSans.variable} ${cormorant.variable} antialiased`}>
+      <body suppressHydrationWarning className={`${inter.variable} ${outfit.variable} antialiased`}>
         <a href="#main-content" className="skip-link">
           Skip to main content
         </a>

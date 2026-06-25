@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import FakePagination from "@/components/FakePagination";
 import Modal from "@/components/Modal";
+import { ArrowUpRight } from "lucide-react";
 import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchMetObject, MetObject } from "@/lib/met-api";
@@ -82,11 +83,11 @@ function ExhibitionsContent() {
   const handlePageChange = (page: number) => setCurrentPage(Math.max(1, Math.min(totalPages, page)));
 
   return (
-    <div className="bg-[#f3f2f0] pb-16">
-      <section className="border-b border-black/15 bg-[#e7e4df] px-4 py-14 sm:px-6 lg:px-10">
+    <div className="bg-[color:var(--paper)] pb-20">
+      <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
-          <h1 className="font-display text-6xl font-semibold leading-[0.95] text-black sm:text-7xl">Exhibitions</h1>
-          <p className="mt-4 max-w-3xl text-lg text-black/75">
+          <h1 className="font-display text-6xl font-bold leading-[0.95] text-black sm:text-7xl lg:text-8xl">Exhibitions</h1>
+          <p className="mt-6 max-w-3xl text-lg text-black/60 leading-relaxed">
             Explore current and historical exhibitions at The Metropolitan Museum of Art.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -116,9 +117,9 @@ function ExhibitionsContent() {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+      <section className="mx-auto mt-12 grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-10 animate-stagger-fade">
         {pageItems.length === 0 ? (
-          <div className="border border-black/15 bg-white p-6 text-black/70 lg:col-span-2">
+          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium lg:col-span-2">
             No exhibitions listed on this page.
           </div>
         ) : (
@@ -127,38 +128,41 @@ function ExhibitionsContent() {
             <article 
               key={idx} 
               onClick={() => setSelectedExhibition(item)}
-              className="cursor-pointer overflow-hidden border border-black/15 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md"
+              className="group cursor-pointer glass-card rounded-3xl overflow-hidden flex flex-col"
             >
-              <div className="relative aspect-[16/10] border-b border-black/10">
+              <div className="relative aspect-[16/10] overflow-hidden bg-black/5">
                 <Image
                   src={item.image_url || "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg"}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform hover:scale-105 duration-300"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
                   sizes="(min-width: 1024px) 44vw, 100vw"
                 />
               </div>
 
-              <div className="space-y-4 p-6">
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/60">{item.dates}</p>
-                  {item.status && (
-                    <span className={`px-2 py-1 text-[0.65rem] font-bold uppercase tracking-wider ${
-                      item.status === 'current' ? 'bg-green-100 text-green-800' :
-                      item.status === 'future' ? 'bg-blue-100 text-blue-800' :
-                      'bg-black/10 text-black/60'
-                    }`}>
-                      {item.status}
-                    </span>
-                  )}
+              <div className="flex flex-col justify-between flex-grow p-8">
+                <div className="space-y-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">{item.dates}</p>
+                    {item.status && (
+                      <span className={`px-3 py-1 rounded-full text-[0.65rem] font-bold uppercase tracking-wider ${
+                        item.status === 'current' ? 'bg-green-100 text-green-800' :
+                        item.status === 'future' ? 'bg-blue-100 text-blue-800' :
+                        'bg-black/5 text-black/60'
+                      }`}>
+                        {item.status}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="font-display text-4xl font-bold leading-tight text-black group-hover:text-[color:var(--accent)] transition-colors">{item.title}</h2>
+                  <p className="text-base text-black/60 line-clamp-3 leading-relaxed">{item.description}</p>
                 </div>
-
-                <h2 className="font-display text-4xl font-semibold leading-tight text-black">{item.title}</h2>
-                <p className="text-base text-black/75 line-clamp-3">{item.description}</p>
-
-                <span className="inline-flex border-b border-black text-sm font-semibold uppercase tracking-[0.1em] text-black/80 hover:text-black">
-                  View Exhibition Details
-                </span>
+                <div className="mt-8 flex items-center justify-between border-t border-black/5 pt-6">
+                  <span className="text-xs font-bold uppercase tracking-widest text-black/40 group-hover:text-black transition-colors">
+                    View Details
+                  </span>
+                  <ArrowUpRight className="h-5 w-5 text-black/30 group-hover:text-black transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                </div>
               </div>
             </article>
           );})

@@ -67,11 +67,11 @@ export default function ArtistsPage() {
   };
 
   return (
-    <div className="bg-[#f1f1f1] pb-16">
-      <section className="border-b border-black/15 bg-[#ece7de] px-4 py-14 sm:px-6 lg:px-10">
+    <div className="bg-[color:var(--paper)] pb-20">
+      <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
-          <h1 className="font-display text-6xl font-semibold leading-[0.95] text-black sm:text-7xl">Artists</h1>
-          <p className="mt-4 max-w-3xl text-lg text-black/75">
+          <h1 className="font-display text-6xl font-bold leading-[0.95] text-black sm:text-7xl lg:text-8xl">Artists</h1>
+          <p className="mt-6 max-w-3xl text-lg text-black/60 leading-relaxed">
             Discover artists represented throughout the museum collection, from impressionist pioneers to modern fashion and
             contemporary voices.
           </p>
@@ -87,41 +87,43 @@ export default function ArtistsPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 grid w-full max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-2 xl:grid-cols-3 lg:px-10">
+      <section className="mx-auto mt-12 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         {pageItems.length === 0 ? (
-          <div className="border border-black/15 bg-white p-6 text-black/70 md:col-span-2 xl:col-span-3">
+          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
             No artists listed on this page.
           </div>
         ) : (
-          pageItems.map((artist, idx) => {
+          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 animate-stagger-fade">
+          {pageItems.map((artist, idx) => {
             const hasImage = artist.portrait_url && !artist.portrait_url.includes("No_image_available.svg");
             return (
             <article 
               key={idx} 
               onClick={() => handleArtistClick(artist)}
-              className="cursor-pointer overflow-hidden border border-black/15 bg-white shadow-sm transition-transform hover:-translate-y-1 hover:shadow-md"
+              className="group cursor-pointer break-inside-avoid flex flex-col glass-card rounded-3xl overflow-hidden"
             >
-            <div className="relative aspect-[4/3] border-b border-black/10 bg-[#efefef] flex items-center justify-center">
+            <div className="relative aspect-[4/3] bg-black/5 overflow-hidden">
               {hasImage ? (
                   <Image
                     src={artist.portrait_url!}
                     alt={artist.name}
                     fill
-                    className="object-cover object-top"
-                    sizes="(min-width: 1280px) 30vw, (min-width: 768px) 45vw, 100vw"
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
                   />
               ) : (
-                  <span className="font-display text-7xl font-bold text-black/10 uppercase">{artist.name.charAt(0)}</span>
+                  <span className="absolute inset-0 flex items-center justify-center font-display text-7xl font-bold text-black/10 uppercase">{artist.name.charAt(0)}</span>
               )}
             </div>
-            <div className="flex min-h-48 flex-col items-center px-5 py-6 text-center">
-              <h2 className="font-display text-4xl font-semibold leading-[0.95] text-black">
+            <div className="flex flex-col items-center px-6 py-8 text-center">
+              <h2 className="font-display text-3xl font-bold leading-tight text-black group-hover:text-[color:var(--accent)] transition-colors">
                 {artist.name}
               </h2>
-              <p className="mt-3 text-sm leading-6 text-black/75 line-clamp-4">{artist.bio}</p>
+              <p className="mt-4 text-sm leading-relaxed text-black/60 line-clamp-4">{artist.bio}</p>
             </div>
           </article>
-          );})
+          );})}
+          </div>
         )}
       </section>
 

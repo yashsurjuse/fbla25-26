@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
+import { Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import { useCart } from "@/components/CartContext";
 import { navItems } from "@/data/site";
 
@@ -54,7 +55,7 @@ export default function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="a11y-filter-target fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[color:var(--paper)] backdrop-blur-md">
+    <header className="a11y-filter-target fixed inset-x-0 top-0 z-50 glass-nav">
       <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-10">
         <Link
           href="/"
@@ -125,10 +126,7 @@ export default function SiteHeader() {
               className="absolute right-0 flex h-10 w-10 items-center justify-center text-black/60 hover:text-black"
               aria-label="Submit search"
             >
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.35-4.35" />
-              </svg>
+              <Search className="h-4 w-4" />
             </button>
           </form>
 
@@ -144,11 +142,7 @@ export default function SiteHeader() {
             aria-label="Open cart"
             className="relative hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex"
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-              <circle cx="9" cy="20" r="1.7" />
-              <circle cx="18" cy="20" r="1.7" />
-              <path d="M3 4h2l2.2 10.2a1 1 0 0 0 1 .8h9.7a1 1 0 0 0 1-.8L21 7H7.2" />
-            </svg>
+            <ShoppingBag className="h-5 w-5" aria-hidden />
             {cartCount > 0 ? (
               <span className="absolute -top-2 -right-2 inline-flex h-5 min-w-5 items-center justify-center bg-black px-1 text-[11px] font-semibold text-white">
                 {cartCount}
@@ -162,10 +156,7 @@ export default function SiteHeader() {
               aria-label="Member account"
               className="hidden h-10 w-10 items-center justify-center border border-black/20 bg-white text-black sm:inline-flex hover:bg-black/5 transition-colors"
             >
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
-                <circle cx="12" cy="8" r="3.5" />
-                <path d="M4.5 20a7.5 7.5 0 0 1 15 0" />
-              </svg>
+              <User className="h-5 w-5" aria-hidden />
             </button>
             {accountMenuOpen && (
               <div className="popup-rise-in absolute right-0 top-full mt-2 w-48 border border-black/15 bg-white py-2 shadow-xl z-50">
@@ -194,7 +185,7 @@ export default function SiteHeader() {
             aria-controls="mobile-menu"
             aria-label="Toggle navigation menu"
           >
-            {menuOpen ? "Close" : "Menu"}
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
@@ -264,10 +255,7 @@ export default function SiteHeader() {
                 className="absolute right-0 flex h-11 w-11 items-center justify-center text-black/60 hover:text-black bg-transparent"
                 aria-label="Submit search"
               >
-                <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.35-4.35" />
-                </svg>
+              <Search className="h-5 w-5" />
               </button>
             </form>
             

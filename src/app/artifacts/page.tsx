@@ -103,12 +103,12 @@ export default function ArtifactsPage() {
   const handlePageChange = (page: number) => setCurrentPage(Math.max(1, Math.min(totalPages, page)));
 
   return (
-    <div className="bg-[#f4f4f4] pb-16">
-      <section className="border-b border-black/15 bg-[#e8e8e8] px-4 py-14 sm:px-6 lg:px-10">
+    <div className="bg-[color:var(--paper)] pb-20">
+      <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-black/60">Across Time</p>
-          <h1 className="mt-2 font-display text-6xl font-semibold leading-[0.95] text-black sm:text-7xl">Artifacts</h1>
-          <p className="mt-4 max-w-3xl text-lg text-black/75">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Across Time</p>
+          <h1 className="mt-4 font-display text-6xl font-bold leading-[0.95] text-black sm:text-7xl lg:text-8xl">Artifacts</h1>
+          <p className="mt-6 max-w-3xl text-lg text-black/60 leading-relaxed">
             Step inside The Met&apos;s encyclopedic collection, spanning pharaonic temples, Renaissance armor, West African
             bronzes, and much more.
           </p>
@@ -206,48 +206,51 @@ export default function ArtifactsPage() {
         </div>
       </section>
 
-      <section className="mx-auto mt-8 grid w-full max-w-7xl gap-5 px-4 sm:px-6 lg:grid-cols-2 lg:px-10">
+      <section className="mx-auto mt-12 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         {loading ? (
-          <div className="border border-black/15 bg-white p-6 text-black/70 lg:col-span-2">
+          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
             Loading artifacts...
           </div>
         ) : pageObjects.length === 0 ? (
-          <div className="border border-black/15 bg-white p-6 text-black/70 lg:col-span-2">
+          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
             No artifacts found.
           </div>
         ) : (
-          pageObjects.map((obj) => {
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 animate-stagger-fade">
+          {pageObjects.map((obj) => {
             const image = obj.primaryImageSmall || obj.primaryImage;
             return (
             <article 
               key={obj.objectID} 
               onClick={() => router.push(`?artifactId=${obj.objectID}`, { scroll: false })}
-              className="group cursor-pointer grid gap-0 border border-black/15 bg-white sm:grid-cols-[210px_1fr] transition-transform hover:-translate-y-1 hover:shadow-md"
+              className="group cursor-pointer break-inside-avoid flex flex-col glass-card rounded-3xl overflow-hidden"
             >
-              <div className="relative min-h-56 border-b border-black/10 sm:min-h-full sm:border-b-0 sm:border-r bg-[#e8e8e8] flex items-center justify-center p-4">
+              <div className="relative w-full overflow-hidden bg-black/5" style={{ aspectRatio: image ? 'auto' : '4/3' }}>
                 {image ? (
                   <Image
                     src={image}
                     alt={obj.title || "Artwork"}
-                    fill
-                    className="object-cover transition-transform group-hover:scale-[1.02]"
-                    sizes="(min-width: 1024px) 20vw, 100vw"
+                    width={800}
+                    height={600}
+                    className="object-cover w-full h-auto transition-transform duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
                 ) : (
-                  <span className="text-center text-sm font-medium text-black/40">Image Unavailable<br/><span className="text-xs">(Copyright or digitization pending)</span></span>
+                  <span className="absolute inset-0 flex items-center justify-center text-sm font-medium text-black/40">Image Unavailable</span>
                 )}
               </div>
-              <div className="space-y-2 p-5">
-                <h2 className="font-display text-4xl font-semibold leading-tight text-black">{obj.title || "Untitled"}</h2>
-                <p className="text-sm font-semibold uppercase tracking-[0.08em] text-black/60">{obj.objectDate || "Unknown Date"}</p>
-                <p className="text-sm font-semibold text-black/75">{obj.department}{obj.culture ? ` — ${obj.culture}` : ""}</p>
-                <div className="pt-2 text-sm leading-6 text-black/75">
-                  <p><span className="font-semibold text-black">Artist:</span> {obj.artistDisplayName || "Unknown"}</p>
-                  {obj.medium && <p><span className="font-semibold text-black">Medium:</span> {obj.medium}</p>}
+              <div className="space-y-4 p-6 md:p-8">
+                <h2 className="font-display text-3xl font-bold leading-tight text-black group-hover:text-[color:var(--accent)] transition-colors">{obj.title || "Untitled"}</h2>
+                <div className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">{obj.objectDate || "Unknown Date"}</div>
+                <p className="text-sm font-medium text-black/60 leading-relaxed">{obj.department}{obj.culture ? ` — ${obj.culture}` : ""}</p>
+                <div className="pt-4 border-t border-black/5 mt-4 text-sm leading-relaxed text-black/60">
+                  <p><span className="font-bold text-black/80">Artist:</span> {obj.artistDisplayName || "Unknown"}</p>
+                  {obj.medium && <p><span className="font-bold text-black/80">Medium:</span> {obj.medium}</p>}
                 </div>
               </div>
             </article>
-          );})
+          );})}
+          </div>
         )}
       </section>
 

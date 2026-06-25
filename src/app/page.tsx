@@ -7,6 +7,7 @@ import FeaturedExhibitionPreview from "@/components/FeaturedExhibitionPreview";
 import HomeNumbersCollage from "@/components/HomeNumbersCollage";
 import { getImageSourceById } from "@/data/image-sources";
 import { homeIntro, metStats, museumInfo } from "@/data/site";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const heroImage = "/met(1).jpg";
 const collageImages = [
@@ -36,13 +37,13 @@ export default function Home() {
             </h1>
           </div>
 
-          <aside className="justify-self-start border border-black/20 bg-white p-6 text-black shadow-2xl lg:justify-self-end">
-            <p className="text-sm font-semibold uppercase tracking-[0.12em] text-black/55">Welcome to</p>
-            <h2 className="mt-2 font-display text-4xl font-semibold leading-tight">The Met Museum</h2>
-            <p className="mt-4 text-base text-black/80">{homeIntro.heroSummary}</p>
+          <aside className="justify-self-start glass-card bg-white/90 p-8 text-black rounded-3xl lg:justify-self-end">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Welcome to</p>
+            <h2 className="mt-2 font-display text-4xl font-bold leading-tight">The Met Museum</h2>
+            <p className="mt-4 text-base text-black/70 leading-relaxed max-w-sm">{homeIntro.heroSummary}</p>
             <Link
               href="/visit"
-              className="mt-6 inline-flex border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black"
+              className="mt-8 inline-flex items-center gap-2 rounded-full border border-black bg-black px-6 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-transparent hover:text-black"
             >
               {homeIntro.primaryCta}
             </Link>
@@ -50,71 +51,65 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-black py-14 text-white">
-        <div className="mx-auto grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-10">
+      <section className="bg-[#0a0a0a] py-20 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.4),transparent_50%)]" />
+        <div className="relative mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center lg:px-10 animate-stagger-fade">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">Collection</p>
-            <h2 className="mt-2 font-display text-5xl font-semibold">{homeIntro.collectionTitle}</h2>
-            <p className="mt-3 max-w-2xl text-lg text-white/80">{homeIntro.collectionSummary}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/50">Collection</p>
+            <h2 className="mt-3 font-display text-5xl md:text-6xl font-bold">{homeIntro.collectionTitle}</h2>
+            <p className="mt-6 max-w-2xl text-lg text-white/70 leading-relaxed">{homeIntro.collectionSummary}</p>
           </div>
-          <ul className="space-y-2 self-center text-lg font-semibold lg:justify-self-end lg:pt-2">
-            <li>
-              ADMISSION{" "}
-              <span className="text-white/70">
-                Adults $30 -
-                <Link href="/visit" className="ml-1 font-semibold !text-white !underline underline-offset-4">
+          <ul className="space-y-6 self-center text-lg font-bold lg:justify-self-end glass-card !bg-white/5 !border-white/10 !text-white rounded-3xl p-8 backdrop-blur-md w-full max-w-sm hover:!border-white/20 transition-colors">
+            <li className="border-b border-white/10 pb-4">
+              <span className="block text-xs uppercase tracking-widest text-white/50 mb-1">Admission</span>
+              <div className="flex justify-between items-center">
+                <span>Adults $30</span>
+                <Link href="/visit" className="text-sm border border-white/30 px-3 py-1 rounded-full hover:bg-white hover:text-black transition-colors">
                   Book Now
                 </Link>
-              </span>
+              </div>
+            </li>
+            <li className="border-b border-white/10 pb-4">
+              <span className="block text-xs uppercase tracking-widest text-white/50 mb-1">Sun - Thu</span>
+              <span className="text-white/90">10:00 AM - 5:00 PM</span>
             </li>
             <li>
-              SUN-THU <span className="text-white/70">10:00 AM - 5:00 PM</span>
-            </li>
-            <li>
-              FRI-SAT <span className="text-white/70">10:00 AM - 9:00 PM</span>
+              <span className="block text-xs uppercase tracking-widest text-white/50 mb-1">Fri - Sat</span>
+              <span className="text-white/90">10:00 AM - 9:00 PM</span>
             </li>
           </ul>
         </div>
       </section>
 
-      <section className="museum-pattern bg-[#f1f1f1] py-16 sm:py-20">
-        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
-          <HomeNumbersCollage images={collageImages} />
+      <section className="bg-[color:var(--paper)] py-24">
+        <div className="mx-auto grid w-full max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[1fr_0.8fr] lg:px-10 animate-stagger-fade">
+          <div className="glass-card rounded-[2.5rem] p-2 overflow-hidden bg-white hidden lg:block">
+            <HomeNumbersCollage images={collageImages} />
+          </div>
 
-          <div className="flex h-full flex-col">
-            <h2 className="font-display text-6xl font-semibold leading-[0.9] text-black sm:text-7xl">
+          <div className="flex h-full flex-col justify-center">
+            <h2 className="font-display text-6xl font-bold leading-[0.9] text-black sm:text-7xl">
               THE MET
               <br />
-              IN NUMBERS
+              <span className="text-[color:var(--accent)]">IN NUMBERS</span>
             </h2>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2">
               {metStats.slice(0, 2).map((stat) => (
-                <article key={stat.value} className="border-t border-black/20 pt-4">
-                  <p className="text-base font-semibold lowercase text-black/70">{stat.label}</p>
-                  <p className="mt-1 text-5xl font-bold tracking-tight text-black">
+                <article key={stat.value} className="glass-card rounded-3xl p-8">
+                  <p className="text-sm font-bold uppercase tracking-widest text-black/40">{stat.label}</p>
+                  <p className="mt-4 text-6xl font-bold tracking-tight text-black">
                     <CountUpNumber to={Number(stat.value.replace(/[^0-9]/g, ""))} />
                   </p>
-                  <p className="mt-2 text-base text-black/75">{stat.detail}</p>
+                  <p className="mt-4 text-sm text-black/60 leading-relaxed">{stat.detail}</p>
                 </article>
               ))}
             </div>
-            <Link href="/mission" className="group mt-auto flex cursor-pointer select-none items-center justify-between border-b border-black pb-1 pt-8">
-              <span className="origin-left text-xl font-semibold uppercase tracking-[0.02em] text-black transition-all duration-200 group-hover:scale-[1.03] group-hover:font-bold sm:text-2xl">
+            <Link href="/mission" className="group mt-12 flex cursor-pointer items-center justify-between border border-black/10 rounded-full pl-6 pr-2 py-2 w-fit hover:border-black/30 transition-colors bg-white">
+              <span className="text-sm font-bold uppercase tracking-widest text-black mr-6">
                 Mission and History
               </span>
-              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-black text-black transition-transform duration-200 group-hover:scale-110" aria-hidden>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m13 6 6 6-6 6" />
-                </svg>
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black text-white transition-transform duration-300 group-hover:scale-105">
+                <ArrowRight className="h-5 w-5" />
               </span>
             </Link>
           </div>
@@ -123,43 +118,54 @@ export default function Home() {
 
       <FeaturedExhibitionPreview />
 
-      <section className="bg-[#f3f3f3] py-16 sm:py-20">
+      <section className="bg-[color:var(--paper)] py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-          <div className="mb-8 flex items-center justify-between border-b border-black/30 pb-2">
-            <p className="text-sm font-semibold uppercase tracking-[0.1em] text-black/60">Featured works</p>
-            <h2 className="font-display text-5xl font-semibold tracking-tight">Circulating</h2>
+          <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-4">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Featured works</p>
+            <h2 className="font-display text-5xl font-bold tracking-tight text-black">Circulating</h2>
           </div>
-          <CirculatingMarquee items={artifacts} />
+          <div className="glass-card rounded-[2.5rem] py-6 px-2 bg-white">
+            <CirculatingMarquee items={artifacts} />
+          </div>
         </div>
       </section>
 
-      <section className="border-y border-black/15 bg-[#ececec] py-14">
-        <div className="mx-auto grid w-full max-w-7xl gap-4 px-4 sm:px-6 md:grid-cols-3 lg:px-10">
+      <section className="bg-[color:var(--paper)] pb-24">
+        <div className="mx-auto grid w-full max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-3 lg:px-10 animate-stagger-fade">
           <Link
             href="/exhibitions"
-            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+            className="group cursor-pointer glass-card rounded-3xl p-8 flex flex-col justify-between min-h-[300px]"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Explore</p>
-            <h3 className="mt-2 font-display text-4xl font-semibold text-black">Exhibitions</h3>
-            <p className="mt-2 text-sm text-black/75">Browse current and historical showcases curated from The Met timeline.</p>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-black/40">Explore</p>
+              <h3 className="mt-4 font-display text-4xl font-bold text-black group-hover:text-[color:var(--accent)] transition-colors">Exhibitions</h3>
+              <p className="mt-4 text-sm text-black/60 leading-relaxed">Browse current and historical showcases curated from The Met timeline.</p>
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-black/30 group-hover:text-black transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 self-end" />
           </Link>
           <Link
             href="/artists"
-            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+            className="group cursor-pointer glass-card rounded-3xl p-8 flex flex-col justify-between min-h-[300px]"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Discover</p>
-            <h3 className="mt-2 font-display text-4xl font-semibold text-black">Artists</h3>
-            <p className="mt-2 text-sm text-black/75">Learn about the creators shaping painting, sculpture, fashion, and modern art.</p>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-black/40">Discover</p>
+              <h3 className="mt-4 font-display text-4xl font-bold text-black group-hover:text-[color:var(--accent)] transition-colors">Artists</h3>
+              <p className="mt-4 text-sm text-black/60 leading-relaxed">Learn about the creators shaping painting, sculpture, fashion, and modern art.</p>
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-black/30 group-hover:text-black transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 self-end" />
           </Link>
           <Link
             href="/visit"
-            className="cursor-pointer select-none border border-black/20 bg-white p-5 transition-colors hover:bg-[#fafafa]"
+            className="group cursor-pointer glass-card rounded-3xl p-8 flex flex-col justify-between min-h-[300px]"
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Plan</p>
-            <h3 className="mt-2 font-display text-4xl font-semibold text-black">Your Visit</h3>
-            <p className="mt-2 text-sm text-black/75">
-              See hours, ticket pricing, and directions to {museumInfo.addressLines[0]}.
-            </p>
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-black/40">Plan</p>
+              <h3 className="mt-4 font-display text-4xl font-bold text-black group-hover:text-[color:var(--accent)] transition-colors">Your Visit</h3>
+              <p className="mt-4 text-sm text-black/60 leading-relaxed">
+                See hours, ticket pricing, and directions to {museumInfo.addressLines[0]}.
+              </p>
+            </div>
+            <ArrowUpRight className="h-6 w-6 text-black/30 group-hover:text-black transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 self-end" />
           </Link>
         </div>
       </section>

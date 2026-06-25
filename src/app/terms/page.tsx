@@ -59,7 +59,7 @@ export default function TermsPage() {
           </p>
 
           <div className="mt-16 bg-[#f3f4f4] p-6 rounded-xl border border-black/10 text-sm text-black/70">
-            <strong>Note:</strong> This is a mock Terms and Conditions page generated for the FBLA 2025-2026 Web Application competition. This does not represent the official legal policies of The Metropolitan Museum of Art.
+            <strong>Note:</strong> This is a mock Terms and Conditions page made for the FBLA 2025-2026 Web Application competition. This does not represent the official legal policies of The Metropolitan Museum of Art.
           </div>
         </div>
       </section>

@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import type { Artifact } from "@/data/artifacts";
 
 const ease: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -27,26 +28,26 @@ export default function ArtifactCard({ artifact, index = 0 }: ArtifactCardProps)
   return (
     <div onClick={handleCardClick} className="cursor-pointer h-full">
       <motion.article
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.55, delay: 0.08 * index, ease }}
-        whileHover={{ scale: 1.028, rotate: 0.15, transition: { duration: 0.22, ease } }}
-        whileTap={{ scale: 0.99, transition: { duration: 0.16, ease } }}
-        className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-6 text-black shadow-sm shadow-black/5 hover:shadow-md transition-shadow duration-200 h-full flex flex-col justify-between"
+        transition={{ duration: 0.5, delay: Math.min(0.05 * index, 0.5), ease }}
+        className="group relative overflow-hidden rounded-3xl glass-card p-6 md:p-8 h-full flex flex-col justify-between"
       >
-        <div className="pointer-events-none absolute inset-0 bg-black/5 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-        <div className="relative z-10 flex flex-col gap-4">
-          <div className="text-sm uppercase tracking-[0.2em] text-black/60">{artifact.era}</div>
-          <div>
-            <h3 className="font-display text-2xl font-semibold text-black">{artifact.title}</h3>
+        <div className="relative z-10 flex flex-col gap-4 h-full">
+          <div className="text-xs font-bold uppercase tracking-[0.25em] text-black/40">{artifact.era}</div>
+          <div className="flex-grow">
+            <h3 className="font-display text-2xl md:text-3xl font-bold text-black group-hover:text-[color:var(--accent)] transition-colors">{artifact.title}</h3>
             <div 
               onClick={handleDeptClick} 
-              className="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-black/50 hover:text-black hover:underline w-fit"
+              className="mt-3 text-xs font-semibold uppercase tracking-[0.2em] text-black/50 hover:text-black hover:underline w-fit"
             >
               {artifact.location}
             </div>
+            <p className="mt-4 text-sm text-black/70 line-clamp-4 leading-relaxed">{artifact.description}</p>
           </div>
-          <p className="text-sm text-black/75 line-clamp-4">{artifact.description}</p>
+          <div className="mt-6 flex items-center justify-end text-black/30 group-hover:text-black transition-colors">
+            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </div>
         </div>
       </motion.article>
     </div>
