@@ -239,7 +239,6 @@ export default function AccessibilityControls() {
       const parsed = JSON.parse(raw) as Partial<AccessibilitySettings>;
       return { ...defaultSettings, ...parsed };
     } catch {
-      // Ignore malformed storage and continue with defaults.
       return defaultSettings;
     }
   });
@@ -265,7 +264,6 @@ export default function AccessibilityControls() {
     try {
       window.localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
     } catch {
-      // Some browsers block storage in privacy mode.
     }
   }, [settings]);
 

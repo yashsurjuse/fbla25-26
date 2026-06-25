@@ -8,10 +8,8 @@ export default function RedeemPage() {
   const [barcode, setBarcode] = useState<number[]>([]);
 
   useEffect(() => {
-    // Generate a random ID
     setMemberId(`MET-${Math.random().toString(36).substring(2, 10).toUpperCase()}`);
     
-    // Generate an array of random widths for a visual barcode (1 to 4 px wide)
     const lines = [];
     for (let i = 0; i < 60; i++) {
       lines.push(Math.floor(Math.random() * 4) + 1);

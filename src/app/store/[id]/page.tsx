@@ -45,12 +45,10 @@ export default async function StoreItemPage({ params }: { params: Promise<{ id: 
     return notFound();
   }
 
-  // Get related items (same category or random)
   const related = allProducts
     .filter(p => p.category === product?.category && p.id !== product?.id)
     .slice(0, 8); // Grab up to 8 for the carousel
 
-  // If not enough related, pad with others
   if (related.length < 8) {
     const others = allProducts.filter(p => p.category !== product?.category && p.id !== product?.id);
     related.push(...others.slice(0, 8 - related.length));

@@ -25,14 +25,14 @@ export default function ArtifactCard({ artifact, index = 0 }: ArtifactCardProps)
   };
 
   return (
-    <div onClick={handleCardClick} className="cursor-pointer">
+    <div onClick={handleCardClick} className="cursor-pointer h-full">
       <motion.article
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, delay: 0.08 * index, ease }}
         whileHover={{ scale: 1.028, rotate: 0.15, transition: { duration: 0.22, ease } }}
         whileTap={{ scale: 0.99, transition: { duration: 0.16, ease } }}
-        className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-6 text-black shadow-sm shadow-black/5 hover:shadow-md transition-shadow duration-200"
+        className="group relative overflow-hidden rounded-2xl border border-black/10 bg-white p-6 text-black shadow-sm shadow-black/5 hover:shadow-md transition-shadow duration-200 h-full flex flex-col justify-between"
       >
         <div className="pointer-events-none absolute inset-0 bg-black/5 opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
         <div className="relative z-10 flex flex-col gap-4">

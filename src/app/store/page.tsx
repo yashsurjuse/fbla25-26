@@ -49,18 +49,12 @@ export default function StorePage() {
        const q = searchQuery.toLowerCase();
        data = data.filter(p => p.title.toLowerCase().includes(q) || p.description.toLowerCase().includes(q));
      }
-     // Sort by relevancy
      const getRelevancy = (title: string) => {
         const t = title.toLowerCase();
-        // High priority everyday items
         if (t.includes("shirt") || t.includes("tote") || t.includes("mug") || t.includes("cap") || t.includes("sweatshirt") || t.includes("hoodie") || t.includes("umbrella") || t.includes("socks")) return 5;
-        // High priority accessories
         if (t.includes("necklace") || t.includes("earrings") || t.includes("bracelet") || t.includes("pin") || t.includes("watch") || t.includes("scarf")) return 4;
-        // Books & Prints
         if (t.includes("book") || t.includes("guide") || t.includes("poster") || t.includes("print")) return 3;
-        // Toys & Kids
         if (t.includes("puzzle") || t.includes("toy") || t.includes("plush") || t.includes("game")) return 2;
-        // Niche items (sculptures, reproductions, etc)
         return 1;
      };
 

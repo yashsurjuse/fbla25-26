@@ -22,7 +22,6 @@ export default function ArtifactsPage() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Filters
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDept, setSelectedDept] = useState("");
   const [selectedMedium, setSelectedMedium] = useState("");
@@ -33,7 +32,6 @@ export default function ArtifactsPage() {
   const [departments, setDepartments] = useState<{ departmentId: number; displayName: string }[]>([]);
   const [artistsData, setArtistsData] = useState<ArtistData[]>([]);
 
-  // Load departments and artists JSON
   useEffect(() => {
     fetchDepartments().then(setDepartments);
     fetch("/data/artists_master.json")
@@ -42,7 +40,6 @@ export default function ArtifactsPage() {
       .catch(err => console.warn("Could not load artists data", err));
   }, []);
 
-  // Fetch IDs when filters change
   useEffect(() => {
     let active = true;
     setLoading(true);
@@ -77,7 +74,6 @@ export default function ArtifactsPage() {
     return () => { active = false; };
   }, [searchQuery, selectedDept, selectedMedium, selectedCulture, selectedGeo, selectedArtist, artistsData]);
 
-  // Load objects for the current page
   useEffect(() => {
     let active = true;
     

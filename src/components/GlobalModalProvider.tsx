@@ -12,10 +12,7 @@ function ModalManager() {
   const artistName = searchParams.get("artistName");
   const orderSuccess = searchParams.get("orderSuccess");
 
-  // We can render both if both are in the URL, allowing CSS z-index to handle stacking,
-  // or we render the one that was most recently added. But actually, React re-renders, 
-  // and having both means the topmost one is the active one.
-  // Modals use Fixed positioning, so rendering both naturally stacks them.
+  // we can render both if both are in the URL allowing CSS z index to handle stacking
 
   return (
     <>

@@ -79,11 +79,9 @@ export default function AccessibilityMenu() {
 
   const compactByWidth = viewport.width > 0 ? viewport.width < 1024 : false;
   const shouldUseCompact = isTouchDevice || compactByWidth;
-  // Memoize isCompact to prevent it from changing when filters update
+  // memoize isCompact to prevent it from changing when filters update
   const isCompact = useMemo(() => {
-    // If menu is closed, just return the natural shouldUseCompact value
     if (!open) return shouldUseCompact;
-    // If menu is open, lock to the mode it was opened in
     return wasOpenedCompact;
   }, [open, shouldUseCompact, wasOpenedCompact]);
   const isTextScaleLocked = viewport.width > 0 && (viewport.width < 630 || viewport.height < 700);
@@ -200,7 +198,6 @@ export default function AccessibilityMenu() {
 
   const closeMenu = useCallback(() => {
     setOpen(false);
-    // Reset after animation completes
     setTimeout(() => setWasOpenedCompact(false), 250);
   }, []);
 
@@ -208,7 +205,6 @@ export default function AccessibilityMenu() {
     setOpen((prev) => {
       const next = !prev;
       if (next) {
-        // Opening: save the compact mode state
         const needsCompact = isTouchDevice || (viewport.width > 0 && viewport.width < 1024);
         setWasOpenedCompact(needsCompact);
       }

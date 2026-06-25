@@ -56,7 +56,6 @@ export default function ArtistsPage() {
     return filteredData.slice(start, start + PAGE_SIZE);
   }, [currentPage, filteredData]);
 
-  // Reset to page 1 when search changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);

@@ -20,11 +20,14 @@ export default function ExhibitionCard({ ex }: { ex: Exhibition }) {
     <motion.div
       whileHover={{ scale: 1.02, rotate: 0.15 }}
       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+      className="h-full"
     >
-      <SpotlightCard className="group rounded-2xl border border-black/10 bg-white p-6 shadow-sm shadow-black/5 hover:shadow-md transition-shadow" spotlightColor="rgba(0, 0, 0, 0.05)">
-        <div className="text-sm text-black/60">{dateRange}</div>
+      <SpotlightCard className="group h-full flex flex-col justify-between rounded-2xl border border-black/10 bg-white p-6 shadow-sm shadow-black/5 hover:shadow-md transition-shadow" spotlightColor="rgba(0, 0, 0, 0.05)">
+        <div>
+          <div className="text-sm text-black/60">{dateRange}</div>
         <h3 className="mt-2 font-display text-2xl font-semibold text-black">{ex.title}</h3>
         <p className="mt-3 text-sm text-black/75 line-clamp-3">{ex.description}</p>
+        </div>
         <div className="mt-4">
           <Link
             href={`/exhibitions?id=${ex.id}`}

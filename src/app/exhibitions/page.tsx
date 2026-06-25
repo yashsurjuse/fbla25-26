@@ -75,7 +75,6 @@ export default function ExhibitionsPage() {
     return filteredData.slice(start, start + PAGE_SIZE);
   }, [currentPage, filteredData]);
 
-  // Reset to page 1 when search or status changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery, statusFilter]);

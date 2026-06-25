@@ -21,7 +21,6 @@ const BASE_URL = "https://collectionapi.metmuseum.org/public/collection/v1";
 const memoryCacheIds = new Map<string, number[]>();
 const memoryCacheObjects = new Map<number, MetObject>();
 
-// Strict Rate Limiter: max 80 requests per second
 class RateLimiter {
   private queue: Array<() => void> = [];
   private tokens = 80;
@@ -33,7 +32,7 @@ class RateLimiter {
     if (typeof window !== "undefined") {
       this.intervalId = setInterval(() => this.refill(), this.REFILL_RATE_MS);
     } else {
-      // In SSR we still need the interval, using globalThis.setInterval
+      // in SSR we still need the interval using globalThissetInterval
       this.intervalId = globalThis.setInterval(() => this.refill(), this.REFILL_RATE_MS);
     }
   }
@@ -81,7 +80,7 @@ function setSessionCache<T>(key: string, value: T): void {
   try {
     sessionStorage.setItem(key, JSON.stringify(value));
   } catch {
-    // Ignore storage limits
+    // ignore storage limits
   }
 }
 
@@ -94,7 +93,6 @@ async function loadStaticArtifacts(): Promise<MetObject[]> {
     if (!res.ok) return [];
     let data: MetObject[] = await res.json();
     
-    // Clean up extremely long titles
     data = data.map(a => {
         if (a.title && a.title.includes(';')) {
             const parts = a.title.split(';');
@@ -127,7 +125,6 @@ export async function fetchMetObjectIds(params: { q?: string; departmentId?: str
   
   if (params.departmentId) {
     const dId = parseInt(params.departmentId, 10);
-    // Map ID to Name using the Met API exactly as the UI gets them
     try {
         const depts = await fetchDepartments();
         const dMatch = depts.find(d => d.departmentId === dId);

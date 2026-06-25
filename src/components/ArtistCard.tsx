@@ -14,13 +14,15 @@ type Artist = {
 
 export default function ArtistCard({ artist }: { artist: Artist }) {
   return (
-    <Link href={`/artists?artistName=${encodeURIComponent(artist.name)}`}>
+    <Link href={`/artists?artistName=${encodeURIComponent(artist.name)}`} className="h-full block">
       <motion.div
         whileHover={{ scale: 1.025, rotate: 0.3 }}
         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="h-full"
       >
-        <SpotlightCard className="group rounded-2xl border border-black/10 bg-white p-4 shadow-sm shadow-black/5 hover:shadow-md transition-shadow" spotlightColor="rgba(0, 0, 0, 0.05)">
-          <div className="relative h-48 w-full overflow-hidden rounded-lg bg-black/5">
+        <SpotlightCard className="group h-full flex flex-col justify-between rounded-2xl border border-black/10 bg-white p-4 shadow-sm shadow-black/5 hover:shadow-md transition-shadow" spotlightColor="rgba(0, 0, 0, 0.05)">
+          <div>
+            <div className="relative h-48 w-full overflow-hidden rounded-lg bg-black/5">
           <Image
             src={artist.image}
             alt={artist.name}
@@ -32,6 +34,7 @@ export default function ArtistCard({ artist }: { artist: Artist }) {
           <div className="mt-4">
             <h4 className="font-display text-2xl font-semibold text-black">{artist.name}</h4>
             <p className="mt-2 line-clamp-3 text-sm text-black/75">{artist.bio}</p>
+          </div>
           </div>
           <div className="mt-5 flex items-center gap-3">
             <span

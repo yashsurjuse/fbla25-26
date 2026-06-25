@@ -12,7 +12,7 @@ export default function VolunteerPage() {
     <div className="bg-[#f3f4f4] min-h-screen pb-24 text-black">
       <section className="relative w-full h-[40vh] min-h-[350px]">
         <Image
-          src="https://images.metmuseum.org/CRDImages/md/original/DT156.jpg"
+          src="https://images.metmuseum.org/CRDImages/es/original/DP238533.jpg"
           alt="Volunteer at The Met"
           fill
           className="object-cover"
@@ -20,7 +20,7 @@ export default function VolunteerPage() {
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-10">
           <div className="mx-auto w-full max-w-5xl">
-            <Link href="/careers" className="text-sm font-semibold text-white/80 hover:text-white mb-6 inline-block">
+            <Link href="/careers" className="text-sm font-semibold !text-white hover:text-white mb-6 inline-block">
               &larr; Back to Careers
             </Link>
             <h1 className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">

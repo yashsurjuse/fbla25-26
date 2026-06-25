@@ -35,7 +35,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         {/* Header */}
         <header className="mb-12">
           <div className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-black/50">
-            Timeline of Art History Essay
+            {article.category}
           </div>
           <h1 className="font-display text-5xl font-bold leading-tight text-black sm:text-6xl md:text-7xl">
             {article.title}
