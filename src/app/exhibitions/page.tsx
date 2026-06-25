@@ -4,13 +4,13 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import FakePagination from "@/components/FakePagination";
 import Modal from "@/components/Modal";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchMetObject, MetObject } from "@/lib/met-api";
 
 const PAGE_SIZE = 26;
 
-export default function ExhibitionsPage() {
+function ExhibitionsContent() {
   const [currentPage, setCurrentPage] = useState(1);
   const [exhibitionsData, setExhibitionsData] = useState<any[]>([]);
   const [selectedExhibition, setSelectedExhibition] = useState<any | null>(null);
@@ -227,5 +227,13 @@ export default function ExhibitionsPage() {
         </Modal>
       )}
     </div>
+  );
+}
+
+export default function ExhibitionsPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-black/60">Loading exhibitions...</div>}>
+      <ExhibitionsContent />
+    </Suspense>
   );
 }
