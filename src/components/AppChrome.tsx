@@ -7,6 +7,8 @@ import { CartProvider } from "@/components/CartContext";
 import PageTransitionShell from "@/components/PageTransitionShell";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
+import GoogleTranslateProvider from "@/components/GoogleTranslateProvider";
+import HtmlLangSync from "@/components/HtmlLangSync";
 
 const CHROMELESS_ROUTES = ["/checkout"];
 
@@ -16,6 +18,8 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <CartProvider>
+      <GoogleTranslateProvider />
+      <HtmlLangSync />
       {!hideChrome ? <SiteHeader /> : null}
       <div className="app-root a11y-filter-target">
         <main id="main-content" className={pathname === "/" ? "" : "pt-20"}>

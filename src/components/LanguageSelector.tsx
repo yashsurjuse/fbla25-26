@@ -22,7 +22,7 @@ export default function LanguageSelector() {
   const currentLang = LANGUAGES.find((l) => l.code === language) || LANGUAGES[0];
 
   return (
-    <div className="relative" ref={containerRef}>
+    <div className="notranslate relative" ref={containerRef} translate="no">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
