@@ -9,7 +9,7 @@ import { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { fetchMetObject, MetObject } from "@/lib/met-api";
 
-const PAGE_SIZE = 26;
+const PAGE_SIZE = 28;
 
 function ExhibitionsContent() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -83,7 +83,7 @@ function ExhibitionsContent() {
   const handlePageChange = (page: number) => setCurrentPage(Math.max(1, Math.min(totalPages, page)));
 
   return (
-    <div className="bg-[color:var(--paper)] pb-20">
+    <div className="bg-[color:var(--paper)] pt-20 pb-20">
       <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
           <h1 className="font-display text-6xl font-bold leading-[0.95] text-black sm:text-7xl lg:text-8xl">Exhibitions</h1>
@@ -96,17 +96,17 @@ function ExhibitionsContent() {
                 placeholder="Search exhibitions by title or keyword..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full max-w-md border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none placeholder:text-black/40 focus:border-black/30 transition-colors"
+                className="w-full max-w-md rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 text-sm font-semibold text-black outline-none placeholder:text-black/40 focus:border-black/50 focus:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all"
             />
             <div className="flex flex-wrap gap-2">
               {(["all", "current", "future", "past"] as const).map((status) => (
                 <button
                   key={status}
                   onClick={() => setStatusFilter(status)}
-                  className={`px-4 py-2 border text-sm font-semibold uppercase tracking-wider transition-colors ${
+                  className={`rounded-full px-6 py-3.5 border text-xs font-bold uppercase tracking-wider transition-all backdrop-blur-md ${
                     statusFilter === status
-                      ? "border-black bg-black text-white"
-                      : "border-black/20 bg-white text-black hover:border-black"
+                      ? "border-black bg-black text-white shadow-lg scale-105"
+                      : "border-black/30 bg-white/50 text-black hover:bg-white hover:border-black/50 hover:shadow-md"
                   }`}
                 >
                   {status}
@@ -119,7 +119,7 @@ function ExhibitionsContent() {
 
       <section className="mx-auto mt-12 grid w-full max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-2 lg:px-10 animate-stagger-fade">
         {pageItems.length === 0 ? (
-          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium lg:col-span-2">
+          <div className="glass-card rounded-[2.5rem] p-12 text-center text-black/50 font-medium lg:col-span-2">
             No exhibitions listed on this page.
           </div>
         ) : (
@@ -128,7 +128,7 @@ function ExhibitionsContent() {
             <article 
               key={idx} 
               onClick={() => setSelectedExhibition(item)}
-              className="group cursor-pointer glass-card rounded-3xl overflow-hidden flex flex-col"
+              className="group cursor-pointer glass-card rounded-[2.5rem] overflow-hidden flex flex-col h-full"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-black/5">
                 <Image

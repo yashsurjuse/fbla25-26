@@ -4,6 +4,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useCart } from "./CartContext";
 import { useEffect, useState } from "react";
+import { Check } from "lucide-react";
 
 export default function OrderSuccessModal({ orderId }: { orderId: string }) {
   const { pastOrders } = useCart();
@@ -15,57 +16,72 @@ export default function OrderSuccessModal({ orderId }: { orderId: string }) {
   if (!placedOrder || !mounted) return null;
 
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto bg-black/50 px-4 py-10" role="dialog" aria-modal="true" aria-label="Thank you">
-      <div className="w-full max-w-xl border border-black/20 bg-white p-6 shadow-2xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Order Confirmed</p>
-        <h2 className="mt-2 font-display text-5xl font-semibold text-black">Thank you for your order</h2>
-        <p className="mt-2 text-black/75">Your confirmation and digital receipts have been prepared.</p>
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto bg-black/40 px-4 py-10 backdrop-blur-xl popup-backdrop-enter" role="dialog" aria-modal="true" aria-label="Thank you">
+      <div className="w-full max-w-2xl rounded-[3rem] bg-white p-12 shadow-[0_40px_100px_rgba(0,0,0,0.15)] popup-panel-enter relative overflow-hidden">
+        
+        {/* Removed background glow */}
 
-        {placedOrder.items.some(i => i.type === "visit") && (
-          <div className="mt-5 border border-dashed border-black/30 bg-[#f7f7f7] p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Admission Pass</p>
-            <p className="mt-1 text-xl font-semibold text-black">The Metropolitan Museum of Art</p>
-            <p className="mt-1 text-sm text-black/75">Booking reference: {orderId}</p>
-            <p className="mt-1 text-sm text-black/75">Present this pass at ticketing or member services.</p>
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <div className="flex h-24 w-24 items-center justify-center mb-6 text-[color:var(--accent)] animate-[popup-rise-in_0.5s_ease-out_0.2s_both]">
+            <Check className="h-16 w-16" />
           </div>
-        )}
+          
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-black/40 mb-3 animate-[popup-rise-in_0.5s_ease-out_0.3s_both]">Order Confirmed</p>
+          <h2 className="font-display text-5xl font-bold leading-tight text-black sm:text-6xl mb-4 animate-[popup-rise-in_0.5s_ease-out_0.4s_both]">Thank you.</h2>
+          <p className="text-lg text-black/60 max-w-md animate-[popup-rise-in_0.5s_ease-out_0.5s_both]">Your order has been successfully placed. Your digital receipts and tickets are ready below.</p>
+        </div>
 
-        {placedOrder.items.some(i => i.type === "membership") && (
-          <div className="mt-5 border border-black/10 bg-white p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Membership</p>
-            <p className="mt-1 text-base font-semibold text-black">Welcome to The Met Family!</p>
-            <p className="mt-1 text-sm text-black/75 mb-3">Redeem your membership to receive your unique member ID and barcode.</p>
-            <Link href="/redeem" target="_blank" className="inline-flex w-full items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors">
-              Redeem Membership
-            </Link>
-          </div>
-        )}
+        <div className="mt-12 space-y-4 animate-[popup-rise-in_0.5s_ease-out_0.6s_both] relative z-10">
+          {placedOrder.items.some(i => i.type === "visit") && (
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-3xl border border-black/5 bg-black/[0.02] p-6">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-black/40 mb-1">Admission Pass</p>
+                <p className="text-xl font-bold text-black">The Met Museum</p>
+                <p className="text-sm text-black/60 mt-1">Booking ref: {orderId}</p>
+              </div>
+              <span className="mt-4 sm:mt-0 inline-flex items-center rounded-full bg-black/5 px-4 py-2 text-xs font-bold tracking-widest text-black">
+                Ready to Use
+              </span>
+            </div>
+          )}
 
-        {placedOrder.items.some(i => i.type === "store") && (
-          <div className="mt-5 border border-black/10 bg-white p-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Store Delivery</p>
-            <p className="mt-1 text-base font-semibold text-black">Digital Receipt</p>
-            <ul className="mt-3 space-y-3 divide-y divide-black/10">
-              {placedOrder.items.filter(i => i.type === "store").map((item: any, idx) => (
-                <li key={idx} className="pt-3 first:pt-0 flex justify-between">
-                  <div>
-                    <p className="text-sm font-semibold text-black line-clamp-1">{item.productName}</p>
-                    {item.size && <p className="text-xs text-black/60 font-semibold mt-1">Size: {item.size}</p>}
-                    <p className="text-xs text-black/60 font-semibold mt-1">Qty: {item.quantity}</p>
-                  </div>
-                  <span className="text-xs font-bold text-green-700 bg-green-50 px-2 py-1 h-fit border border-green-200">Processing</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+          {placedOrder.items.some(i => i.type === "membership") && (
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between rounded-3xl border border-black/5 bg-[color:var(--accent)]/5 p-6">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-[color:var(--accent)]/70 mb-1">Membership</p>
+                <p className="text-xl font-bold text-black">Welcome to The Family</p>
+                <p className="text-sm text-black/60 mt-1 max-w-[200px]">Redeem to get your member ID.</p>
+              </div>
+              <Link href="/redeem" target="_blank" className="mt-4 sm:mt-0 inline-flex items-center justify-center rounded-full bg-black px-6 py-3 text-xs font-bold uppercase tracking-widest !text-white hover:bg-black/80 transition-colors shadow-lg">
+                Redeem Now
+              </Link>
+            </div>
+          )}
 
-        <div className="mt-6">
+          {placedOrder.items.some(i => i.type === "store") && (
+            <div className="rounded-3xl border border-black/5 bg-black/[0.02] p-6">
+              <p className="text-xs font-bold uppercase tracking-widest text-black/40 mb-4">Store Delivery</p>
+              <ul className="space-y-4">
+                {placedOrder.items.filter(i => i.type === "store").map((item: any, idx) => (
+                  <li key={idx} className="flex justify-between items-center">
+                    <div>
+                      <p className="text-base font-bold text-black">{item.productName}</p>
+                      <p className="text-sm text-black/60">Qty: {item.quantity} {item.size && `• Size: ${item.size}`}</p>
+                    </div>
+                    <span className="text-xs font-bold text-green-700">Processing</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="mt-10 flex justify-center relative z-10 animate-[popup-rise-in_0.5s_ease-out_0.7s_both]">
           <Link
             href="/"
-            className="inline-flex w-full items-center justify-center border border-black/20 bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black hover:bg-gray-50 transition-colors"
+            className="inline-flex w-full sm:w-auto items-center justify-center rounded-full border-2 border-black/10 bg-white px-10 py-4 text-xs font-bold uppercase tracking-widest text-black hover:border-black hover:bg-black hover:!text-white transition-all duration-300"
           >
-            Close
+            Return to Home
           </Link>
         </div>
       </div>

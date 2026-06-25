@@ -55,7 +55,7 @@ export default async function StoreItemPage({ params }: { params: Promise<{ id: 
   }
 
   return (
-    <div className="min-h-screen bg-white text-black font-sans pb-20">
+    <div className="min-h-screen bg-[color:var(--paper)] text-black font-sans pb-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10">
         <StoreItemClient product={product} relatedProducts={related} />
       </div>

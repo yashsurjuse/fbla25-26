@@ -6,7 +6,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import FakePagination from "@/components/FakePagination";
 
-const PAGE_SIZE = 27;
+const PAGE_SIZE = 28;
 
 type ArtifactData = {
   objectID: number;
@@ -67,7 +67,7 @@ export default function ArtistsPage() {
   };
 
   return (
-    <div className="bg-[color:var(--paper)] pb-20">
+    <div className="bg-[color:var(--paper)] pt-20 pb-20">
       <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
           <h1 className="font-display text-6xl font-bold leading-[0.95] text-black sm:text-7xl lg:text-8xl">Artists</h1>
@@ -81,7 +81,7 @@ export default function ArtistsPage() {
                 placeholder="Search artists by name or bio..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full max-w-md border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none placeholder:text-black/40 focus:border-black/30 transition-colors"
+                className="w-full max-w-md rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 text-sm font-semibold text-black outline-none placeholder:text-black/40 focus:border-black/50 focus:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all"
             />
           </div>
         </div>
@@ -89,18 +89,18 @@ export default function ArtistsPage() {
 
       <section className="mx-auto mt-12 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         {pageItems.length === 0 ? (
-          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
+          <div className="glass-card rounded-[2.5rem] p-12 text-center text-black/50 font-medium">
             No artists listed on this page.
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6 animate-stagger-fade">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 animate-stagger-fade">
           {pageItems.map((artist, idx) => {
             const hasImage = artist.portrait_url && !artist.portrait_url.includes("No_image_available.svg");
             return (
             <article 
               key={idx} 
               onClick={() => handleArtistClick(artist)}
-              className="group cursor-pointer break-inside-avoid flex flex-col glass-card rounded-3xl overflow-hidden"
+              className="group cursor-pointer flex flex-col glass-card rounded-[2.5rem] overflow-hidden h-full"
             >
             <div className="relative aspect-[4/3] bg-black/5 overflow-hidden">
               {hasImage ? (
@@ -115,7 +115,7 @@ export default function ArtistsPage() {
                   <span className="absolute inset-0 flex items-center justify-center font-display text-7xl font-bold text-black/10 uppercase">{artist.name.charAt(0)}</span>
               )}
             </div>
-            <div className="flex flex-col items-center px-6 py-8 text-center">
+            <div className="flex flex-col items-center px-6 py-8 text-center flex-1">
               <h2 className="font-display text-3xl font-bold leading-tight text-black group-hover:text-[color:var(--accent)] transition-colors">
                 {artist.name}
               </h2>

@@ -20,7 +20,7 @@ export default function FilmingPolicyPage() {
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 flex flex-col justify-center px-4 sm:px-6 lg:px-10">
           <div className="mx-auto w-full max-w-5xl">
-            <Link href="/press" className="text-sm font-semibold text-white/80 hover:text-white mb-6 inline-block">
+            <Link href="/press" className="text-sm font-semibold !text-white/80 hover:!text-white mb-6 inline-block">
               &larr; Back to Press Room
             </Link>
             <h1 className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">

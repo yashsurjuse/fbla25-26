@@ -38,7 +38,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-4 py-10 sm:px-6 lg:px-10">
+    <div className="min-h-screen bg-[color:var(--paper)] px-4 py-10 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
         <div className="mb-7 flex items-center justify-between gap-3 border-b border-black/10 pb-4">
           <h1 className="font-display text-5xl font-semibold text-black sm:text-6xl">Secure Checkout</h1>
@@ -48,14 +48,14 @@ export default function CheckoutPage() {
         </div>
 
         {!hasItems ? (
-          <div className="border border-black/15 bg-white p-6">
+          <div className="glass-card rounded-[2.5rem] border border-black/10 bg-white/70 p-8">
             <h2 className="font-display text-4xl font-semibold text-black">Your cart is empty</h2>
             <p className="mt-3 text-black/75">Add tickets or a membership plan before checking out.</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <Link href="/visit" className="border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white">
+            <div className="mt-6 flex flex-wrap gap-4">
+              <Link href="/visit" className="pill-btn pill-btn-dark px-5 py-3">
                 Plan Your Visit
               </Link>
-              <Link href="/membership" className="border border-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black">
+              <Link href="/membership" className="pill-btn pill-btn-light px-5 py-3">
                 Become a Member
               </Link>
             </div>
@@ -63,43 +63,43 @@ export default function CheckoutPage() {
         ) : (
           <form ref={checkoutFormRef} className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]" onSubmit={(event) => event.preventDefault()}>
             <section className="space-y-6">
-              <article className="border border-black/15 bg-white p-6">
+              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Contact Details</h2>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <input required className="h-11 border border-black/20 px-3" placeholder="First name" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="Last name" />
-                  <input required type="email" className="h-11 border border-black/20 px-3 sm:col-span-2" placeholder="Email" />
-                  <input required type="tel" className="h-11 border border-black/20 px-3 sm:col-span-2" placeholder="Phone" />
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="First name" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="Last name" />
+                  <input required type="email" className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Email" />
+                  <input required type="tel" className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Phone" />
                 </div>
               </article>
 
-              <article className="border border-black/15 bg-white p-6">
+              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Billing Address</h2>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <input required className="h-11 border border-black/20 px-3 sm:col-span-2" placeholder="Street address" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="City" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="State" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="ZIP" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="Country" defaultValue="United States" />
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Street address" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="City" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="State" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="ZIP" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="Country" defaultValue="United States" />
                 </div>
               </article>
 
-              <article className="border border-black/15 bg-white p-6">
+              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Payment</h2>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <input required minLength={13} className="h-11 border border-black/20 px-3 sm:col-span-2" placeholder="Card number" />
-                  <input required className="h-11 border border-black/20 px-3" placeholder="MM / YY" />
-                  <input required minLength={3} className="h-11 border border-black/20 px-3" placeholder="CVC" />
-                  <input required className="h-11 border border-black/20 px-3 sm:col-span-2" placeholder="Name on card" />
+                <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                  <input required minLength={13} className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Card number" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="MM / YY" />
+                  <input required minLength={3} className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="CVC" />
+                  <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Name on card" />
                 </div>
               </article>
             </section>
 
-            <aside className="border border-black/15 bg-white p-6">
+            <aside className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-8 h-fit backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
               <h2 className="font-display text-4xl font-semibold text-black">Order Summary</h2>
-              <div className="mt-4 space-y-3">
+              <div className="mt-6 space-y-4">
                 {items.map((item, index) => (
-                  <div key={`${item.createdAt}-${index}`} className="border border-black/10 bg-[#f7f7f7] p-3">
+                  <div key={`${item.createdAt}-${index}`} className="rounded-[1.5rem] border border-white/50 bg-white/50 p-5 shadow-[0_4px_16px_rgba(0,0,0,0.03)] backdrop-blur-sm">
                     {item.type === "visit" ? (
                       <>
                         <p className="text-xs font-semibold uppercase tracking-[0.08em] text-black/60">Visit Tickets</p>
@@ -153,7 +153,7 @@ export default function CheckoutPage() {
               <button
                 type="button"
                 onClick={handlePlaceOrder}
-                className="mt-5 w-full border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white"
+                className="mt-6 w-full flex items-center justify-center gap-2 rounded-full border border-black bg-black px-4 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
               >
                 Place Order
               </button>

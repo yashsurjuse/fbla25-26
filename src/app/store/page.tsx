@@ -76,8 +76,8 @@ export default function StorePage() {
   }, []);
 
   return (
-    <div className="bg-[#f4f4f4] pb-16">
-      <section className="border-b border-black/15 bg-[#e8e8e8] px-4 py-14 sm:px-6 lg:px-10">
+    <div className="bg-[color:var(--paper)] pb-16">
+      <section className="border-b border-black/5 bg-[color:var(--paper)] px-4 py-16 sm:px-6 lg:px-10">
         <div className="mx-auto w-full max-w-7xl">
           <h1 className="mt-2 font-display text-6xl font-semibold leading-[0.95] text-black sm:text-7xl">
             The Met Store
@@ -97,7 +97,7 @@ export default function StorePage() {
               aria-label="Search store"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full border border-black/25 bg-white px-4 py-2.5 pr-10 text-sm text-black placeholder:text-black/45 outline-none focus:border-black"
+              className="w-full rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 pr-12 text-sm font-semibold text-black placeholder:text-black/45 outline-none focus:border-black/50 shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all"
             />
             <svg
               className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-black/35"
@@ -119,10 +119,10 @@ export default function StorePage() {
                 key={cat}
                 type="button"
                 onClick={() => setActiveCategory(cat)}
-                className={`border px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.08em] transition-colors duration-150 ${
+                className={`rounded-full px-5 py-2.5 border text-xs font-bold uppercase tracking-wider transition-all backdrop-blur-md ${
                   activeCategory === cat
-                    ? "border-black bg-black text-white"
-                    : "border-black/25 bg-white text-black/70 hover:border-black/55 hover:text-black"
+                    ? "border-black bg-black text-white shadow-lg scale-105"
+                    : "border-black/30 bg-white/50 text-black hover:bg-white hover:border-black/50 hover:shadow-md"
                 }`}
               >
                 {cat}
@@ -154,8 +154,8 @@ export default function StorePage() {
         aria-label="Store products"
       >
         {filtered.slice(0, visibleCount).map((product) => (
-          <article key={product.id} className="group flex flex-col overflow-hidden border border-black/15 bg-white">
-            <div className="relative aspect-square overflow-hidden bg-[#f8f5ef]">
+          <article key={product.id} className="group cursor-pointer glass-card rounded-[2.5rem] overflow-hidden flex flex-col h-full border-black/5">
+            <div className="relative aspect-square overflow-hidden bg-black/5 rounded-t-[2.5rem]">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.98),_rgba(232,232,232,0.72))]" aria-hidden />
               <Image
                 src={product.image}
@@ -166,7 +166,7 @@ export default function StorePage() {
               />
             </div>
 
-            <div className="flex flex-1 flex-col p-4">
+            <div className="flex flex-col justify-between flex-grow p-6 md:p-8">
               <div className="mt-1 flex items-center justify-between">
                 <p className="text-[0.65rem] font-bold uppercase tracking-[0.12em] text-black/45 line-clamp-1">
                   {product.category}
@@ -186,7 +186,7 @@ export default function StorePage() {
                 <span className="font-semibold text-lg">{product.price}</span>
                 <Link
                   href={`/store/${product.id}`}
-                  className="shrink-0 border border-black bg-black px-3 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.06em] !text-white transition-colors duration-150 hover:bg-transparent hover:!text-black"
+                  className="shrink-0 pill-btn pill-btn-dark px-4 py-2 text-[0.7rem] uppercase transition-all"
                 >
                   View Item
                 </Link>

@@ -22,7 +22,7 @@ export default function RedeemPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-4 py-16 sm:px-6 lg:px-10">
+    <div className="min-h-screen bg-[#f2f2f2] px-4 py-16 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-4xl">
         <div className="mb-10 text-center">
           <h1 className="font-display text-5xl font-semibold text-black sm:text-6xl mb-4">Redeem Membership</h1>
@@ -33,8 +33,8 @@ export default function RedeemPage() {
 
         <div className="grid gap-8 md:grid-cols-2">
           {/* Digital Card */}
-          <div className="border border-black/15 bg-white p-8 shadow-sm flex flex-col items-center justify-center">
-            <div className="w-full max-w-sm aspect-[1.6] bg-black text-white p-6 flex flex-col justify-between relative overflow-hidden rounded-xl shadow-2xl">
+          <div className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl flex flex-col items-center justify-center">
+            <div className="w-full max-w-sm aspect-[1.6] bg-gradient-to-br from-black to-black/80 text-white p-8 flex flex-col justify-between relative overflow-hidden rounded-[2rem] shadow-[0_32px_80px_rgba(0,0,0,0.4)]">
               {/* Background accent */}
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
               
@@ -43,7 +43,7 @@ export default function RedeemPage() {
                 <p className="text-2xl font-display font-semibold">Member Pass</p>
               </div>
 
-              <div className="relative z-10 bg-white p-4 rounded mt-6">
+              <div className="relative z-10 bg-white p-4 rounded mt-auto mb-auto">
                 <div className="flex h-12 w-full items-end justify-center gap-[2px]">
                   {barcode.map((width, i) => (
                     <div key={i} className="bg-black h-full" style={{ width: `${width}px` }} />
@@ -59,7 +59,7 @@ export default function RedeemPage() {
           </div>
 
           {/* Account Creation */}
-          <div className="border border-black/15 bg-white p-8 shadow-sm">
+          <div className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
             <h2 className="font-display text-3xl font-semibold text-black mb-2">Create your account</h2>
             <p className="text-sm text-black/70 mb-6">
               Link your new Member ID to an online account to easily manage your subscription and track purchases.
@@ -67,36 +67,36 @@ export default function RedeemPage() {
 
             <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-1">Member ID</label>
+                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-2">Member ID</label>
                 <input 
                   type="text" 
                   value={memberId}
                   disabled
-                  className="w-full h-11 border border-black/20 px-3 bg-gray-50 text-black/60" 
+                  className="h-14 w-full rounded-2xl border border-black/20 bg-[#f7f7f7] px-5 shadow-inner text-black font-medium opacity-70 cursor-not-allowed" 
                 />
               </div>
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2 mt-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-1">First Name</label>
-                  <input required className="w-full h-11 border border-black/20 px-3" />
+                  <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-2">First Name</label>
+                  <input required className="h-14 w-full rounded-2xl border border-black/20 bg-white/60 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/90 shadow-inner transition-all outline-none text-black font-medium" />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-1">Last Name</label>
-                  <input required className="w-full h-11 border border-black/20 px-3" />
+                  <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-2">Last Name</label>
+                  <input required className="h-14 w-full rounded-2xl border border-black/20 bg-white/60 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/90 shadow-inner transition-all outline-none text-black font-medium" />
                 </div>
               </div>
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-1">Email</label>
-                <input required type="email" className="w-full h-11 border border-black/20 px-3" />
+              <div className="mt-4">
+                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-2">Email</label>
+                <input required type="email" className="h-14 w-full rounded-2xl border border-black/20 bg-white/60 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/90 shadow-inner transition-all outline-none text-black font-medium" />
               </div>
-              <div>
-                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-1">Password</label>
-                <input required type="password" minLength={8} className="w-full h-11 border border-black/20 px-3" />
+              <div className="mt-4">
+                <label className="block text-xs font-semibold uppercase tracking-[0.08em] text-black/60 mb-2">Password</label>
+                <input required type="password" minLength={8} className="h-14 w-full rounded-2xl border border-black/20 bg-white/60 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/90 shadow-inner transition-all outline-none text-black font-medium" />
               </div>
 
               <button
                 type="submit"
-                className="mt-6 w-full border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white hover:bg-black/80 transition-colors"
+                className="mt-8 w-full rounded-full border border-black bg-black px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
                 onClick={(e) => {
                   e.preventDefault();
                   alert("Account linked successfully!");

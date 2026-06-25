@@ -18,7 +18,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
     <CartProvider>
       {!hideChrome ? <SiteHeader /> : null}
       <div className="app-root a11y-filter-target">
-        <main id="main-content" className={hideChrome ? "" : "pt-20"}>
+        <main id="main-content" className={pathname === "/" ? "" : "pt-20"}>
           <PageTransitionShell>{children}</PageTransitionShell>
         </main>
         {!hideChrome ? <SiteFooter /> : null}

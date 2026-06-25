@@ -26,7 +26,7 @@ export default function LanguageSelector() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 border border-black/20 bg-white px-4 py-2 text-sm font-semibold text-black transition-colors hover:bg-black/5"
+        className="group flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black shadow-[0_4px_16px_rgba(0,0,0,0.1)] backdrop-blur-sm"
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
@@ -57,7 +57,7 @@ export default function LanguageSelector() {
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
           aria-hidden="true"
         >
           <path d="m6 9 6 6 6-6" />
@@ -65,29 +65,31 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <ul
-          className="absolute bottom-full right-0 z-50 mb-2 w-48 border border-black/15 bg-white py-1 shadow-xl"
-          role="listbox"
-        >
-          {LANGUAGES.map((lang) => (
-            <li key={lang.code} role="presentation">
-              <button
-                type="button"
-                role="option"
-                aria-selected={language === lang.code}
-                className={`w-full px-4 py-2 text-left text-sm font-semibold hover:bg-black/5 ${
-                  language === lang.code ? "bg-black/5 text-[color:var(--accent)]" : "text-black"
-                }`}
-                onClick={() => {
-                  setLanguage(lang.code);
-                  setIsOpen(false);
-                }}
-              >
-                {lang.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="popup-rise-in absolute bottom-full mb-4 right-0 z-[5000] w-56 rounded-[2rem] border border-white/20 bg-black/60 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+          <ul role="listbox">
+            {LANGUAGES.map((lang) => (
+              <li key={lang.code} role="presentation">
+                <button
+                  type="button"
+                  role="option"
+                  aria-selected={language === lang.code}
+                  className={`flex w-full items-center justify-between rounded-full px-5 py-3 text-left text-sm font-semibold transition-all duration-200 ${
+                    language === lang.code ? "bg-white text-black" : "text-white/70 hover:bg-white/10 hover:text-white"
+                  }`}
+                  onClick={() => {
+                     setLanguage(lang.code);
+                     setIsOpen(false);
+                  }}
+                >
+                  {lang.name}
+                  {language === lang.code && (
+                    <div className="h-1.5 w-1.5 rounded-full bg-black" />
+                  )}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </div>
   );

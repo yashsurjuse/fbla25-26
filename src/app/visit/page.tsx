@@ -93,7 +93,7 @@ export default function VisitPage() {
       </section>
 
       <section className="mx-auto mt-8 grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10">
-        <article className="border border-black/15 bg-white p-6">
+        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <h2 className="font-display text-4xl font-semibold text-black">Hours</h2>
           <ul className="mt-4 space-y-2 text-base text-black/80">
             {museumInfo.hours.map((item) => (
@@ -117,13 +117,13 @@ export default function VisitPage() {
           <button
             type="button"
             onClick={() => setShowCheckout(true)}
-            className="mt-6 border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white"
+            className="mt-8 inline-flex items-center justify-center gap-2 rounded-full border border-black bg-black px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,0,0,0.15)] w-full"
           >
             Buy Tickets
           </button>
         </article>
 
-        <article className="border border-black/15 bg-white p-6">
+        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <h2 className="font-display text-4xl font-semibold text-black">Location</h2>
           <GoogleMapEmbed className="mt-4 aspect-[4/3] overflow-hidden border border-black/15 bg-[#ececec]" />
 
@@ -148,8 +148,8 @@ export default function VisitPage() {
 
       {showCheckout ? (
         <section ref={checkoutRef} className="mx-auto mt-8 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-          <article className="border border-black/15 bg-white p-6 shadow-sm">
-            <header className="flex flex-col gap-4 border-b border-black/10 pb-4 md:flex-row md:items-end md:justify-between">
+          <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl mt-4">
+            <header className="flex flex-col gap-4 border-b border-black/10 pb-4 md:flex-row md:items-end md:justify-between relative z-[9999] isolate">
               <div>
                 <h2 className="font-display text-4xl font-semibold text-black">Plan Your Visit</h2>
                 <p className="mt-2 text-sm text-black/70">
@@ -159,7 +159,7 @@ export default function VisitPage() {
 
               <label className="text-sm font-semibold text-black/75">
                 Visiting on
-                <div className="mt-2 max-w-64">
+                <div className="mt-2 max-w-64 relative z-[9999]">
                   <DatePicker
                     value={selectedDate}
                     onChange={(value) => setSelectedDate(value || today)}
@@ -169,14 +169,14 @@ export default function VisitPage() {
               </label>
             </header>
 
-            <div className="mt-5 space-y-3">
+            <div className="mt-5 space-y-3 relative z-0">
               {ticketTypes.map((type) => (
                 <div
                   key={type.id}
-                  className={`flex flex-col justify-between gap-4 border p-4 md:flex-row md:items-center ${
+                  className={`flex flex-col justify-between gap-4 rounded-[1.5rem] border p-6 md:flex-row md:items-center transition-all ${
                     type.id === "child" && paidTickets === 0
-                      ? "border-black/10 bg-[#e7e7e7] opacity-70"
-                      : "border-black/10 bg-[#f8f8f8]"
+                      ? "border-black/5 bg-black/5 opacity-70"
+                      : "border-white/50 bg-white/40 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.03)]"
                   }`}
                 >
                   <div>
@@ -193,7 +193,7 @@ export default function VisitPage() {
                       aria-label={`Decrease ${type.label} tickets`}
                       onClick={() => updateTickets(type.id, -1)}
                       disabled={type.id === "child" && paidTickets === 0}
-                      className="inline-flex h-9 w-9 items-center justify-center border border-black/30 text-lg font-semibold text-black"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/30 bg-white text-lg font-semibold text-black transition-colors hover:bg-black/5 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       -
                     </button>
@@ -203,7 +203,7 @@ export default function VisitPage() {
                       aria-label={`Increase ${type.label} tickets`}
                       onClick={() => updateTickets(type.id, 1)}
                       disabled={type.id === "child" && paidTickets === 0}
-                      className="inline-flex h-9 w-9 items-center justify-center border border-black/30 text-lg font-semibold text-black"
+                      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/30 bg-white text-lg font-semibold text-black transition-colors hover:bg-black/5 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       +
                     </button>
@@ -212,25 +212,25 @@ export default function VisitPage() {
               ))}
             </div>
 
-            <div className="mt-5 flex flex-col gap-4 border border-black/15 bg-black p-4 text-white md:flex-row md:items-center md:justify-between">
+            <div className="mt-8 flex flex-col gap-6 rounded-[2rem] border border-white/20 bg-black/80 p-8 text-white md:flex-row md:items-center md:justify-between shadow-[0_16px_40px_rgba(0,0,0,0.2)] backdrop-blur-2xl">
               <div>
-                <p className="text-xs uppercase tracking-[0.14em] text-white/70">Subtotal</p>
-                <p className="text-3xl font-semibold">${subtotal.toFixed(2)}</p>
-                <p className="text-sm text-white/75">{totalTickets} ticket(s) selected</p>
+                <p className="text-xs font-bold uppercase tracking-widest text-white/50">Subtotal</p>
+                <p className="text-4xl font-semibold mt-2">${subtotal.toFixed(2)}</p>
+                <p className="text-sm text-white/70 mt-1">{totalTickets} ticket(s) selected</p>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 <button
                   type="button"
                   onClick={saveCurrentSelection}
                   disabled={totalTickets === 0}
-                  className="border border-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-white disabled:cursor-not-allowed disabled:opacity-40"
+                  className="rounded-full border border-white/20 bg-white/10 px-6 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-white hover:text-black hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-40 backdrop-blur-sm shadow-[0_4px_16px_rgba(0,0,0,0.1)]"
                 >
                   Save to Cart
                 </button>
                 <Link
                   href="/checkout"
                   onClick={saveForCheckout}
-                  className="border border-white bg-white px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-black"
+                  className="rounded-full border border-white bg-white px-6 py-4 text-sm font-bold uppercase tracking-wider !text-black transition-all hover:scale-[1.02] shadow-[0_4px_16px_rgba(0,0,0,0.2)]"
                 >
                   Continue to Checkout
                 </Link>

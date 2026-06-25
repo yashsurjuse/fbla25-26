@@ -6,7 +6,9 @@ import { useRouter } from "next/navigation";
 import FakePagination from "@/components/FakePagination";
 import { fetchMetObjectIds, fetchMetObject, fetchDepartments, MetObject } from "@/lib/met-api";
 
-const PAGE_SIZE = 26;
+import CustomDropdown from "@/components/CustomDropdown";
+
+const PAGE_SIZE = 27;
 
 type ArtistData = {
   name: string;
@@ -23,6 +25,7 @@ export default function ArtifactsPage() {
   const router = useRouter();
 
   const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [selectedDept, setSelectedDept] = useState("");
   const [selectedMedium, setSelectedMedium] = useState("");
   const [selectedCulture, setSelectedCulture] = useState("");
@@ -113,81 +116,90 @@ export default function ArtifactsPage() {
             bronzes, and much more.
           </p>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-            <input
-              type="text"
-              placeholder="Search..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none placeholder:text-black/40 focus:border-black/30 transition-colors"
-            />
-            <select
-              value={selectedDept}
-              onChange={(e) => { setSelectedDept(e.target.value); setSelectedArtist(""); }}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
-            >
-              <option value="">All Departments</option>
-              {departments.map(d => (
-                <option key={d.departmentId} value={d.departmentId}>{d.displayName}</option>
-              ))}
-            </select>
-            <select
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 relative">
+            <div className="col-span-1 sm:col-span-2 flex gap-4">
+              <input
+                type="text"
+                placeholder="Search..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className={`rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 text-sm font-semibold text-black outline-none placeholder:text-black/40 focus:border-black/50 focus:bg-white transition-all duration-500 ease-out ${isSearchFocused ? 'w-full shadow-[0_8px_32px_rgba(0,0,0,0.08)]' : 'w-full sm:w-1/2 shadow-[0_4px_16px_rgba(0,0,0,0.02)]'}`}
+              />
+              
+              <div className={`transition-all duration-500 ease-out overflow-hidden ${isSearchFocused ? 'w-0 opacity-0' : 'w-full sm:w-1/2 opacity-100'}`}>
+                <div className="w-[180px] sm:w-[100%] min-w-full">
+                  <CustomDropdown
+                    value={selectedDept}
+                    onChange={(val) => { setSelectedDept(val); setSelectedArtist(""); }}
+                    placeholder="All Departments"
+                    options={departments.map(d => ({ value: d.departmentId.toString(), label: d.displayName }))}
+                  />
+                </div>
+              </div>
+            </div>
+            
+            <CustomDropdown
               value={selectedMedium}
-              onChange={(e) => { setSelectedMedium(e.target.value); setSelectedArtist(""); }}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
-            >
-              <option value="">All Mediums</option>
-              <option value="Oil|Canvas|Watercolor">Paintings</option>
-              <option value="Bronze|Marble|Stone|Wood">Sculpture</option>
-              <option value="Ceramic|Porcelain">Ceramics</option>
-              <option value="Silk|Cotton|Wool|Linen|Textile">Textiles</option>
-              <option value="Photograph|Gelatin|Silver|Paper">Photographs</option>
-              <option value="Steel|Iron|Brass">Armor</option>
-            </select>
-            <select
+              onChange={(val) => { setSelectedMedium(val); setSelectedArtist(""); }}
+              placeholder="All Mediums"
+              options={[
+                { value: "Oil|Canvas|Watercolor", label: "Paintings" },
+                { value: "Bronze|Marble|Stone|Wood", label: "Sculpture" },
+                { value: "Ceramic|Porcelain", label: "Ceramics" },
+                { value: "Silk|Cotton|Wool|Linen|Textile", label: "Textiles" },
+                { value: "Photograph|Gelatin|Silver|Paper", label: "Photographs" },
+                { value: "Steel|Iron|Brass", label: "Armor" },
+              ]}
+            />
+            
+            <CustomDropdown
               value={selectedCulture}
-              onChange={(e) => { setSelectedCulture(e.target.value); setSelectedArtist(""); }}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
-            >
-              <option value="">All Cultures</option>
-              <option value="Roman">Roman</option>
-              <option value="Greek">Greek</option>
-              <option value="Egyptian">Egyptian</option>
-              <option value="Japanese">Japanese</option>
-              <option value="Chinese">Chinese</option>
-              <option value="French">French</option>
-              <option value="Italian">Italian</option>
-              <option value="American">American</option>
-              <option value="Indian">Indian</option>
-              <option value="British">British</option>
-              <option value="German">German</option>
-              <option value="Dutch">Dutch</option>
-              <option value="Spanish">Spanish</option>
-            </select>
-            <select
+              onChange={(val) => { setSelectedCulture(val); setSelectedArtist(""); }}
+              placeholder="All Cultures"
+              options={[
+                { value: "Roman", label: "Roman" },
+                { value: "Greek", label: "Greek" },
+                { value: "Egyptian", label: "Egyptian" },
+                { value: "Japanese", label: "Japanese" },
+                { value: "Chinese", label: "Chinese" },
+                { value: "French", label: "French" },
+                { value: "Italian", label: "Italian" },
+                { value: "American", label: "American" },
+                { value: "Indian", label: "Indian" },
+                { value: "British", label: "British" },
+                { value: "German", label: "German" },
+                { value: "Dutch", label: "Dutch" },
+                { value: "Spanish", label: "Spanish" },
+              ]}
+            />
+            
+            <CustomDropdown
               value={selectedGeo}
-              onChange={(e) => { setSelectedGeo(e.target.value); setSelectedArtist(""); }}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
-            >
-              <option value="">All Regions</option>
-              <option value="Egypt">Egypt</option>
-              <option value="France">France</option>
-              <option value="Italy">Italy</option>
-              <option value="Japan">Japan</option>
-              <option value="China">China</option>
-              <option value="United States">United States</option>
-              <option value="India">India</option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Germany">Germany</option>
-              <option value="Netherlands">Netherlands</option>
-              <option value="Spain">Spain</option>
-              <option value="Greece">Greece</option>
-            </select>
-            <select
+              onChange={(val) => { setSelectedGeo(val); setSelectedArtist(""); }}
+              placeholder="All Regions"
+              options={[
+                { value: "Egypt", label: "Egypt" },
+                { value: "France", label: "France" },
+                { value: "Italy", label: "Italy" },
+                { value: "Japan", label: "Japan" },
+                { value: "China", label: "China" },
+                { value: "United States", label: "United States" },
+                { value: "India", label: "India" },
+                { value: "United Kingdom", label: "United Kingdom" },
+                { value: "Germany", label: "Germany" },
+                { value: "Netherlands", label: "Netherlands" },
+                { value: "Spain", label: "Spain" },
+                { value: "Greece", label: "Greece" },
+              ]}
+            />
+            
+            <CustomDropdown
               value={selectedArtist}
-              onChange={(e) => {
-                setSelectedArtist(e.target.value);
-                if (e.target.value) {
+              onChange={(val) => {
+                setSelectedArtist(val);
+                if (val) {
                   setSearchQuery("");
                   setSelectedDept("");
                   setSelectedMedium("");
@@ -195,35 +207,31 @@ export default function ArtifactsPage() {
                   setSelectedGeo("");
                 }
               }}
-              className="w-full border border-black/15 bg-[#f4f4f4] px-4 py-3 text-sm font-medium text-black/85 outline-none focus:border-black/30 transition-colors"
-            >
-              <option value="">All Artists</option>
-              {artistsData.slice(0, 500).map((a, i) => (
-                <option key={i} value={a.name}>{a.name}</option>
-              ))}
-            </select>
+              placeholder="All Artists"
+              options={artistsData.slice(0, 500).map(a => ({ value: a.name, label: a.name }))}
+            />
           </div>
         </div>
       </section>
 
       <section className="mx-auto mt-12 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
         {loading ? (
-          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
+          <div className="glass-card rounded-[2.5rem] p-12 text-center text-black/50 font-medium">
             Loading artifacts...
           </div>
         ) : pageObjects.length === 0 ? (
-          <div className="glass-card rounded-3xl p-12 text-center text-black/50 font-medium">
+          <div className="glass-card rounded-[2.5rem] p-12 text-center text-black/50 font-medium">
             No artifacts found.
           </div>
         ) : (
-          <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 animate-stagger-fade">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 animate-stagger-fade">
           {pageObjects.map((obj) => {
             const image = obj.primaryImageSmall || obj.primaryImage;
             return (
             <article 
               key={obj.objectID} 
               onClick={() => router.push(`?artifactId=${obj.objectID}`, { scroll: false })}
-              className="group cursor-pointer break-inside-avoid flex flex-col glass-card rounded-3xl overflow-hidden"
+              className="group cursor-pointer flex flex-col glass-card rounded-[2.5rem] overflow-hidden h-full"
             >
               <div className="relative w-full overflow-hidden bg-black/5" style={{ aspectRatio: image ? 'auto' : '4/3' }}>
                 {image ? (
@@ -239,11 +247,11 @@ export default function ArtifactsPage() {
                   <span className="absolute inset-0 flex items-center justify-center text-sm font-medium text-black/40">Image Unavailable</span>
                 )}
               </div>
-              <div className="space-y-4 p-6 md:p-8">
+              <div className="space-y-4 p-6 md:p-8 flex-1 flex flex-col">
                 <h2 className="font-display text-3xl font-bold leading-tight text-black group-hover:text-[color:var(--accent)] transition-colors">{obj.title || "Untitled"}</h2>
                 <div className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">{obj.objectDate || "Unknown Date"}</div>
                 <p className="text-sm font-medium text-black/60 leading-relaxed">{obj.department}{obj.culture ? ` — ${obj.culture}` : ""}</p>
-                <div className="pt-4 border-t border-black/5 mt-4 text-sm leading-relaxed text-black/60">
+                <div className="pt-4 border-t border-black/5 mt-auto text-sm leading-relaxed text-black/60">
                   <p><span className="font-bold text-black/80">Artist:</span> {obj.artistDisplayName || "Unknown"}</p>
                   {obj.medium && <p><span className="font-bold text-black/80">Medium:</span> {obj.medium}</p>}
                 </div>

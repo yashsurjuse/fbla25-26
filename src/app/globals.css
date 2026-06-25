@@ -35,7 +35,8 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--a11y-font-family, var(--font-inter), "Inter", "Segoe UI", sans-serif);
-  line-height: 1.6;
+  line-height: var(--a11y-line-height, 1.6);
+  letter-spacing: var(--a11y-letter-spacing, normal);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -128,6 +129,16 @@ img {
 .a11y-underline-links a {
   text-decoration: underline;
   text-underline-offset: 0.18em;
+}
+
+:root.a11y-keyboard-hints :focus-visible {
+  outline: 4px solid var(--accent) !important;
+  outline-offset: 2px !important;
+}
+
+:root.a11y-screen-reader-mode img[aria-hidden="true"],
+:root.a11y-screen-reader-mode svg[aria-hidden="true"] {
+  display: none !important;
 }
 
 body,
@@ -337,31 +348,98 @@ body label * {
 
 /* 22nd Century Pristine Utilities */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
 }
 
 .glass-nav {
-  background: rgba(252, 252, 252, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
+
+
 .glass-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  backdrop-filter: blur(32px) saturate(250%) contrast(110%);
+  -webkit-backdrop-filter: blur(32px) saturate(250%) contrast(110%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glass-card > *:not(.absolute) {
+  position: relative;
+  z-index: 1;
 }
 
 .glass-card:hover {
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px) scale(1.01);
-  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(48px) saturate(300%) contrast(120%);
+  -webkit-backdrop-filter: blur(48px) saturate(300%) contrast(120%);
+}
+
+.pill-btn {
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn-dark {
+  background: var(--ink);
+  color: var(--paper) !important;
+  border: 1px solid var(--ink);
+}
+
+.pill-btn-dark:hover {
+  background: var(--paper);
+  color: var(--ink) !important;
+}
+
+.pill-btn-light {
+  background: var(--paper);
+  color: var(--ink) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pill-btn-light:hover {
+  background: var(--ink);
+  color: var(--paper) !important;
+  border-color: var(--ink);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 .animate-stagger-fade > * {

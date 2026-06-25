@@ -216,16 +216,16 @@ export default function StoreItemClient({
 
           <div className="flex items-center gap-4 mb-6">
             <span className="font-bold text-sm">Qty.</span>
-            <div className="flex items-center border border-gray-300">
+            <div className="flex items-center gap-2">
               <button
-                className="px-3 py-1 hover:bg-gray-100 transition-colors"
+                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
                 onClick={() => setQty((prev) => Math.max(1, prev - 1))}
               >
                 -
               </button>
-              <div className="px-4 py-1 border-x border-gray-300 text-sm">{qty}</div>
+              <div className="px-2 font-semibold text-sm">{qty}</div>
               <button
-                className="px-3 py-1 hover:bg-gray-100 transition-colors"
+                className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
                 onClick={() => setQty((prev) => prev + 1)}
               >
                 +
@@ -238,13 +238,13 @@ export default function StoreItemClient({
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
             <button
               onClick={handleAddToCart}
-              className="flex-1 bg-black text-white py-3 px-4 text-sm font-bold hover:bg-black/80 transition-colors uppercase tracking-widest text-center"
+              className="flex-1 pill-btn pill-btn-dark px-4 py-3 text-sm uppercase tracking-widest text-center transition-all"
             >
               Add to Cart
             </button>
             <button
               onClick={handleAddToWishlist}
-              className="flex-1 border border-black py-3 px-4 text-sm font-bold hover:bg-black hover:text-white transition-colors uppercase tracking-widest text-center"
+              className="flex-1 pill-btn pill-btn-light px-4 py-3 text-sm uppercase tracking-widest text-center transition-all"
             >
               Add to Wishlist
             </button>
@@ -330,20 +330,20 @@ export default function StoreItemClient({
             <Link
               href={`/store/${item.id}`}
               key={`${item.id}-${idx}`}
-              className="group flex flex-col border border-gray-200 p-4 hover:border-gray-400 transition-colors bg-white"
+              className="group cursor-pointer glass-card rounded-[2rem] overflow-hidden flex flex-col p-5 border border-white/60 bg-white/70 hover:-translate-y-2 hover:shadow-[0_16px_48px_rgba(0,0,0,0.08)] transition-all"
             >
               <span className="text-[0.6rem] font-bold uppercase mb-2 line-clamp-1">{item.category}</span>
-              <div className="relative w-full aspect-square mb-4">
-                <Image src={item.image} alt={item.title} fill className="object-contain" sizes="25vw" />
+              <div className="relative w-full aspect-square mb-4 bg-black/5 rounded-xl overflow-hidden">
+                <Image src={item.image} alt={item.title} fill className="object-contain p-2" sizes="25vw" />
               </div>
               <h3 className="text-sm font-semibold text-center mb-2 line-clamp-2">{item.title}</h3>
-              <p className="text-sm text-center mt-auto">{item.price}</p>
+              <p className="text-sm text-center mt-auto font-medium">{item.price}</p>
             </Link>
           ))}
           {relatedProducts.length > 4 && (
             <button
               onClick={nextCarousel}
-              className="absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white border border-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-50 shadow-sm hidden md:flex z-10"
+              className="absolute -right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full border border-gray-300 flex items-center justify-center cursor-pointer hover:bg-gray-50 shadow-sm hidden md:flex z-10"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M9 18l6-6-6-6" />
@@ -412,35 +412,31 @@ export default function StoreItemClient({
       </div>
 
       {/* Support Banner */}
-      <div className="bg-[#f0f0f0] flex flex-col text-center">
-        <div className="py-8 px-4">
-          <p className="text-xl sm:text-2xl text-gray-800">
+      <div className="glass-card rounded-[3rem] overflow-hidden flex flex-col text-center border border-white/60">
+        <div className="py-10 px-6 bg-white/40">
+          <p className="text-xl sm:text-2xl text-gray-800 font-medium">
             Your purchase supports The Met's collection, study, conservation, and presentation of 5,000 years of art.
           </p>
         </div>
-        <div className="bg-[#d1003f] py-6 px-4 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="bg-[color:var(--accent)] py-8 px-6 sm:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
           <h3 className="text-white text-2xl font-bold">Sign up for Met Store emails & save 10%</h3>
           <div className="flex flex-col w-full sm:w-auto flex-1 max-w-md">
-            <form onSubmit={handleSubscribe} className="flex w-full bg-white relative">
+            <form onSubmit={handleSubscribe} className="flex w-full bg-white/20 backdrop-blur-md rounded-full overflow-hidden border border-white/40 relative">
               <input
                 type="email"
                 placeholder={subscribed ? "Subscribed!" : "Enter your email"}
-                className="w-full px-4 py-3 text-sm outline-none"
+                className="w-full px-6 py-4 text-sm outline-none bg-transparent text-white placeholder:text-white/70 font-semibold"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={subscribed}
               />
-              <button type="submit" className="absolute right-0 top-0 bottom-0 px-4 text-black font-bold">
-                {subscribed ? (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="green" strokeWidth="2"><path d="M20 6L9 17l-5-5"/></svg>
-                ) : (
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 18l6-6-6-6" /></svg>
-                )}
+              <button type="submit" className="absolute right-2 top-2 bottom-2 px-6 rounded-full bg-white text-[color:var(--accent)] font-bold text-xs uppercase tracking-wider hover:bg-white/90 transition-colors">
+                {subscribed ? "Done" : "Submit"}
               </button>
             </form>
-            <p className="text-[0.6rem] text-white text-right mt-2">
+            <p className="text-[0.65rem] text-white/80 text-right mt-3 font-medium">
               By signing up you agree with our{" "}
-              <button onClick={() => setPolicyModal("privacy")} className="underline">
+              <button onClick={() => setPolicyModal("privacy")} className="underline hover:text-white transition-colors">
                 Privacy Policy
               </button>
             </p>

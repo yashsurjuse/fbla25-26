@@ -80,7 +80,7 @@ export default function OrdersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f2f2f2] px-4 py-10 sm:px-6 lg:px-10">
+    <div className="min-h-screen bg-[#f2f2f2] px-4 py-10 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-5xl">
         <div className="mb-8 flex items-center justify-between gap-3 border-b border-black/10 pb-4">
           <h1 className="font-display text-5xl font-semibold text-black sm:text-6xl">Past Orders</h1>
@@ -90,10 +90,10 @@ export default function OrdersPage() {
         </div>
 
         {pastOrders.length === 0 ? (
-          <div className="border border-black/15 bg-white p-8 text-center">
-            <h2 className="font-display text-3xl font-semibold text-black mb-4">You have no past orders</h2>
-            <p className="text-black/75 mb-6">Looks like you haven&apos;t made any purchases yet.</p>
-            <Link href="/store" className="inline-flex border border-black bg-black px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors">
+          <div className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-12 text-center backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center min-h-[40vh]">
+            <h2 className="font-display text-4xl font-semibold text-black mb-4">You have no past orders</h2>
+            <p className="text-black/75 mb-8 text-lg">Looks like you haven&apos;t made any purchases yet.</p>
+            <Link href="/store" className="inline-flex items-center justify-center gap-2 rounded-full border border-black bg-black px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.05] shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
               Shop The Met
             </Link>
           </div>
@@ -109,9 +109,9 @@ export default function OrdersPage() {
               });
 
               return (
-                <div key={order.id} className="border border-black/15 bg-white overflow-hidden shadow-sm">
+                <div key={order.id} className="glass-card rounded-[2rem] border border-white/40 bg-white/60 overflow-hidden backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.04)]">
                   {/* Header */}
-                  <div className="bg-[#f9f9f9] border-b border-black/10 p-5 sm:flex sm:items-center sm:justify-between">
+                  <div className="bg-white/40 border-b border-white/20 p-6 sm:flex sm:items-center sm:justify-between backdrop-blur-md">
                     <div className="flex gap-8 mb-4 sm:mb-0">
                       <div>
                         <p className="text-xs uppercase tracking-[0.08em] font-semibold text-black/55 mb-1">Order Placed</p>
@@ -129,7 +129,7 @@ export default function OrdersPage() {
                   </div>
 
                   {/* Items */}
-                  <div className="p-5 divide-y divide-black/10">
+                  <div className="p-6 divide-y divide-black/10 bg-white/30">
                     {order.items.map((item, idx) => (
                       <div key={idx} className="py-5 first:pt-0 last:pb-0">
                         {renderItemDetails(item, order.date)}

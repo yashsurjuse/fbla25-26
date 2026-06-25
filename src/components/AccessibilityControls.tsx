@@ -2,6 +2,9 @@
 
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Accessibility } from "lucide-react";
+import { useCart } from "@/components/CartContext";
+import CustomDropdown from "@/components/CustomDropdown";
 
 type ColorblindMode = "none" | "protanopia" | "deuteranopia" | "tritanopia";
 type FontFamilyOption = "default" | "system" | "serif" | "mono" | "dyslexia";
@@ -220,6 +223,7 @@ function applySettings(settings: AccessibilitySettings) {
 
 export default function AccessibilityControls() {
   const pathname = usePathname();
+  const { isOpen: cartOpen } = useCart();
   const [open, setOpen] = useState(false);
   const [closing, setClosing] = useState(false);
   const [speechState, setSpeechState] = useState<"idle" | "speaking">("idle");
@@ -356,7 +360,7 @@ export default function AccessibilityControls() {
     }
 
     launcher.style.pointerEvents = previousPointerEvents;
-    setLauncherLightMode(darkVotes >= 2);
+    setLauncherLightMode(darkVotes < 2);
   }, []);
 
   useEffect(() => {
@@ -482,18 +486,18 @@ export default function AccessibilityControls() {
         <>
           <button
             type="button"
-            className={`${closing ? "popup-backdrop-exit" : "popup-backdrop-enter"} fixed inset-0 z-[67] bg-black/45 backdrop-blur-[1px]`}
+            className={`${closing ? "popup-backdrop-exit" : "popup-backdrop-enter"} fixed inset-0 z-[9998] bg-black/45 backdrop-blur-[1px]`}
             aria-label="Close accessibility controls"
             onClick={closePanel}
           />
 
-          <div className={`${closing ? "popup-panel-exit" : "popup-panel-enter"} fixed inset-x-4 bottom-20 z-[69] max-h-[78vh] overflow-hidden rounded-2xl border border-black/20 bg-[#fdfdfb] shadow-[0_24px_70px_rgba(0,0,0,0.32)] sm:inset-x-auto sm:right-6 sm:w-[26rem]`}>
-            <div className="flex items-center justify-between border-b border-black/10 bg-[#f4f3ef] px-5 py-4">
-              <h2 className="font-display text-3xl font-semibold text-black">Accessibility</h2>
+          <div className={`${closing ? "popup-panel-exit" : "popup-panel-enter"} fixed inset-x-4 bottom-24 z-[9999] max-h-[78vh] overflow-hidden rounded-[2.5rem] border border-white/60 bg-white/60 backdrop-blur-3xl shadow-[0_32px_80px_rgba(0,0,0,0.15)] sm:inset-x-auto sm:right-6 sm:w-[26rem]`}>
+            <div className="flex items-center justify-between border-b border-white/30 bg-white/40 px-6 py-5">
+              <h2 className="font-display text-2xl font-bold text-black">Accessibility</h2>
               <button
                 type="button"
                 onClick={closePanel}
-                className="rounded-md border border-black/25 px-3 py-1 text-xs font-semibold text-black hover:bg-black/5"
+                className="rounded-full border border-black/10 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-black transition-all hover:bg-black/5 hover:border-black/30"
                 aria-label="Close accessibility controls"
               >
                 Close
@@ -552,25 +556,25 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, textScale: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
-              <label className="block rounded-lg border border-black/20 bg-white px-3 py-2">
-                <span className="mb-1 block font-medium">Colorblind mode</span>
-                <select
+              <div className="rounded-lg border border-black/20 bg-white px-3 py-2">
+                <span className="mb-2 block font-medium">Colorblind mode</span>
+                <CustomDropdown
                   value={settings.colorblindMode}
-                  onChange={(event) =>
-                    setSettings((prev) => ({ ...prev, colorblindMode: event.target.value as ColorblindMode }))
-                  }
-                  className="w-full border border-black/25 bg-white px-2 py-2"
-                >
-                  <option value="none">None</option>
-                  <option value="protanopia">Protanopia</option>
-                  <option value="deuteranopia">Deuteranopia</option>
-                  <option value="tritanopia">Tritanopia</option>
-                </select>
-              </label>
+                  onChange={(val) => setSettings((prev) => ({ ...prev, colorblindMode: val as ColorblindMode }))}
+                  placeholder="Select mode"
+                  options={[
+                    { value: "none", label: "None" },
+                    { value: "protanopia", label: "Protanopia" },
+                    { value: "deuteranopia", label: "Deuteranopia" },
+                    { value: "tritanopia", label: "Tritanopia" }
+                  ]}
+                  className="!w-full [&>button]:!px-3 [&>button]:!py-2 [&>button]:!bg-[#f7f7f7]"
+                />
+              </div>
 
               <label className="block rounded-lg border border-black/20 bg-white px-3 py-2">
                 <span className="mb-1 block font-medium">Colorblind strength: {settings.colorblindStrength}%</span>
@@ -583,7 +587,7 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, colorblindStrength: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                   disabled={settings.colorblindMode === "none"}
                 />
               </label>
@@ -599,7 +603,7 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, grayscale: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
@@ -614,7 +618,7 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, saturation: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
@@ -629,26 +633,26 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, contrastBoost: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
-              <label className="block rounded-lg border border-black/20 bg-white px-3 py-2">
-                <span className="mb-1 block font-medium">Font family</span>
-                <select
+              <div className="rounded-lg border border-black/20 bg-white px-3 py-2">
+                <span className="mb-2 block font-medium">Font family</span>
+                <CustomDropdown
                   value={settings.fontFamily}
-                  onChange={(event) =>
-                    setSettings((prev) => ({ ...prev, fontFamily: event.target.value as FontFamilyOption }))
-                  }
-                  className="w-full border border-black/25 bg-white px-2 py-2"
-                >
-                  <option value="default">Site default</option>
-                  <option value="system">System sans-serif</option>
-                  <option value="serif">Serif</option>
-                  <option value="mono">Mono</option>
-                  <option value="dyslexia">Dyslexia-friendly</option>
-                </select>
-              </label>
+                  onChange={(val) => setSettings((prev) => ({ ...prev, fontFamily: val as FontFamilyOption }))}
+                  placeholder="Select font"
+                  options={[
+                    { value: "default", label: "Site default" },
+                    { value: "system", label: "System sans-serif" },
+                    { value: "serif", label: "Serif" },
+                    { value: "mono", label: "Mono" },
+                    { value: "dyslexia", label: "Dyslexia-friendly" }
+                  ]}
+                  className="!w-full [&>button]:!px-3 [&>button]:!py-2 [&>button]:!bg-[#f7f7f7]"
+                />
+              </div>
 
               <button
                 type="button"
@@ -691,7 +695,7 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, letterSpacing: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
@@ -706,24 +710,24 @@ export default function AccessibilityControls() {
                   onChange={(event) =>
                     setSettings((prev) => ({ ...prev, lineHeight: Number(event.target.value) }))
                   }
-                  className="w-full"
+                  className="w-full h-2 bg-black/10 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-black/20 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-black [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:shadow-md"
                 />
               </label>
 
-              <div className="rounded-lg border border-black/20 bg-white px-3 py-2">
-                <p className="mb-2 font-medium text-black">Text to speech</p>
+              <div className="rounded-xl border border-white/50 bg-white/50 px-4 py-4 backdrop-blur-md">
+                <p className="mb-3 font-semibold text-black">Text to speech</p>
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={handleSpeak}
-                    className="flex-1 rounded-md border border-black bg-black px-3 py-2 text-sm font-semibold text-white"
+                    className="flex-1 pill-btn pill-btn-dark px-3 py-2 text-xs uppercase tracking-wider transition-all"
                   >
-                    {speechState === "speaking" ? "Re-read" : "Read selection/page"}
+                    {speechState === "speaking" ? "Re-read" : "Read selection"}
                   </button>
                   <button
                     type="button"
                     onClick={handleStopSpeak}
-                    className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black"
+                    className="pill-btn pill-btn-light px-4 py-2 text-xs uppercase tracking-wider transition-all"
                   >
                     Stop
                   </button>
@@ -733,29 +737,26 @@ export default function AccessibilityControls() {
               <button
                 type="button"
                 onClick={reset}
-                className="w-full rounded-md border border-black bg-black px-3 py-2 text-sm font-semibold text-white"
+                className="w-full pill-btn pill-btn-dark px-3 py-3 mt-2 text-xs uppercase tracking-wider transition-all"
               >
-                Reset accessibility settings
+                Reset settings
               </button>
             </div>
           </div>
         </>
       ) : null}
 
-      <div className="fixed bottom-4 right-4 z-[70] sm:bottom-6 sm:right-6">
+      <div className={`fixed bottom-6 right-6 z-[10000] transition-opacity duration-300 ${cartOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <button
           ref={launcherRef}
           type="button"
           onClick={togglePanel}
-          className={`border px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] shadow-lg transition-colors duration-200 ${
-            launcherLightMode
-              ? "border-white bg-white text-black hover:bg-[#f1f1f1]"
-              : "border-black bg-black text-white hover:bg-[#1a1a1a]"
-          }`}
+          className={`group flex h-14 w-14 items-center justify-center rounded-full border backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25)] transition-all hover:scale-110 border-none ${launcherLightMode ? "bg-black text-white" : "bg-white text-black"}`}
           aria-expanded={open}
           aria-haspopup="dialog"
+          aria-label="Accessibility controls"
         >
-          Accessibility
+          <Accessibility className="h-6 w-6 transition-transform group-hover:rotate-12" />
         </button>
       </div>
     </>

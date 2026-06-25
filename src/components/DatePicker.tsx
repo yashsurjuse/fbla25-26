@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -84,11 +85,33 @@ const displayFormatter = new Intl.DateTimeFormat("en-US", {
 
 export default function DatePicker({ value, onChange, placeholder = "Select a date", theme = "dark" }: DatePickerProps) {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const selectedDate = useMemo(() => parseISODate(value), [value]);
   const [visibleMonth, setVisibleMonth] = useState<Date>(() =>
     selectedDate ? new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1) : new Date(),
   );
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const [dropdownPos, setDropdownPos] = useState<{ top: number; left: number }>({ top: 0, left: 0 });
+
+  useEffect(() => { setMounted(true); }, []);
+
+  const updatePosition = useCallback(() => {
+    if (!buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    setDropdownPos({ top: rect.bottom + window.scrollY + 8, left: rect.left + window.scrollX });
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    updatePosition();
+    window.addEventListener("scroll", updatePosition, true);
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [open, updatePosition]);
 
   const syncMonthToSelection = () => {
     const target = selectedDate
@@ -107,10 +130,12 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
     if (!open) return undefined;
 
     const handleClick = (event: MouseEvent) => {
-      if (!containerRef.current) return;
-      if (!containerRef.current.contains(event.target as Node)) {
-        setOpen(false);
-      }
+      const target = event.target as Node;
+      if (containerRef.current?.contains(target)) return;
+      // Check if click is inside the portaled dropdown
+      const portal = document.querySelector('[data-datepicker-portal]');
+      if (portal?.contains(target)) return;
+      setOpen(false);
     };
 
     document.addEventListener("mousedown", handleClick);
@@ -139,6 +164,7 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
   return (
     <div ref={containerRef} className="relative">
       <button
+        ref={buttonRef}
         type="button"
         onClick={() =>
           setOpen((prev) => {
@@ -178,20 +204,23 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
         </svg>
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 12 }}
-            transition={{ duration: 0.22, ease }}
-            className={cn(
-              "absolute z-50 mt-3 w-72 rounded-2xl p-4 shadow-2xl backdrop-blur",
-              theme === "dark" ? "border border-white/10 bg-[#0b1220] text-white shadow-black/35" : "border border-black/10 bg-white text-black shadow-black/20",
-            )}
-          >
-            <header className="mb-4 flex items-center justify-between">
-              <button
+      {mounted && createPortal(
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              data-datepicker-portal
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.22, ease }}
+              style={{ position: "absolute", top: dropdownPos.top, left: dropdownPos.left }}
+              className={cn(
+                "z-[99999] w-72 rounded-2xl p-4 shadow-2xl",
+                theme === "dark" ? "border border-white/10 bg-[#0b1220] text-white shadow-black/35" : "border border-black/10 bg-white text-black shadow-black/20",
+              )}
+            >
+              <header className="mb-4 flex items-center justify-between">
+                <button
                 type="button"
                 onClick={() =>
                   setVisibleMonth((prev) => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
@@ -284,9 +313,11 @@ export default function DatePicker({ value, onChange, placeholder = "Select a da
                 Clear
               </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About The Met | The Metropolitan Museum of Art",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-[#f3f4f4] min-h-screen pb-24">
+    <div className="bg-[color:var(--paper)] min-h-screen pb-24">
       {/* Hero Header */}
       <section className="relative w-full h-[50vh] min-h-[400px]">
         <Image 
@@ -29,7 +30,7 @@ export default function AboutPage() {
 
       {/* Main Content */}
       <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 lg:px-10">
-        <div className="prose prose-lg prose-black max-w-none mx-auto bg-white p-8 sm:p-12 md:p-16 rounded-3xl shadow-sm border border-black/5">
+        <div className="prose prose-lg prose-black max-w-none mx-auto glass-card bg-white/70 backdrop-blur-2xl p-8 sm:p-12 md:p-16 rounded-[3rem] shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60">
           <h2 className="text-3xl font-display font-semibold mb-6 text-black">
             The Metropolitan Museum of Art
           </h2>
@@ -55,14 +56,14 @@ export default function AboutPage() {
                 { title: "Contact Us", desc: "Get in touch with the Museum.", link: "/contact" }
               ].map(item => (
                 <Link key={item.title} href={item.link}>
-                  <div className="group h-full p-6 border border-black/15 rounded-xl bg-[#f9f9f9] hover:bg-white hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+                  <div className="group h-full p-6 border border-white/60 rounded-3xl glass-card bg-white/60 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
                     <div>
-                      <h4 className="font-semibold text-lg text-black group-hover:text-blue-700 transition-colors">{item.title}</h4>
+                      <h4 className="font-semibold text-lg text-black group-hover:text-[color:var(--accent)] transition-colors">{item.title}</h4>
                       <p className="text-sm text-black/70 mt-2">{item.desc}</p>
                     </div>
                     <div className="mt-6 flex justify-end">
-                      <span className="h-8 w-8 rounded-full border border-black/20 flex items-center justify-center group-hover:border-blue-700 group-hover:text-blue-700 transition-colors">
-                        →
+                      <span className="h-10 w-10 rounded-full bg-black/5 flex items-center justify-center text-black transition-all duration-300 group-hover:bg-[color:var(--accent)] group-hover:text-white shadow-sm group-hover:shadow-md">
+                        <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
                       </span>
                     </div>
                   </div>

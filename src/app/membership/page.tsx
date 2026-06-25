@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useCart } from "@/components/CartContext";
 import { membershipTiers } from "@/data/membership-tiers";
+import CustomDropdown from "@/components/CustomDropdown";
 
 function getMembershipDiscount(years: number): number {
   if (years >= 5) return 0.2;
@@ -24,7 +25,7 @@ export default function MembershipPage() {
   const total = checkoutTier ? checkoutTier.price * years * (1 - discount) : 0;
 
   return (
-    <div className="bg-[#f3f2f0] px-4 py-14 sm:px-6 lg:px-10">
+    <div className="bg-[#f3f2f0] px-4 py-14 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Membership</p>
         <h1 className="mt-2 font-display text-6xl font-semibold leading-[0.92] text-black sm:text-7xl">Become a Member</h1>
@@ -34,7 +35,7 @@ export default function MembershipPage() {
 
         <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {membershipTiers.map((tier) => (
-            <article key={tier.id} className="flex h-full flex-col border border-black/15 bg-white p-5">
+            <article key={tier.id} className="glass-card flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 hover:-translate-y-2">
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Tier</p>
               <h2 className="mt-2 font-display text-4xl font-semibold text-black">{tier.name}</h2>
               <p className="mt-2 text-3xl font-semibold text-black">${tier.price}</p>
@@ -50,7 +51,7 @@ export default function MembershipPage() {
                     setActionTier({ id: tier.id, action: "cart" });
                     setYears(1);
                   }}
-                  className="w-full border border-black/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] text-black hover:bg-black/5 transition-colors"
+                  className="w-full rounded-full border border-white/50 bg-white/40 px-5 py-3 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-white hover:scale-[1.02] shadow-[0_4px_16px_rgba(0,0,0,0.05)] backdrop-blur-sm mb-3"
                 >
                   Save to Cart
                 </button>
@@ -60,7 +61,7 @@ export default function MembershipPage() {
                     setActionTier({ id: tier.id, action: "checkout" });
                     setYears(1);
                   }}
-                  className="inline-flex w-full items-center justify-center border border-black bg-black px-4 py-2 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors"
+                  className="inline-flex w-full items-center justify-center rounded-full border border-black bg-black px-5 py-3 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-black/80 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
                 >
                   Checkout
                 </button>
@@ -70,24 +71,26 @@ export default function MembershipPage() {
         </section>
 
         {checkoutTier ? (
-          <div className="fixed inset-0 z-[90] grid place-items-center bg-black/45 px-4" role="dialog" aria-modal="true" aria-label="Membership Years">
-            <div className="w-full max-w-lg border border-black/20 bg-white p-6 shadow-2xl">
+            <div className="fixed inset-0 z-[90] grid place-items-center bg-black/60 px-4 backdrop-blur-sm popup-backdrop-enter" role="dialog" aria-modal="true" aria-label="Membership Years">
+              <div className="w-full max-w-lg rounded-[2.5rem] border border-black/10 bg-white p-10 shadow-[0_32px_80px_rgba(0,0,0,0.12)] popup-panel-enter">
               <h2 className="font-display text-4xl font-semibold text-black">Membership Checkout</h2>
               <p className="mt-2 text-black/75">{checkoutTier.name} tier</p>
 
               <label className="mt-5 block text-sm font-semibold text-black/80">
                 Number of years (1-5)
-                <select
-                  value={years}
-                  onChange={(event) => setYears(Number(event.target.value))}
-                  className="mt-2 h-11 w-full border border-black/25 bg-white px-3 text-black"
-                >
-                  <option value={1}>1 year</option>
-                  <option value={2}>2 years (5% off)</option>
-                  <option value={3}>3 years (10% off)</option>
-                  <option value={4}>4 years (15% off)</option>
-                  <option value={5}>5 years (20% off)</option>
-                </select>
+                <CustomDropdown
+                  value={String(years)}
+                  onChange={(val) => setYears(Number(val) || 1)}
+                  options={[
+                    { value: "1", label: "1 year" },
+                    { value: "2", label: "2 years (5% off)" },
+                    { value: "3", label: "3 years (10% off)" },
+                    { value: "4", label: "4 years (15% off)" },
+                    { value: "5", label: "5 years (20% off)" }
+                  ]}
+                  placeholder="Select years"
+                  className="mt-3"
+                />
               </label>
 
               <div className="mt-4 border border-black/10 bg-[#f7f7f7] p-4 text-sm text-black/75">
@@ -105,11 +108,11 @@ export default function MembershipPage() {
                 </div>
               </div>
 
-              <div className="mt-6 flex gap-2">
+              <div className="mt-8 flex gap-4">
                 <button
                   type="button"
                   onClick={() => setActionTier(null)}
-                  className="inline-flex flex-1 items-center justify-center border border-black/20 px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-black hover:bg-black/5 transition-colors"
+                  className="inline-flex flex-1 items-center justify-center rounded-full border border-black/20 bg-[#f7f7f7] px-5 py-4 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-black/5 hover:scale-[1.02]"
                 >
                   Cancel
                 </button>
@@ -128,7 +131,7 @@ export default function MembershipPage() {
                       router.push("/checkout");
                     }
                   }}
-                  className="inline-flex flex-1 items-center justify-center border border-black bg-black px-4 py-3 text-sm font-semibold uppercase tracking-[0.08em] !text-white hover:bg-black/80 transition-colors"
+                  className="inline-flex flex-1 items-center justify-center rounded-full border border-black bg-black px-5 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all hover:bg-black/80 hover:scale-[1.02] shadow-[0_8px_24px_rgba(0,0,0,0.15)]"
                 >
                   {actionTier?.action === "cart" ? "Add to Cart" : "Continue"}
                 </button>

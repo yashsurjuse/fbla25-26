@@ -22,14 +22,14 @@ export default function FakePagination({
   const middlePages = Array.from({ length: end - start + 1 }, (_, index) => start + index);
 
   return (
-    <nav aria-label={`${label} pagination`} className="mx-auto mt-8 flex w-full max-w-7xl justify-center px-4 sm:px-6 lg:px-10">
-      <div className="inline-flex max-w-full items-stretch gap-2 overflow-x-auto border border-black/15 bg-white p-2">
+    <nav aria-label={`${label} pagination`} className="mx-auto mt-16 flex w-full max-w-7xl justify-center px-4 sm:px-6 lg:px-10">
+      <div className="inline-flex max-w-full items-stretch gap-2 overflow-x-auto scrollbar-hide rounded-full border border-white/50 bg-white/60 p-2 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.06)]">
         <button
           type="button"
           aria-label="Previous page"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className="inline-flex h-11 items-center gap-1 border border-black/10 bg-[#f4f4f4] px-4 text-base font-medium text-black/85 disabled:text-black/40"
+          className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 bg-white/80 px-6 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-white hover:shadow-md disabled:opacity-50 disabled:hover:shadow-none"
         >
           <span aria-hidden>‹</span>
           <span>Back</span>
@@ -40,13 +40,13 @@ export default function FakePagination({
             <button
               type="button"
               onClick={() => onPageChange(1)}
-              className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/80"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/80 text-sm font-bold text-black transition-all hover:bg-white hover:shadow-md"
             >
               1
             </button>
             <button 
               onClick={() => setShowGoToModal(true)}
-              className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70 hover:bg-black/5"
+              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/80 text-sm font-bold text-black/50 transition-all hover:bg-white hover:text-black hover:shadow-md"
             >
               ...
             </button>
@@ -58,10 +58,10 @@ export default function FakePagination({
             type="button"
             key={page}
             onClick={() => onPageChange(page)}
-            className={`inline-flex h-11 w-11 items-center justify-center border text-base font-semibold ${
+            className={`inline-flex h-12 w-12 items-center justify-center rounded-full text-sm font-bold transition-all ${
               page === currentPage
-                ? "border-black bg-black text-white"
-                : "border-black/15 bg-[#f5f5f5] text-black/80"
+                ? "bg-black text-white shadow-lg scale-105"
+                : "border border-white/30 bg-white/80 text-black hover:bg-white hover:shadow-md"
             }`}
           >
             {page}
@@ -72,14 +72,14 @@ export default function FakePagination({
           <>
           <button 
             onClick={() => setShowGoToModal(true)}
-            className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/70 hover:bg-black/5"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/80 text-sm font-bold text-black/50 transition-all hover:bg-white hover:text-black hover:shadow-md"
           >
             ...
           </button>
           <button
             type="button"
             onClick={() => onPageChange(totalPages)}
-            className="inline-flex h-11 w-11 items-center justify-center border border-black/15 bg-[#f5f5f5] text-base font-semibold text-black/80"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/30 bg-white/80 text-sm font-bold text-black transition-all hover:bg-white hover:shadow-md"
           >
             {totalPages}
           </button>
@@ -91,7 +91,7 @@ export default function FakePagination({
           aria-label="Next page"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className="inline-flex h-11 items-center gap-1 border border-black/10 bg-[#f4f4f4] px-4 text-base font-medium text-black/85 disabled:text-black/40"
+          className="inline-flex h-12 items-center gap-2 rounded-full border border-white/30 bg-white/80 px-6 text-sm font-bold uppercase tracking-wider text-black transition-all hover:bg-white hover:shadow-md disabled:opacity-50 disabled:hover:shadow-none"
         >
           <span>Next</span>
           <span aria-hidden>›</span>
