@@ -5,11 +5,11 @@ import CountUpNumber from "@/components/CountUpNumber";
 import CirculatingMarquee from "@/components/CirculatingMarquee";
 import FeaturedExhibitionPreview from "@/components/FeaturedExhibitionPreview";
 import HomeNumbersCollage from "@/components/HomeNumbersCollage";
+import HeroMosaic from "@/components/HeroMosaic";
 import { getImageSourceById } from "@/data/image-sources";
 import { homeIntro, metStats, museumInfo } from "@/data/site";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
-const heroImage = "/met(1).jpg";
 const collageImages = [
   getImageSourceById("sphinx-hatshepsut"),
   getImageSourceById("death-of-socrates"),
@@ -19,37 +19,7 @@ const collageImages = [
 export default function Home() {
   return (
     <div className="bg-[color:var(--paper)] text-[color:var(--ink)]">
-      <section
-        className="hero-cover-bg relative isolate min-h-[74vh] overflow-hidden mt-20"
-        style={{ backgroundImage: `url("${heroImage}")` }}
-      >
-        <div className="absolute inset-0 bg-black/55" aria-hidden />
-
-        <div className="relative mx-auto grid min-h-[74vh] w-full max-w-7xl items-center gap-8 px-4 py-12 text-white sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-10">
-          <div className="relative max-w-[31rem] pl-16 sm:pl-24">
-            <div className="home-hero-banner absolute inset-y-0 left-0 w-14 sm:w-16 bg-[color:var(--accent)]" aria-hidden>
-              <div className="home-hero-logo absolute bottom-5 left-1/2 z-10 w-10 -translate-x-1/2 sm:w-11" aria-hidden>
-                <Image src="/TheMetFill.webp" alt="" width={96} height={96} className="h-auto w-full" />
-              </div>
-            </div>
-            <h1 className="font-display text-[3.8rem] font-semibold leading-[0.9] sm:text-[4.9rem] lg:text-[5.2rem]">
-              {homeIntro.heroTitle}
-            </h1>
-          </div>
-
-          <aside className="justify-self-start bg-white p-8 text-black rounded-3xl lg:justify-self-end shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/50">Welcome to</p>
-            <h2 className="mt-2 font-display text-4xl font-bold leading-tight">The Met Museum</h2>
-            <p className="mt-4 text-base text-black/70 leading-relaxed max-w-sm">{homeIntro.heroSummary}</p>
-            <Link
-              href="/visit"
-              className="mt-8 pill-btn bg-black !text-white px-8 py-3 hover:bg-white hover:!text-black border border-black transition-colors"
-            >
-              {homeIntro.primaryCta}
-            </Link>
-          </aside>
-        </div>
-      </section>
+      <HeroMosaic />
 
       <section className="bg-[#0a0a0a] py-20 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,rgba(228,0,43,0.35),transparent_60%)] animate-pulse" style={{ animationDuration: '8s' }} />

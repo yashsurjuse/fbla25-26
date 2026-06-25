@@ -6,8 +6,10 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useCart } from "@/components/CartContext";
 import DatePicker from "@/components/DatePicker";
 import GoogleMapEmbed from "@/components/GoogleMapEmbed";
+import MapPopup from "@/components/MapPopup";
 import { museumInfo } from "@/data/site";
 import { createDefaultTicketQuantities, getPaidTicketCount, getTicketCount, getTicketSubtotal, ticketTypes } from "@/lib/tickets";
+import { Map as MapIcon, Accessibility } from "lucide-react";
 
 const metFacadeImage =
   "https://upload.wikimedia.org/wikipedia/commons/3/30/Metropolitan_Museum_of_Art_%28The_Met%29_-_Central_Park%2C_NYC.jpg";
@@ -16,6 +18,8 @@ const today = new Date().toISOString().split("T")[0];
 
 export default function VisitPage() {
   const [showCheckout, setShowCheckout] = useState(false);
+  const [isMapOpen, setIsMapOpen] = useState(false);
+  const [selectedBuildingForMap, setSelectedBuildingForMap] = useState<"MET" | "MET_CLOISTERS">("MET");
   const [selectedDate, setSelectedDate] = useState(today);
   const [tickets, setTickets] = useState<Record<string, number>>(() => createDefaultTicketQuantities());
   const { addVisitItem, openCart } = useCart();
@@ -71,6 +75,7 @@ export default function VisitPage() {
 
   return (
     <div className="bg-[#f2f2f2] pb-16">
+      <MapPopup isOpen={isMapOpen} onClose={() => setIsMapOpen(false)} initialBuilding={selectedBuildingForMap} />
       <section className="relative isolate min-h-[52vh] overflow-hidden border-b border-black/15 px-4 py-16 text-white sm:px-6 lg:px-10">
         <Image
           src={metFacadeImage}
@@ -124,7 +129,12 @@ export default function VisitPage() {
         </article>
 
         <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
-          <h2 className="font-display text-4xl font-semibold text-black">Location</h2>
+          <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
+             <h2 className="font-display text-4xl font-semibold text-black">The Met Fifth Avenue</h2>
+             <button onClick={() => { setSelectedBuildingForMap("MET"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
+               Inside the MET
+             </button>
+          </div>
           <GoogleMapEmbed className="mt-4 aspect-[4/3] overflow-hidden border border-black/15 bg-[#ececec]" />
 
           <address className="mt-5 text-lg not-italic text-black/80">
@@ -144,6 +154,67 @@ export default function VisitPage() {
             <p className="mt-2">Accessibility entrance: Ground level entry at 81st Street and Fifth Avenue.</p>
           </div>
         </article>
+
+        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+           <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
+             <h2 className="font-display text-4xl font-semibold text-black">The Met Cloisters</h2>
+             <button onClick={() => { setSelectedBuildingForMap("MET_CLOISTERS"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
+               Inside the MET
+             </button>
+           </div>
+           <GoogleMapEmbed src="https://www.google.com/maps?q=99+Margaret+Corbin+Dr,+New+York,+NY+10040&output=embed" className="mt-4 aspect-[4/3] overflow-hidden border border-black/15 bg-[#ececec]" />
+           <address className="mt-5 text-lg not-italic text-black/80">
+             99 Margaret Corbin Drive<br />
+             New York, NY 10040<br />
+             Phone: 212-923-3700
+           </address>
+           <div className="mt-8 border-t border-black/10 pt-5 text-sm font-sans text-black/75">
+             <h3 className="!font-sans text-base font-semibold tracking-[0.08em] text-black">Getting Here</h3>
+             <p className="mt-2">Take the M4 bus directly to 82nd Street and Fifth Avenue; OR take the A train to 125th Street, transfer to the B or C local train, exit at 81st Street, and transfer to the M79 crosstown bus across Central Park to Fifth Avenue.</p>
+           </div>
+        </article>
+
+        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+           <h2 className="font-display text-4xl font-semibold text-black">Food and Drink</h2>
+           <p className="mt-2 text-black/70 text-sm mb-6">Met Members and Patrons receive a 10% discount in all public restaurants at The Met Fifth Avenue and The Met Cloisters.</p>
+           <div className="space-y-4">
+              <div className="border-b border-black/10 pb-4">
+                <h3 className="font-bold">The American Wing Cafe ($$)</h3>
+                <p className="text-sm text-black/70">Sandwiches, salads, baked goods, ice cream, coffee, wine, beer, and specialty cocktails. Floor 1.</p>
+              </div>
+              <div className="border-b border-black/10 pb-4">
+                <h3 className="font-bold">The Great Hall Balcony Cafe ($$)</h3>
+                <p className="text-sm text-black/70">Asian-accented menu featuring sandos, poke, sushi, salads, and more. Floor 2.</p>
+              </div>
+              <div className="border-b border-black/10 pb-4">
+                <h3 className="font-bold">Balcony Lounge ($$)</h3>
+                <p className="text-sm text-black/70">Dual Members and above can enjoy relaxed table service dining. Floor 2.</p>
+              </div>
+              <div className="border-b border-black/10 pb-4">
+                <h3 className="font-bold">The Eatery ($$)</h3>
+                <p className="text-sm text-black/70">Casual, family-friendly dining with a New York City-focused menu. Ground Floor.</p>
+              </div>
+              <div>
+                <h3 className="font-bold">Lehman Cafe Cart ($)</h3>
+                <p className="text-sm text-black/70">Simple menu of light sandwiches, sweet treats, and cold beverages. Floor 1.</p>
+              </div>
+           </div>
+        </article>
+      </section>
+
+      <section className="mx-auto mt-6 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
+         <Link href="/accessibility" className="flex flex-col md:flex-row items-center justify-between glass-card rounded-[2rem] border border-[color:var(--accent)] bg-white/60 p-8 shadow-[0_16px_40px_rgba(228,0,43,0.1)] backdrop-blur-2xl transition-all duration-300">
+            <div className="flex items-center gap-6 mb-6 md:mb-0">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[color:var(--accent)] shrink-0">
+                <Accessibility className="h-8 w-8 text-white" />
+              </div>
+              <div>
+                <h2 className="font-display text-3xl font-bold">Accessibility</h2>
+                <p className="mt-1 text-black/70">The Museum is committed to making its collection, buildings, and programs accessible to all audiences.</p>
+              </div>
+            </div>
+            <span className="font-bold uppercase tracking-widest border border-current rounded-full px-6 py-3 text-sm shrink-0 whitespace-nowrap text-black">View Guidelines</span>
+         </Link>
       </section>
 
       {showCheckout ? (

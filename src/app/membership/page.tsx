@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useCart } from "@/components/CartContext";
 import { membershipTiers } from "@/data/membership-tiers";
 import CustomDropdown from "@/components/CustomDropdown";
@@ -19,6 +20,11 @@ export default function MembershipPage() {
   const router = useRouter();
   const [actionTier, setActionTier] = useState<{ id: string; action: "cart" | "checkout" } | null>(null);
   const [years, setYears] = useState(1);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const checkoutTier = membershipTiers.find((tier) => tier.id === actionTier?.id) ?? null;
   const discount = getMembershipDiscount(years);
@@ -34,8 +40,8 @@ export default function MembershipPage() {
         </p>
 
         <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {membershipTiers.map((tier) => (
-            <article key={tier.id} className="glass-card flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 hover:-translate-y-2">
+          {membershipTiers.map((tier, index) => (
+            <article key={tier.id} className={`glass-card flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 hover:-translate-y-2 ${index === 4 ? "xl:col-start-2" : ""}`}>
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Tier</p>
               <h2 className="mt-2 font-display text-4xl font-semibold text-black">{tier.name}</h2>
               <p className="mt-2 text-3xl font-semibold text-black">${tier.price}</p>
@@ -70,8 +76,8 @@ export default function MembershipPage() {
           ))}
         </section>
 
-        {checkoutTier ? (
-            <div className="fixed inset-0 z-[90] grid place-items-center bg-black/60 px-4 backdrop-blur-sm popup-backdrop-enter" role="dialog" aria-modal="true" aria-label="Membership Years">
+        {mounted && checkoutTier ? createPortal(
+            <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm popup-backdrop-enter" role="dialog" aria-modal="true" aria-label="Membership Years">
               <div className="w-full max-w-lg rounded-[2.5rem] border border-black/10 bg-white p-10 shadow-[0_32px_80px_rgba(0,0,0,0.12)] popup-panel-enter">
               <h2 className="font-display text-4xl font-semibold text-black">Membership Checkout</h2>
               <p className="mt-2 text-black/75">{checkoutTier.name} tier</p>
@@ -137,7 +143,8 @@ export default function MembershipPage() {
                 </button>
               </div>
             </div>
-          </div>
+          </div>,
+          document.body
         ) : null}
       </div>
     </div>

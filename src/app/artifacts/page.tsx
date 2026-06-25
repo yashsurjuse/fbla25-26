@@ -128,7 +128,7 @@ export default function ArtifactsPage() {
                 className={`rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 text-sm font-semibold text-black outline-none placeholder:text-black/40 focus:border-black/50 focus:bg-white transition-all duration-500 ease-out ${isSearchFocused ? 'w-full shadow-[0_8px_32px_rgba(0,0,0,0.08)]' : 'w-full sm:w-1/2 shadow-[0_4px_16px_rgba(0,0,0,0.02)]'}`}
               />
               
-              <div className={`transition-all duration-500 ease-out overflow-hidden ${isSearchFocused ? 'w-0 opacity-0' : 'w-full sm:w-1/2 opacity-100'}`}>
+              <div className={`transition-all duration-500 ease-out ${isSearchFocused ? 'w-0 opacity-0 overflow-hidden' : 'w-full sm:w-1/2 opacity-100 overflow-visible'}`}>
                 <div className="w-[180px] sm:w-[100%] min-w-full">
                   <CustomDropdown
                     value={selectedDept}

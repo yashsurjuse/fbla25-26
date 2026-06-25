@@ -340,6 +340,30 @@ body label * {
   }
 }
 
+@media (max-width: 639px) {
+  .hero-mosaic-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero Mosaic Grid                                                   */
+/* ------------------------------------------------------------------ */
+.hero-mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4px; /* Slightly smaller frame so you can see the background */
+  background-color: #e9e3dd;
+}
+
+.hero-center-block {
+  grid-area: 2 / 2 / 5 / 4; /* Spans rows 2, 3, 4 and cols 2, 3 */
+  z-index: 10;
+}
+
 @media (max-width: 768px) {
   .museum-pattern {
     background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
