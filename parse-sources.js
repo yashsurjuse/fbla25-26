@@ -1,0 +1,310 @@
+const fs = require('fs');
+const newSourcesStr = `
+Website Design Sources
+American Alliance of Museums. “10 Tips for Creating an Engaging Museum Website.” American Alliance of Museums, 14 Dec. 2023, https://www.aam-us.org/2023/12/14/10-tips-for-creating-an-engaging-museum-website/.
+
+Clay. “Web Design Guide: Everything You Need to Know.” Clay, https://clay.global/blog/web-design-guide.
+
+Coursera. “Free Web Design Courses.” Coursera, https://www.coursera.org/courses?query=free&skills=Web%20Design.
+
+Creative Tim. “Books Every Web Designer Should Read.” Creative Tim Blog, https://www.creative-tim.com/blog/web-design/books-every-web-designer-should-read/.
+
+Cuberis. “BEST Practices for Museum Website Accessibility.” Cuberis, 21 Jan. 2026, https://cuberis.com/best-practices-for-museum-website-accessibility/.
+
+Design Resources. “Design Resources.” Designresourc.es, https://designresourc.es/.
+
+DesignRush. “Best Modern Website Designs and Trends.” DesignRush, https://www.designrush.com/best-designs/websites/trends/best-modern-website-designs.
+
+Elegant Themes. “Web Design Inspiration: The Best Website Designs.” Elegant Themes Blog, https://www.elegantthemes.com/blog/design/web-design-inspiration.
+
+Figma. “Website Layout Ideas.” Figma Resource Library, https://www.figma.com/resource-library/website-layout-ideas/.
+
+GrayGrids. “Best Free Web Design & Front-End Development Tools and Resources.” GrayGrids Blog, https://graygrids.com/blog/best-free-web-design-fronted-development-tools-and-resources.
+
+Great Learning. “Free Web Design Courses.” Great Learning, https://www.mygreatlearning.com/web-design/free-courses.
+
+Institute of Museum and Library Services. “Accessibility Resources for Museums and Libraries.” IMLS, 28 Feb. 2021, https://www.imls.gov/issues/national-issues-priorities/accessibility-resources-museums-and-libraries.
+
+Landslide Creative. “7 Guidelines to Make Your Museum Website More Accessible.” Landslide Creative, 18 Jan. 2023, 
+https://landslidecreative.com/blog/7-guidelines-make-your-museum-website-more-accessible/
+.
+
+LibGuides. “Evaluating Sources: Quality Web Sources.” Otis College of Art and Design Libraries, https://otis.libguides.com/quality_web_sources/types.
+
+LibGuides. “Evaluating Information Sources.” Point Loma Nazarene University Library, https://libguides.pointloma.edu/c.php?g=648535&p=4548282.
+
+Museums and the Web. “Accessibility Techniques for Museum Web Sites.” Museums and the Web, 14 Mar. 2001, https://www.museumsandtheweb.com/mw2001/papers/anable/anable.html.
+
+Nielsen Norman Group. “Responsive Web Design (RWD) and User Experience.” Nielsen Norman Group, 3 May 2014, 
+https://www.nngroup.com/articles/responsive-web-design-definition/
+.
+
+Purple Rock Scissors. “10 Components Your Museum Website Needs to Succeed.” Purple Rock Scissors, https://www.purplerockscissors.com/journal/10-components-your-museum-website-needs-to-succeed.
+
+Tiller Digital. “17 Free Web Design Tools & Resources.” Tiller Digital, https://tillerdigital.com/blog/17-free-web-design-tools-resources/.
+
+Toools. “Toools: Design Tools and Resources.” Toools, https://www.toools.design/.
+
+UserWay. “Tips To Increase Museum Accessibility In-Person & Online.” UserWay, 30 July 2023, 
+https://userway.org/blog/museum-accessibility/
+.
+
+UXtweak. “The Best Website Design Resources for 2025.” UXtweak Blog, https://blog.uxtweak.com/the-best-website-design-resources-for-2025/.
+
+Veevart. “The Critical Importance of Accessibility on Museum Websites.” Veevart, 7 Apr. 2025, https://veevart.com/blog/the-critical-importance-of-accessibility-on-museum-websites.
+
+W3C Web Accessibility Initiative. “Designing for Web Accessibility – Tips for Getting Started.” W3C, 23 June 2026, 
+https://www.w3.org/WAI/tips/designing/
+.
+
+Webflow. “Responsive Web Design: A Beginner’s Guide.” Webflow Blog, https://webflow.com/blog/responsive-web-design.
+
+Webflow. “Web Design Inspiration: Examples and Ideas.” Webflow Blog, https://webflow.com/blog/web-design-inspiration.
+
+Webflow. “Web Design Tools: The Best Tools for Designers.” Webflow Blog, https://webflow.com/blog/web-design-tools.
+
+WebsiteSetup. “Website Layouts: 27 Examples and Ideas.” WebsiteSetup, https://websitesetup.org/website-layouts/.
+
+Website Content Sources
+Alexandria Archive Institute. “How to Search Online Museum Collections.” Alexandria Archive Institute, 17 Feb. 2021, https://alexandriaarchive.org/2021/02/18/how-to-search-online-museum-collections/.
+
+Frieze. “Frieze Week Magazine New York 2025: Metropolitan Museum of Art Vanguard Council.” Frieze, https://www.frieze.com/article/frieze-week-magazine-new-york-2025-metropolitan-museum-art-vanguard-council.
+
+The Art Newspaper. “Metropolitan Museum Rockefeller Wing Renovation: Kulapat Yantrasast.” The Art Newspaper, 13 May 2025, https://www.theartnewspaper.com/2025/05/13/metropolitan-museum-rockefeller-wing-renovation-kulapat-antrasast.
+
+The Metropolitan Museum of Art. “Art Collection Search.” The Metropolitan Museum of Art, https://www.metmuseum.org/art/collection/search.
+
+The Metropolitan Museum of Art. “Behind the Scenes.” The Metropolitan Museum of Art Perspectives, https://www.metmuseum.org/perspectives/all?topic=behind-the-scenes.
+
+The Metropolitan Museum of Art. “Curriculum Resources.” The Metropolitan Museum of Art, 25 Oct. 2018, https://www.metmuseum.org/learn/educators/curriculum-resources.
+
+The Metropolitan Museum of Art. “Directions and Parking.” The Metropolitan Museum of Art, https://www.metmuseum.org/policies/directions-and-parking.
+
+The Metropolitan Museum of Art. “Digital Collections Search.” Metropolitan Museum of Art Libraries, https://libmma.contentdm.oclc.org/digital/search.
+
+The Metropolitan Museum of Art. “Educators.” The Metropolitan Museum of Art, https://www.metmuseum.org/learn/educators.
+
+The Metropolitan Museum of Art. “Guide to Museum Objects.” The Metropolitan Museum of Art Watson Library, https://www.metmuseum.org/-/media/files/art/watson-library/guide_metobjects.pdf?sc_lang=en.
+
+The Metropolitan Museum of Art. “How We Collect.” The Metropolitan Museum of Art Perspectives, https://www.metmuseum.org/perspectives/how-we-collect.
+
+The Metropolitan Museum of Art. “Image and Data Resources.” The Metropolitan Museum of Art, 8 June 2022, https://www.metmuseum.org/policies/image-resources.
+
+The Metropolitan Museum of Art. “Introducing Open Access at The Met.” The Metropolitan Museum of Art, 6 Feb. 2017, https://www.metmuseum.org/pt/perspectives/open-access-at-the-met.
+
+The Metropolitan Museum of Art. “Museum Archives.” The Metropolitan Museum of Art, 9 Apr. 2024, https://www.metmuseum.org/art/libraries-and-research-centers/museum-archives.
+
+The Metropolitan Museum of Art. “Online Collection User Research.” The Metropolitan Museum of Art Perspectives, https://www.metmuseum.org/perspectives/online-collection-user-research.
+
+The Metropolitan Museum of Art. “Open Access.” The Metropolitan Museum of Art, 8 June 2022, https://www.metmuseum.org/hubs/open-access.
+
+The Metropolitan Museum of Art. “The Met Collection.” The Metropolitan Museum of Art, 8 June 2022, https://www.metmuseum.org/art/collection.
+
+The Metropolitan Museum of Art. “The Metropolitan Museum of Art Guide.” The Metropolitan Museum of Art Publications, https://www.metmuseum.org/met-publications/the-metropolitan-museum-of-art-guide.
+
+The Metropolitan Museum of Art. “The Metropolitan Museum of Art Guide to the Collections: Prints.” The Metropolitan Museum of Art Publications, https://www.metmuseum.org/met-publications/the-metropolitan-museum-of-art-guide-to-the-collections-prints.
+
+The Metropolitan Museum of Art. “Thomas J. Watson Library Research.” The Metropolitan Museum of Art, https://www.metmuseum.org/art/libraries-and-research-centers/thomas-j-watson-library/research.
+
+Wonderful Museums. “Met Museum Catalog.” Wonderful Museums, https://www.wonderfulmuseums.com/museum/met-museum-catalog/.
+
+Additional Website Design Sources
+18F. “The 18F Accessibility Guide.” 18F, https://accessibility.18f.gov/.
+
+American Association for State and Local History. “Digital Resources and Accessibility for Museums and Historical Sites.” AASLH, 23 July 2020, https://aaslh.org/digital-resources-and-accessibility/.
+
+Association of Science and Technology Centers. “Accessibility Toolkit for Museum Digital Engagement.” ASTC, 26 July 2023, 
+https://www.astc.org/digital-accessibility-toolkit/
+.
+
+Carnegie Museums. “Overview.” Accessibility Guidelines, http://web-accessibility.carnegiemuseums.org.
+
+Centers for Disease Control and Prevention. “Web Accessibility.” CDC, https://www.cdc.gov/web-governance-and-standards/php/web-accessibility/index.html.
+
+Digital.gov. “Accessibility for Teams.” Digital.gov, https://digital.gov/resources/introduction-accessibility-for-teams/.
+
+Interaction Design Foundation. “What Is Responsive Web Design?” Interaction Design Foundation, https://www.interaction-design.org/literature/topics/responsive-web-design.
+
+Level Access. “Responsive Design and Accessibility: Best Practices.” Level Access, 24 Oct. 2024, 
+https://www.levelaccess.com/blog/what-does-responsive-web-design-have-to-do-with-accessibility/
+.
+
+Lucidea. “Museum Collections Online with Accessibility Principle 2: Operable.” Lucidea, 23 July 2024, 
+https://lucidea.com/blog/museum-collections-online-with-accessibility-principle-2-operable/
+.
+
+Lucidea. “Accessibility Standards for Museum Collections Online.” Lucidea, 31 July 2024, 
+https://lucidea.com/video/accessibility-standards-for-museum-collections-online/
+.
+
+MuseumNext. “Making Museum Websites Accessible: Adventures in Alt Text with the Fitzwilliam Museum.” MuseumNext, 14 July 2023, https://www.museumnext.com/article/making-museum-websites-accessible-with-alt-text/.
+
+MuseumNext. “The Role of Digital Engagement in Museums.” MuseumNext, 24 Oct. 2024, 
+https://www.museumnext.com/article/the-role-of-digital-engagement-in-museums/
+.
+
+Nielsen Norman Group. “UX Basics: Study Guide.” Nielsen Norman Group, 25 Mar. 2023, https://www.nngroup.com/articles/ux-basics-study-guide/.
+
+Nielsen Norman Group. “Usability 101.” Nielsen Norman Group, 23 Mar. 2023, https://www.nngroup.com/videos/usability-101/.
+
+Nielsen Norman Group. “Usability Guidelines for Accessible Web Design: a Report by NN/g.” Nielsen Norman Group, 
+https://www.nngroup.com/reports/usability-guidelines-accessible-web-design/
+.
+
+Nielsen Norman Group. “Web Usability Articles, Videos, Reports, and Training Courses.” Nielsen Norman Group, 1 Jan. 2026, https://www.nngroup.com/topic/web-usability/.
+
+U.S. Access Board. “About the ADA Standards.” United States Access Board, https://www.access-board.gov/ada/.
+
+U.S. Department of Justice. “Expanding Your Market: Maintaining Accessibility in Museums.” ADA.gov Archive, 28 Apr. 2009, https://archive.ada.gov/business/museum_access.htm.
+
+U.S. Web Design System. “Accessibility.” U.S. Web Design System, 
+https://designsystem.digital.gov/documentation/accessibility/
+.
+
+VocalEyes. “Accessibility Resources for Museums, Galleries and Heritage Sites.” VocalEyes, https://vocaleyes.co.uk/services/museums-galleries-and-heritage/museum-resources/.
+
+W3C Web Accessibility Initiative. “Accessibility, Usability, and Inclusion.” W3C, https://www.w3.org/WAI/fundamentals/accessibility-usability-inclusion/.
+
+W3C Web Accessibility Initiative. “Introduction to Web Accessibility.” W3C, https://www.w3.org/WAI/fundamentals/accessibility-intro/.
+
+W3C Web Accessibility Initiative. “Mobile Accessibility at W3C.” W3C, https://www.w3.org/WAI/standards-guidelines/mobile/.
+
+W3C Web Accessibility Initiative. “Planning and Managing Web Accessibility.” W3C, https://www.w3.org/WAI/planning-and-managing/.
+
+W3C Web Accessibility Initiative. “WAI Tutorials.” W3C, https://www.w3.org/WAI/tutorials/.
+
+W3C Web Accessibility Initiative. “Web Content Accessibility Guidelines (WCAG) Overview.” W3C, https://www.w3.org/WAI/standards-guidelines/wcag/.
+
+World Wide Web Consortium. “Responsive Images.” W3C, https://www.w3.org/TR/responsive-images/.
+
+Yale University Library. “Website Accessibility.” Yale University Library, https://guides.library.yale.edu/accessibility/web.
+
+Additional Website Content Sources
+Adelphi University Libraries. “Art Research & Resources: Search Strategies.” Adelphi University Libraries LibGuides, 15 July 2018, 
+https://libguides.adelphi.edu/c.php?g=852252&p=6099661
+.
+
+Choice. “Advancing Accessibility in Digital Collections.” Choice 360, 20 Apr. 2026, 
+https://www.choice360.org/webinars/advancing-accessibility-in-digital-collections/
+.
+
+Metropolitan Museum of Art Libraries. “Thomas J. Watson Library - Research Guides.” The Metropolitan Museum of Art, 8 June 2022, https://www.metmuseum.org/departments/thomas-j-watson-library/research-guides.
+
+Oglethorpe University Library. “Interactive Timelines.” Museum Studies Research Guide, 9 Dec. 2021, 
+https://libraryguides.oglethorpe.edu/c.php?g=713840&p=5078739
+.
+
+The Metropolitan Museum of Art. “Heilbrunn Timeline of Art History.” The Metropolitan Museum of Art, 17 Dec. 2025, 
+https://www.metmuseum.org/essays/timeline-of-art-history
+.
+
+The Metropolitan Museum of Art. “Research Guides: A Step in the Right Direction.” The Metropolitan Museum of Art Perspectives, 10 Nov. 2020, 
+https://www.metmuseum.org/perspectives/research-guides
+.
+
+The Metropolitan Museum of Art. “Metropolitan Museum of Art Debuts Timeline of Art History on Its Web Site.” The Metropolitan Museum of Art Press Releases, 1 Oct. 2000, https://www.metmuseum.org/press-releases/metropolitan-museum-of-art-debuts-timeline-of-art-history-on-its-web-site-october-3-2000.
+
+The Metropolitan Museum of Art. “Metropolitan Museum’s Online Timeline of Art History Expanded.” The Metropolitan Museum of Art Press Releases, 17 Oct. 2001, https://www.metmuseum.org/press-releases/metropolitan-museums-online-timeline-of-art-history-expanded-2001-news.
+
+The National Gallery of Art. “Search Artworks.” National Gallery of Art, https://www.nga.gov/artwork-search.
+
+The British Museum. “Collection.” The British Museum, 30 Nov. 2023, https://www.britishmuseum.org/collection.
+
+Smithsonian Institution. “Smithsonian Open Access.” Smithsonian, https://www.si.edu/openaccess.
+
+The Museum of Modern Art. “Collection.” The Museum of Modern Art, https://www.moma.org/collection/.
+
+J. Paul Getty Museum. “Search the Collection.” Getty, https://www.getty.edu/art/collection/.
+
+Rijksmuseum. “Rijksstudio.” Rijksmuseum, https://www.rijksmuseum.nl/en/rijksstudio.
+
+Cleveland Museum of Art. “Collection Online.” Cleveland Museum of Art, https://www.clevelandart.org/art/collection/search.
+
+Harvard Art Museums. “Collections.” Harvard Art Museums, https://harvardartmuseums.org/collections.
+
+Art Institute of Chicago. “Collection.” Art Institute of Chicago, https://www.artic.edu/collection.
+
+Smithsonian Institution Archives. “Digital First.” Smithsonian Institution Archives, https://siarchives.si.edu/history/digital-first.
+
+Europeana. “Collections.” Europeana, https://www.europeana.eu/en/collections.
+
+Digital Public Library of America. “Browse by Topic.” DPLA, https://dp.la/browse-by-topic.
+
+New York Public Library. “Digital Collections.” The New York Public Library, https://digitalcollections.nypl.org/.
+
+Library of Congress. “Digital Collections.” Library of Congress, https://www.loc.gov/collections/.
+
+Smithsonian Libraries and Archives. “Digital Library.” Smithsonian Libraries and Archives, https://library.si.edu/digital-library.
+
+The Metropolitan Museum of Art. “MetPublications.” The Metropolitan Museum of Art, https://www.metmuseum.org/met-publications.
+
+The Metropolitan Museum of Art. “Libraries and Research Centers.” The Metropolitan Museum of Art, https://www.metmuseum.org/art/libraries-and-research-centers.
+
+The Metropolitan Museum of Art. “Collection Research and Resources.” The Metropolitan Museum of Art, https://www.metmuseum.org/art/collection#collection-research-and-resources.
+
+The Metropolitan Museum of Art. “The Met Fifth Avenue.” The Metropolitan Museum of Art, https://www.metmuseum.org/visit/plan-your-visit/met-fifth-avenue.
+
+The Metropolitan Museum of Art. “The Met Cloisters.” The Metropolitan Museum of Art, https://www.metmuseum.org/visit/plan-your-visit/met-cloisters.
+
+The Metropolitan Museum of Art. “Programs and Events.” The Metropolitan Museum of Art, https://www.metmuseum.org/events/programs.
+
+The Metropolitan Museum of Art. “Exhibitions.” The Metropolitan Museum of Art, https://www.metmuseum.org/exhibitions.
+
+The Metropolitan Museum of Art. “Audio Guide.” The Metropolitan Museum of Art, https://www.metmuseum.org/visit/audio-guide.
+
+The Metropolitan Museum of Art. “Conservation and Scientific Research.” The Metropolitan Museum of Art, https://www.metmuseum.org/about-the-met/conservation-and-scientific-research.
+
+The Metropolitan Museum of Art. “Collection Areas.” The Metropolitan Museum of Art, https://www.metmuseum.org/about-the-met/collection-areas.
+`;
+
+function parseList(text, headers) {
+  const lines = text.split('\n');
+  const result = [];
+  let currentSource = '';
+  let inSection = false;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+    if (headers.includes(line)) {
+      inSection = true;
+      continue;
+    }
+    if (inSection && line.endsWith('Sources') && !headers.includes(line) && line !== 'Notes on Source Quality' && !line.includes('Suggested Additional Sources to Expand Further')) {
+      inSection = false;
+    }
+
+    if (inSection && line !== 'Notes on Source Quality' && !line.includes('Suggested Additional Sources to Expand Further')) {
+      if (line === '' || line === '.') {
+        if (currentSource) {
+            if (line === '.') {
+                currentSource += line;
+            }
+            if (currentSource.length > 20) {
+              result.push(currentSource);
+            }
+            currentSource = '';
+        }
+      } else {
+        if (currentSource) {
+            currentSource += ' ' + line;
+        } else {
+            currentSource = line;
+        }
+      }
+    }
+  }
+  if (currentSource.length > 20) result.push(currentSource);
+  return result;
+}
+
+const allDesign = parseList(newSourcesStr, ['Website Design Sources', 'Additional Website Design Sources']);
+const allContent = parseList(newSourcesStr, ['Website Content Sources', 'Additional Website Content Sources']);
+
+const uniqueDesign = Array.from(new Set(allDesign)).sort((a,b) => a.localeCompare(b));
+const uniqueContent = Array.from(new Set(allContent)).sort((a,b) => a.localeCompare(b));
+
+fs.writeFileSync('new_arrays.json', JSON.stringify({
+  websiteDesignSources: uniqueDesign,
+  websiteContentSources: uniqueContent
+}, null, 2));
+console.log('done, sizes:', uniqueDesign.length, uniqueContent.length);

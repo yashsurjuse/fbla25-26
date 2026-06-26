@@ -18,7 +18,7 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
 
   return (
     <CartProvider>
-      <GoogleTranslateProvider />
+      {!hideChrome && <GoogleTranslateProvider />}
       <HtmlLangSync />
       {!hideChrome ? <SiteHeader /> : null}
       <div className="app-root">
