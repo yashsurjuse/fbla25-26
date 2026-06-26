@@ -27,6 +27,7 @@ html {
   font-size: calc(16px * var(--user-text-scale));
   scroll-behavior: smooth;
   scroll-padding-top: 5.5rem;
+  filter: var(--a11y-filter, none);
 }
 
 body {
@@ -41,9 +42,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.a11y-filter-target {
-  filter: var(--a11y-filter, none);
-}
 
 h1,
 h2,

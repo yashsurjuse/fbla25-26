@@ -10,7 +10,7 @@ import SiteHeader from "@/components/SiteHeader";
 import GoogleTranslateProvider from "@/components/GoogleTranslateProvider";
 import HtmlLangSync from "@/components/HtmlLangSync";
 
-const CHROMELESS_ROUTES = ["/checkout"];
+const CHROMELESS_ROUTES = ["/checkout", "/slides", "/sources"];
 
 export default function AppChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -21,8 +21,8 @@ export default function AppChrome({ children }: { children: React.ReactNode }) {
       <GoogleTranslateProvider />
       <HtmlLangSync />
       {!hideChrome ? <SiteHeader /> : null}
-      <div className="app-root a11y-filter-target">
-        <main id="main-content" className={pathname === "/" ? "" : "pt-20"}>
+      <div className="app-root">
+        <main id="main-content" className={pathname === "/" || hideChrome ? "" : "pt-20"}>
           <PageTransitionShell>{children}</PageTransitionShell>
         </main>
         {!hideChrome ? <SiteFooter /> : null}

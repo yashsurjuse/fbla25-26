@@ -28,7 +28,7 @@ export default function PressPage() {
             <h2 className="font-display text-4xl font-semibold border-b border-black/10 pb-4 text-black">Latest Press Releases</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {pressReleases.map((pr: any) => (
+              {[...pressReleases].reverse().map((pr: any) => (
                 <Link key={pr.slug} href={`/press/${pr.slug}`} className="flex flex-col bg-white rounded-3xl shadow-sm border border-black/5 hover:border-black/20 hover:shadow-md transition-all cursor-pointer group overflow-hidden">
                   <div className="relative h-48 w-full bg-black/5">
                     {pr.image ? (

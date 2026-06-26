@@ -93,7 +93,7 @@ export default function OrdersPage() {
           <div className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-12 text-center backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)] flex flex-col items-center justify-center min-h-[40vh]">
             <h2 className="font-display text-4xl font-semibold text-black mb-4">You have no past orders</h2>
             <p className="text-black/75 mb-8 text-lg">Looks like you haven&apos;t made any purchases yet.</p>
-            <Link href="/store" className="inline-flex items-center justify-center gap-2 rounded-full border border-black bg-black px-8 py-4 text-sm font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.05] shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
+            <Link href="/store" className="inline-flex items-center justify-center gap-2 rounded-full border border-black bg-black px-8 py-4 text-sm font-bold uppercase tracking-wider !text-white transition-all duration-300 hover:bg-black/80 hover:scale-[1.05] shadow-[0_8px_24px_rgba(0,0,0,0.15)]">
               Shop The Met
             </Link>
           </div>

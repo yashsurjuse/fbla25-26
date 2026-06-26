@@ -680,7 +680,10 @@ export default function AccessibilityControls() {
                 className="flex w-full items-center justify-between rounded-lg border border-black/20 bg-white px-3 py-2 text-left transition-colors hover:bg-black/5"
                 aria-pressed={settings.keyboardHints}
               >
-                <span>Keyboard navigation hints</span>
+                <div className="flex flex-col">
+                  <span>Enhanced keyboard focus</span>
+                  <span className="text-[10px] text-black/60 font-normal leading-tight">Thicker outlines for tab navigation</span>
+                </div>
                 <span>{settings.keyboardHints ? "On" : "Off"}</span>
               </button>
 

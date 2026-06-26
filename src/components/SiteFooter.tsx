@@ -99,9 +99,9 @@ export default function SiteFooter() {
             
             <a
               href="#top"
-              className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:text-black backdrop-blur-sm"
+              className="group inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:bg-white hover:!text-black backdrop-blur-sm"
             >
-              <span>Back to top</span>
+              <span className="group-hover:!text-black">Back to top</span>
               <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20 group-hover:bg-black/10 transition-colors">
                 <span className="text-base leading-none" aria-hidden>
                   ↑

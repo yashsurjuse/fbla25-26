@@ -94,7 +94,7 @@ export default function CollectionAreasPage() {
                 <p className="text-black/70 text-sm line-clamp-3 mb-6 flex-1">
                   {dept.description}
                 </p>
-                <div className="mt-auto text-blue-700 font-semibold text-sm group-hover:underline">
+                <div className="mt-auto text-black font-semibold text-sm group-hover:underline group-hover:text-[#e4002b] transition-colors">
                   Explore Department &rarr;
                 </div>
               </div>

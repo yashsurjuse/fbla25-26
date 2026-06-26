@@ -40,19 +40,7 @@ export default function CustomDropdown({ value, onChange, options, placeholder, 
 
       {open && (
         <div className="absolute left-0 top-full z-50 mt-2 max-h-80 w-full overflow-y-auto rounded-3xl border border-black/10 bg-white p-2 shadow-[0_16px_40px_rgba(0,0,0,0.1)] popup-rise-in">
-          <button
-            type="button"
-            onClick={() => {
-              onChange("");
-              setOpen(false);
-            }}
-            className={`flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-left text-sm font-semibold transition-colors hover:bg-black/5 ${
-              value === "" ? "text-[color:var(--accent)]" : "text-black"
-            }`}
-          >
-            {placeholder}
-            {value === "" && <Check className="h-4 w-4" />}
-          </button>
+
           {options.map((opt) => (
             <button
               key={opt.value}

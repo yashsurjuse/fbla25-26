@@ -151,6 +151,8 @@ export default function GoogleTranslateProvider() {
       .VIpgJd-ZVi9od-ORHb-OEVmcd,
       .VIpgJd-ZVi9od-xl07Ob-lTBxed,
       .VIpgJd-ZVi9od-SmfZ-OEVmcd,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
       .skiptranslate {
         display: none !important;
         visibility: hidden !important;
