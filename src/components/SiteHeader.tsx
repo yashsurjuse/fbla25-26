@@ -207,94 +207,111 @@ export default function SiteHeader() {
         <div className="lg:hidden relative z-[101]" id="mobile-menu">
           <button
             type="button"
-            className="a11y-filter-target popup-backdrop-enter fixed inset-0 bg-black/40"
+            className="a11y-filter-target popup-backdrop-enter fixed inset-0 bg-black/40 backdrop-blur-sm"
             onClick={() => setMenuOpen(false)}
             aria-label="Close navigation menu"
           />
-          <nav className="a11y-filter-target popup-drawer-enter fixed right-0 top-0 bottom-0 flex w-72 max-w-[85vw] flex-col gap-1 border-l border-black/10 bg-[color:var(--paper)] p-6 shadow-xl overflow-y-auto">
-            {navItems.map((item) => {
-              const active = isActiveRoute(pathname, item.href);
-
-              if (item.href === undefined) {
-                return (
-                  <span
-                    key={item.label}
-                    aria-disabled
-                    className="border-b border-black/10 py-3 text-sm font-semibold text-black/80"
-                  >
-                    {item.label}
-                  </span>
-                );
-              }
-
-              if (item.href === "") {
-                return (
-                  <a
-                    key={item.label}
-                    href=""
-                    onClick={(event) => event.preventDefault()}
-                    className="swoop-link border-b border-black/10 py-3 text-sm font-semibold text-black/80"
-                  >
-                    {item.label}
-                  </a>
-                );
-              }
-
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setMenuOpen(false)}
-                  aria-current={active ? "page" : undefined}
-                  className={`swoop-link border-b border-black/10 py-3 text-sm font-semibold ${
-                    active ? "text-[color:var(--accent)]" : "text-black/80"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-            
-            <form onSubmit={handleSearch} className="mt-4 flex relative border-b border-black/10 pb-4">
-              <input
-                type="text"
-                placeholder="Search..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-11 w-full border border-black/20 bg-white px-4 pr-11 text-sm focus:border-black focus:outline-none"
-              />
+          <nav className="a11y-filter-target popup-drawer-enter fixed right-4 top-4 bottom-4 flex w-72 max-w-[85vw] flex-col gap-2 rounded-[2.5rem] border border-white/50 bg-white/70 p-6 shadow-[0_16px_40px_rgba(0,0,0,0.12)] backdrop-blur-2xl overflow-y-auto">
+            <div className="flex items-center justify-between mb-2 px-2">
+              <span className="font-display font-semibold text-2xl text-black">Menu</span>
               <button
-                type="submit"
-                className="absolute right-0 flex h-11 w-11 items-center justify-center text-black/60 hover:text-black bg-transparent"
-                aria-label="Submit search"
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-black/5 hover:bg-black/10 transition-colors text-black"
+                aria-label="Close menu"
               >
-              <Search className="h-5 w-5" />
+                <X className="h-5 w-5" />
               </button>
-            </form>
+            </div>
             
-            <Link
-              href="/visit"
-              className="mt-4 inline-flex justify-center border border-black bg-black px-4 py-2 text-sm font-semibold !text-white transition-colors duration-200 hover:bg-transparent hover:!text-black"
-            >
-              Plan your visit
-            </Link>
-            <button
-              type="button"
-              onClick={() => {
-                setMenuOpen(false);
-                openCart();
-              }}
-              className="mt-2 inline-flex justify-center border border-black/20 bg-white px-4 py-2 text-sm font-semibold text-black"
-            >
-              View Cart {cartCount > 0 ? `(${cartCount})` : ""}
-            </button>
-            <Link
-              href="/account"
-              onClick={() => setMenuOpen(false)}
-              className="mt-2 inline-flex justify-center border border-black/20 bg-white px-4 py-2 text-sm font-semibold text-black"
-            >
-              Member Login
-            </Link>
+            <div className="flex-1 overflow-y-auto space-y-1">
+              {navItems.map((item) => {
+                const active = isActiveRoute(pathname, item.href);
+
+                if (item.href === undefined) {
+                  return (
+                    <span
+                      key={item.label}
+                      aria-disabled
+                      className="block rounded-2xl px-4 py-3 text-sm font-bold text-black/50"
+                    >
+                      {item.label}
+                    </span>
+                  );
+                }
+
+                if (item.href === "") {
+                  return (
+                    <a
+                      key={item.label}
+                      href=""
+                      onClick={(event) => event.preventDefault()}
+                      className="block rounded-2xl px-4 py-3 text-sm font-bold text-black/70 hover:bg-white hover:text-black hover:shadow-sm transition-all"
+                    >
+                      {item.label}
+                    </a>
+                  );
+                }
+
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMenuOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`block rounded-2xl px-4 py-3 text-sm font-bold transition-all ${
+                      active ? "bg-white text-[color:var(--accent)] shadow-sm" : "text-black/70 hover:bg-white hover:text-black hover:shadow-sm"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+              
+              <form onSubmit={handleSearch} className="mt-4 relative px-2">
+                <input
+                  type="text"
+                  placeholder="Search..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="h-12 w-full rounded-full border-2 border-black/10 bg-white/50 px-5 pr-12 text-sm backdrop-blur-md focus:border-black/30 focus:bg-white/80 shadow-inner outline-none transition-all placeholder-black/50 font-medium"
+                />
+                <button
+                  type="submit"
+                  className="absolute right-3 top-1 bottom-1 flex w-10 items-center justify-center rounded-full text-black/50 hover:text-black hover:bg-black/5 transition-colors"
+                  aria-label="Submit search"
+                >
+                  <Search className="h-5 w-5" />
+                </button>
+              </form>
+            </div>
+            
+            <div className="mt-4 flex flex-col gap-3 px-2">
+              <Link
+                href="/visit"
+                className="pill-btn pill-btn-dark w-full py-3.5 text-sm uppercase tracking-wider shadow-[0_8px_20px_rgba(0,0,0,0.15)]"
+                onClick={() => setMenuOpen(false)}
+              >
+                Plan your visit
+              </Link>
+              <button
+                type="button"
+                onClick={() => {
+                  setMenuOpen(false);
+                  openCart();
+                }}
+                className="pill-btn pill-btn-light w-full py-3.5 text-sm uppercase tracking-wider bg-white/50 backdrop-blur-sm border-black/10"
+              >
+                View Cart {cartCount > 0 ? `(${cartCount})` : ""}
+              </button>
+              <Link
+                href="/account"
+                onClick={() => setMenuOpen(false)}
+                className="pill-btn pill-btn-light w-full py-3.5 text-sm uppercase tracking-wider bg-white/50 backdrop-blur-sm border-black/10"
+              >
+                Member Login
+              </Link>
+            </div>
           </nav>
         </div>
       ) : null}
