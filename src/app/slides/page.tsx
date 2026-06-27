@@ -23,11 +23,11 @@ export default function SlidesPage() {
           <p className="text-black/70 mb-10 text-base leading-relaxed">
             Choose a presentation format to view our slides.
           </p>
-          
+
           <div className="flex flex-col gap-5">
-            <a 
-              href="https://canva.link/fblawebdesign" 
-              target="_blank" 
+            <a
+              href="https://canva.link/fblawebdesign"
+              target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col p-6 rounded-2xl border border-black/10 hover:border-black/30 hover:shadow-xl transition-all bg-gradient-to-br from-white to-black/5"
             >
@@ -38,17 +38,17 @@ export default function SlidesPage() {
                 </span>
                 <span className="text-[#e4002b] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
               </h3>
-              <p className="text-sm text-black/60 font-medium">View our slides with interactive elements and animations on Canva.</p>
+              <p className="text-sm text-black/60 font-medium">View our slides with a better and more accurate experience on Canva.</p>
             </a>
 
-            <a 
-              href="https://1drv.ms/p/c/472066a6a3bb27e4/IQAU5GOP4q4lQr-Xj_yhL5t9AR5MS45PEh2yZPa1tmEiYSY?e=nwI4vL" 
-              target="_blank" 
+            <a
+              href="https://1drv.ms/p/c/472066a6a3bb27e4/IQAU5GOP4q4lQr-Xj_yhL5t9AR5MS45PEh2yZPa1tmEiYSY?e=nwI4vL"
+              target="_blank"
               rel="noopener noreferrer"
               className="group flex flex-col p-6 rounded-2xl border border-black/10 hover:border-black/30 hover:shadow-xl transition-all bg-gradient-to-br from-white to-black/5"
             >
               <h3 className="font-bold text-xl text-black mb-2 flex items-center justify-between">
-                PowerPoint Presentation 
+                PowerPoint Presentation
                 <span className="text-[#e4002b] opacity-0 group-hover:opacity-100 transition-all translate-x-[-10px] group-hover:translate-x-0">&rarr;</span>
               </h3>
               <p className="text-sm text-black/60 font-medium">View the standard PowerPoint version of our slides.</p>
@@ -65,8 +65,8 @@ export default function SlidesPage() {
             </div>
             {/* We'll use an iframe or embed */}
             <div className="flex-1 relative w-full h-full bg-[#333]">
-              <iframe 
-                src="/FBLA 25-26 Website Design Judge Notes Google Docs.pdf" 
+              <iframe
+                src="/FBLA 25-26 Website Design Judge Notes Google Docs.pdf"
                 className="absolute inset-0 w-full h-full border-0"
                 title="FBLA Judge Notes"
               ></iframe>
