@@ -65,7 +65,7 @@ export default function LanguageSelector() {
       </button>
 
       {isOpen && (
-        <div className="popup-rise-in absolute bottom-full mb-4 right-0 z-[5000] w-56 rounded-[2rem] border border-white/20 bg-black/60 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl">
+        <div className="popup-rise-in absolute bottom-full mb-4 left-0 md:left-auto md:right-0 z-[5000] w-56 rounded-[2rem] border border-white/20 bg-black/60 p-2 shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl">
           <ul role="listbox">
             {LANGUAGES.map((lang) => (
               <li key={lang.code} role="presentation">

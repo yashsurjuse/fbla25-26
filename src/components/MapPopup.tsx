@@ -85,6 +85,23 @@ export default function MapPopup({ isOpen, onClose, initialBuilding = "MET" }: M
     setTranslateY(e.pageY - startY);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (!isZoomed) return;
+    setIsDragging(true);
+    setStartX(e.touches[0].pageX - translateX);
+    setStartY(e.touches[0].pageY - translateY);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDragging || !isZoomed) return;
+    setTranslateX(e.touches[0].pageX - startX);
+    setTranslateY(e.touches[0].pageY - startY);
+  };
+
   return createPortal(
     <div
       className={`fixed inset-0 z-[100] flex items-center justify-center backdrop-blur-sm p-4 sm:p-8 transition-all duration-300 ${
@@ -117,7 +134,7 @@ export default function MapPopup({ isOpen, onClose, initialBuilding = "MET" }: M
         {/* Content */}
         <div className="flex flex-col lg:flex-row flex-1 overflow-hidden">
           {/* Sidebar Controls */}
-          <div className="flex w-full lg:w-72 flex-col border-r border-gray-200 bg-gray-50 p-6 overflow-y-auto shrink-0">
+          <div className="flex w-full lg:w-72 flex-col border-r border-gray-200 bg-gray-50 p-4 lg:p-6 overflow-y-auto shrink-0 max-h-[35vh] lg:max-h-none">
             <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-gray-500">
               Select Building
             </h3>
@@ -182,12 +199,15 @@ export default function MapPopup({ isOpen, onClose, initialBuilding = "MET" }: M
 
             <div
               className={`w-full h-full relative overflow-hidden flex items-center justify-center select-none ${
-                isZoomed ? "cursor-grab active:cursor-grabbing" : "cursor-zoom-in"
+                isZoomed ? "cursor-grab active:cursor-grabbing touch-none" : "cursor-zoom-in"
               }`}
               onMouseDown={isZoomed ? handleMouseDown : undefined}
               onMouseLeave={isZoomed ? handleMouseUp : undefined}
               onMouseUp={isZoomed ? handleMouseUp : undefined}
               onMouseMove={isZoomed ? handleMouseMove : undefined}
+              onTouchStart={isZoomed ? handleTouchStart : undefined}
+              onTouchEnd={isZoomed ? handleTouchEnd : undefined}
+              onTouchMove={isZoomed ? handleTouchMove : undefined}
               onClick={() => {
                 if (!isZoomed) setIsZoomed(true);
               }}

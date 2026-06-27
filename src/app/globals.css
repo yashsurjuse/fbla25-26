@@ -479,3 +479,8 @@ body label * {
 .animate-stagger-fade > *:nth-child(8) { animation-delay: 0.4s; }
 .animate-stagger-fade > *:nth-child(n+9) { animation-delay: 0.45s; }
 
+/* Override Google Translate highlight on translated text */
+body .goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}

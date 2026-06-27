@@ -34,7 +34,7 @@ function HeroCell({ cell, index }: { cell: (typeof HERO_CELLS)[number]; index: n
 
   return (
     <div
-      className={`group relative w-full h-full overflow-hidden bg-[#e9e3dd] ${hovered ? "z-[6]" : "z-0"}`}
+      className={`group relative w-full h-full overflow-hidden bg-[#e9e3dd] ${hovered ? "z-[6]" : "z-0"} ${index >= 6 ? "hidden md:block" : ""}`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -77,7 +77,7 @@ export default function HeroMosaic() {
 
       {/* Center Text Overlay */}
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center z-10 pt-[84px]">
-        <h1 className="font-display text-[clamp(3.5rem,7vw,7rem)] font-black leading-[0.85] tracking-tight text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.85)] text-center">
+        <h1 className="font-display text-5xl md:text-[clamp(3.5rem,7vw,7rem)] font-black leading-[0.85] tracking-tight text-white drop-shadow-[0_8px_30px_rgba(0,0,0,0.85)] text-center">
           ART.<br />
           HISTORY.<br />
           CULTURE.<br />

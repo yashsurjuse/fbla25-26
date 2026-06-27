@@ -50,9 +50,9 @@ export default function SiteFooter() {
                   type="email"
                   required
                   placeholder="Your email address"
-                  className="h-12 flex-1 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-white/40 focus:border-white/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-white transition-all"
+                  className="h-12 w-full sm:flex-1 shrink-0 rounded-full border border-white/20 bg-white/5 px-5 text-sm text-white placeholder:text-white/40 focus:border-white/50 focus:bg-white/10 focus:outline-none focus:ring-1 focus:ring-white transition-all"
                 />
-                <button type="submit" className="h-12 rounded-full bg-white px-6 text-sm font-bold text-black transition-transform hover:scale-105 shadow-[0_4px_20px_rgba(255,255,255,0.15)]">
+                <button type="submit" className="h-12 w-full sm:w-auto shrink-0 rounded-full bg-white px-6 text-sm font-bold text-black transition-transform hover:scale-105 shadow-[0_4px_20px_rgba(255,255,255,0.15)]">
                   Subscribe
                 </button>
               </form>

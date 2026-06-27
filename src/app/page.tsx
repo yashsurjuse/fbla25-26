@@ -88,7 +88,7 @@ export default function Home() {
 
       <section className="bg-[color:var(--paper)] py-16 sm:py-24">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-          <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-4">
+          <div className="mb-12 flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between border-b border-black/10 pb-4">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Featured works</p>
             <h2 className="font-display text-5xl font-bold tracking-tight text-black">Circulating</h2>
           </div>
@@ -100,7 +100,7 @@ export default function Home() {
 
       <section className="bg-[color:var(--paper)] py-24 border-t border-black/5">
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-10 animate-stagger-fade">
-          <div className="mb-12 flex items-center justify-between border-b border-black/10 pb-4">
+          <div className="mb-12 flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between border-b border-black/10 pb-4">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-black/40">Plan your visit</p>
             <h2 className="font-display text-5xl font-bold tracking-tight text-black">Locations & Hours</h2>
           </div>

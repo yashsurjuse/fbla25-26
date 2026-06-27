@@ -89,7 +89,7 @@ export default function VisitPage() {
 
         <div className="relative mx-auto w-full max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">Visitor Information</p>
-          <h1 className="mt-2 font-display text-6xl font-semibold leading-[0.95] sm:text-7xl">Plan Your Visit</h1>
+          <h1 className="mt-2 font-display text-5xl font-semibold leading-[0.95] sm:text-7xl">Plan Your Visit</h1>
           <p className="mt-4 max-w-3xl text-lg text-white/85">
             Plan your day at The Metropolitan Museum of Art with opening hours, ticket rates, location details, and practical
             guidance before arrival.
@@ -98,7 +98,7 @@ export default function VisitPage() {
       </section>
 
       <section className="mx-auto mt-8 grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10">
-        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-6 sm:p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <h2 className="font-display text-4xl font-semibold text-black">Hours</h2>
           <ul className="mt-4 space-y-2 text-base text-black/80">
             {museumInfo.hours.map((item) => (
@@ -128,7 +128,7 @@ export default function VisitPage() {
           </button>
         </article>
 
-        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-6 sm:p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
              <h2 className="font-display text-4xl font-semibold text-black">The Met Fifth Avenue</h2>
              <button onClick={() => { setSelectedBuildingForMap("MET"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
@@ -155,7 +155,7 @@ export default function VisitPage() {
           </div>
         </article>
 
-        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-6 sm:p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
            <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
              <h2 className="font-display text-4xl font-semibold text-black">The Met Cloisters</h2>
              <button onClick={() => { setSelectedBuildingForMap("MET_CLOISTERS"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
@@ -174,7 +174,7 @@ export default function VisitPage() {
            </div>
         </article>
 
-        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-6 sm:p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
            <h2 className="font-display text-4xl font-semibold text-black">Food and Drink</h2>
            <p className="mt-2 text-black/70 text-sm mb-6">Met Members and Patrons receive a 10% discount in all public restaurants at The Met Fifth Avenue and The Met Cloisters.</p>
            <div className="space-y-4">
@@ -244,7 +244,7 @@ export default function VisitPage() {
               {ticketTypes.map((type) => (
                 <div
                   key={type.id}
-                  className={`flex flex-col justify-between gap-4 rounded-[1.5rem] border p-6 md:flex-row md:items-center transition-all ${
+                  className={`flex flex-col justify-between gap-4 rounded-[1.5rem] border p-5 sm:p-6 md:flex-row md:items-center transition-all ${
                     type.id === "child" && paidTickets === 0
                       ? "border-black/5 bg-black/5 opacity-70"
                       : "border-white/50 bg-white/40 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.03)]"

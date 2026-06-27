@@ -34,14 +34,14 @@ export default function MembershipPage() {
     <div className="bg-[#f3f2f0] px-4 py-14 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto w-full max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[0.12em] text-black/55">Membership</p>
-        <h1 className="mt-2 font-display text-6xl font-semibold leading-[0.92] text-black sm:text-7xl">Become a Member</h1>
+        <h1 className="mt-2 font-display text-5xl font-semibold leading-[0.92] text-black sm:text-7xl">Become a Member</h1>
         <p className="mt-4 max-w-3xl text-lg text-black/75">
           Choose a membership tier and complete checkout to unlock year-round museum benefits.
         </p>
 
         <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {membershipTiers.map((tier, index) => (
-            <article key={tier.id} className={`glass-card no-hover flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 ${index === 4 ? "xl:col-start-2" : ""}`}>
+            <article key={tier.id} className={`glass-card no-hover flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-6 sm:p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 ${index === 4 ? "xl:col-start-2" : ""}`}>
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Tier</p>
               <h2 className="mt-2 font-display text-4xl font-semibold text-black">{tier.name}</h2>
               <p className="mt-2 text-3xl font-semibold text-black">${tier.price}</p>
@@ -78,7 +78,7 @@ export default function MembershipPage() {
 
         {mounted && checkoutTier ? createPortal(
             <div className="fixed inset-0 z-[120] flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm popup-backdrop-enter" role="dialog" aria-modal="true" aria-label="Membership Years">
-              <div className="w-full max-w-lg rounded-[2.5rem] border border-black/10 bg-white p-10 shadow-[0_32px_80px_rgba(0,0,0,0.12)] popup-panel-enter">
+              <div className="w-full max-w-lg rounded-[2.5rem] border border-black/10 bg-white p-6 sm:p-10 shadow-[0_32px_80px_rgba(0,0,0,0.12)] popup-panel-enter">
               <h2 className="font-display text-4xl font-semibold text-black">Membership Checkout</h2>
               <p className="mt-2 text-black/75">{checkoutTier.name} tier</p>
 
