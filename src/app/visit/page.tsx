@@ -98,7 +98,7 @@ export default function VisitPage() {
       </section>
 
       <section className="mx-auto mt-8 grid w-full max-w-7xl gap-6 px-4 sm:px-6 lg:grid-cols-[1fr_1fr] lg:px-10">
-        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <h2 className="font-display text-4xl font-semibold text-black">Hours</h2>
           <ul className="mt-4 space-y-2 text-base text-black/80">
             {museumInfo.hours.map((item) => (
@@ -128,7 +128,7 @@ export default function VisitPage() {
           </button>
         </article>
 
-        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
              <h2 className="font-display text-4xl font-semibold text-black">The Met Fifth Avenue</h2>
              <button onClick={() => { setSelectedBuildingForMap("MET"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
@@ -155,7 +155,7 @@ export default function VisitPage() {
           </div>
         </article>
 
-        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
            <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4 mb-4">
              <h2 className="font-display text-4xl font-semibold text-black">The Met Cloisters</h2>
              <button onClick={() => { setSelectedBuildingForMap("MET_CLOISTERS"); setIsMapOpen(true); }} className="rounded-full bg-black px-4 py-2 text-xs font-bold text-white shadow-md hover:scale-[1.02] transition-transform">
@@ -174,7 +174,7 @@ export default function VisitPage() {
            </div>
         </article>
 
-        <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
            <h2 className="font-display text-4xl font-semibold text-black">Food and Drink</h2>
            <p className="mt-2 text-black/70 text-sm mb-6">Met Members and Patrons receive a 10% discount in all public restaurants at The Met Fifth Avenue and The Met Cloisters.</p>
            <div className="space-y-4">
@@ -219,7 +219,7 @@ export default function VisitPage() {
 
       {showCheckout ? (
         <section ref={checkoutRef} className="mx-auto mt-8 w-full max-w-7xl px-4 sm:px-6 lg:px-10">
-          <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl mt-4">
+          <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-10 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl mt-4">
             <header className="flex flex-col gap-4 border-b border-black/10 pb-4 md:flex-row md:items-end md:justify-between relative z-[9999] isolate">
               <div>
                 <h2 className="font-display text-4xl font-semibold text-black">Plan Your Visit</h2>

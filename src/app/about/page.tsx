@@ -30,7 +30,7 @@ export default function AboutPage() {
 
       {/* Main Content */}
       <section className="mx-auto max-w-5xl px-4 pt-16 sm:px-6 lg:px-10">
-        <div className="prose prose-lg prose-black max-w-none mx-auto glass-card bg-white/70 backdrop-blur-2xl p-8 sm:p-12 md:p-16 rounded-[3rem] shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60">
+        <div className="prose prose-lg prose-black max-w-none mx-auto glass-card no-hover bg-white/70 backdrop-blur-2xl p-8 sm:p-12 md:p-16 rounded-[3rem] shadow-[0_8px_32px_rgba(0,0,0,0.04)] border border-white/60">
           <h2 className="text-3xl font-display font-semibold mb-6 text-black">
             The Metropolitan Museum of Art
           </h2>

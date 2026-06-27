@@ -41,7 +41,7 @@ export default function MembershipPage() {
 
         <section className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {membershipTiers.map((tier, index) => (
-            <article key={tier.id} className={`glass-card flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 hover:-translate-y-2 ${index === 4 ? "xl:col-start-2" : ""}`}>
+            <article key={tier.id} className={`glass-card no-hover flex h-full flex-col rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl transition-transform duration-500 ${index === 4 ? "xl:col-start-2" : ""}`}>
               <p className="text-xs font-semibold uppercase tracking-[0.1em] text-black/55">Tier</p>
               <h2 className="mt-2 font-display text-4xl font-semibold text-black">{tier.name}</h2>
               <p className="mt-2 text-3xl font-semibold text-black">${tier.price}</p>

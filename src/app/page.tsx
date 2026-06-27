@@ -105,7 +105,7 @@ export default function Home() {
             <h2 className="font-display text-5xl font-bold tracking-tight text-black">Locations & Hours</h2>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="glass-card flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-xl relative">
+            <article className="glass-card no-hover flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-xl relative">
               <div className="h-56 w-full relative z-[1]">
                 <img src="https://cdn.sanity.io/images/cctd4ker/production/16b5962817050737cd8bbe4284c8e4f71a81bfa9-5120x2880.jpg" alt="The Met Fifth Avenue" className="absolute inset-0 w-full h-full object-cover" />
               </div>
@@ -129,7 +129,7 @@ export default function Home() {
               </div>
             </article>
 
-            <article className="glass-card flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-xl relative">
+            <article className="glass-card no-hover flex flex-col justify-between overflow-hidden bg-white/70 backdrop-blur-xl relative">
               <div className="h-56 w-full relative z-[1]">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/The_Met_Cloisters.jpg" alt="The Met Cloisters" className="absolute inset-0 w-full h-full object-cover" />
               </div>

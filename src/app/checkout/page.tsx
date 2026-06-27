@@ -48,7 +48,7 @@ export default function CheckoutPage() {
         </div>
 
         {!hasItems ? (
-          <div className="glass-card rounded-[2.5rem] border border-black/10 bg-white/70 p-8">
+          <div className="glass-card no-hover rounded-[2.5rem] border border-black/10 bg-white/70 p-8">
             <h2 className="font-display text-4xl font-semibold text-black">Your cart is empty</h2>
             <p className="mt-3 text-black/75">Add tickets or a membership plan before checking out.</p>
             <div className="mt-6 flex flex-wrap gap-4">
@@ -63,7 +63,7 @@ export default function CheckoutPage() {
         ) : (
           <form ref={checkoutFormRef} className="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]" onSubmit={(event) => event.preventDefault()}>
             <section className="space-y-6">
-              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
+              <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Contact Details</h2>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium" placeholder="First name" />
@@ -73,7 +73,7 @@ export default function CheckoutPage() {
                 </div>
               </article>
 
-              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
+              <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Billing Address</h2>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <input required className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Street address" />
@@ -84,7 +84,7 @@ export default function CheckoutPage() {
                 </div>
               </article>
 
-              <article className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
+              <article className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 backdrop-blur-2xl p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
                 <h2 className="font-display text-4xl font-semibold text-black">Payment</h2>
                 <div className="mt-6 grid gap-4 sm:grid-cols-2">
                   <input required minLength={13} className="h-14 w-full rounded-2xl border-2 border-black/20 bg-white/40 px-5 backdrop-blur-md focus:border-black/50 focus:bg-white/80 shadow-inner transition-all outline-none text-black placeholder-black/50 font-medium sm:col-span-2" placeholder="Card number" />
@@ -95,7 +95,7 @@ export default function CheckoutPage() {
               </article>
             </section>
 
-            <aside className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-8 h-fit backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
+            <aside className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-8 h-fit backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.06)]">
               <h2 className="font-display text-4xl font-semibold text-black">Order Summary</h2>
               <div className="mt-6 space-y-4">
                 {items.map((item, index) => (

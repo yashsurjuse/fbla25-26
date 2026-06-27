@@ -9,7 +9,7 @@ export default function AccountPage() {
   return (
     <div className="bg-[#f2f2f2] px-4 py-14 pt-32 sm:px-6 lg:px-10">
       <div className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[1fr_1.1fr]">
-        <section className="glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <section className="glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <h1 className="font-display text-6xl font-semibold leading-[0.92] text-black">Member Access</h1>
           <p className="mt-3 text-black/75 text-lg">
             Sign in to manage bookings, membership benefits, and museum preferences.
@@ -27,7 +27,7 @@ export default function AccountPage() {
           </div>
         </section>
 
-        <section className="flex items-center glass-card rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
+        <section className="flex items-center glass-card no-hover rounded-[2.5rem] border border-white/40 bg-white/60 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl">
           <div className="w-full">
           <div className="mb-6 inline-flex rounded-full border border-white/50 bg-white/40 p-1 backdrop-blur-sm shadow-[0_4px_16px_rgba(0,0,0,0.03)]">
             <button

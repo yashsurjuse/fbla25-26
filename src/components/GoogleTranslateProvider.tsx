@@ -41,6 +41,24 @@ declare global {
   }
 }
 
+if (typeof window !== "undefined" && typeof Node !== "undefined" && Node.prototype) {
+  const originalRemoveChild = Node.prototype.removeChild;
+  Node.prototype.removeChild = function (child) {
+    if (child.parentNode !== this) {
+      return child;
+    }
+    return originalRemoveChild.apply(this, arguments as any);
+  };
+  
+  const originalInsertBefore = Node.prototype.insertBefore;
+  Node.prototype.insertBefore = function (newNode, referenceNode) {
+    if (referenceNode && referenceNode.parentNode !== this) {
+      return newNode;
+    }
+    return originalInsertBefore.apply(this, arguments as any);
+  };
+}
+
 /**
  * Invisible provider that loads the Google Translate widget and keeps it
  * hidden. The LanguageSelector drives the zustand store; this component
@@ -153,7 +171,8 @@ export default function GoogleTranslateProvider() {
       .VIpgJd-ZVi9od-SmfZ-OEVmcd,
       .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
       .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
-      .skiptranslate {
+      .skiptranslate,
+      iframe.skiptranslate {
         display: none !important;
         visibility: hidden !important;
         height: 0 !important;
