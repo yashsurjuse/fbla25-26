@@ -143,14 +143,14 @@ export default function SourcesPage() {
         <div className="text-center mb-8">
           <h2 className="font-display text-4xl sm:text-5xl font-bold tracking-tight text-black mb-4">Works Cited</h2>
           <p className="text-black/70 max-w-xl mx-auto text-sm sm:text-base">
-            Sources used in the design and content creation, formatted in MLA.
+            Sources used in the design and content of this website.
           </p>
         </div>
 
         {/* Slide Controls */}
         <div className="flex items-center justify-between mb-6 bg-white p-2 rounded-full border border-black/10 shadow-sm max-w-xs mx-auto w-full">
-          <button 
-            onClick={() => setActiveSlide(0)} 
+          <button
+            onClick={() => setActiveSlide(0)}
             disabled={activeSlide === 0}
             className={`p-2 rounded-full transition-colors ${activeSlide === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-black/5 text-black"}`}
           >
@@ -159,8 +159,8 @@ export default function SourcesPage() {
           <span className="font-semibold text-sm uppercase tracking-widest text-black">
             Slide {activeSlide + 1} of {slides.length}
           </span>
-          <button 
-            onClick={() => setActiveSlide(1)} 
+          <button
+            onClick={() => setActiveSlide(1)}
             disabled={activeSlide === 1}
             className={`p-2 rounded-full transition-colors ${activeSlide === 1 ? "opacity-30 cursor-not-allowed" : "hover:bg-black/5 text-black"}`}
           >
