@@ -132,14 +132,13 @@ export default function GoogleTranslateProvider() {
           "#goog-gt-tt .close, .goog-te-banner-frame"
         );
         if (restoreBtn) restoreBtn.click();
-        // Also try setting select to empty
         select.value = "en";
-        select.dispatchEvent(new Event("change"));
+        select.dispatchEvent(new Event("change", { bubbles: true }));
         return true;
       }
 
       select.value = targetLang;
-      select.dispatchEvent(new Event("change"));
+      select.dispatchEvent(new Event("change", { bubbles: true }));
       return true;
     };
 
@@ -151,53 +150,6 @@ export default function GoogleTranslateProvider() {
 
     return () => clearInterval(interval);
   }, [language]);
-
-  /* 3. Hide all Google Translate visual artifacts with a style tag */
-  useEffect(() => {
-    const style = document.createElement("style");
-    style.id = "gt-hide-styles";
-    style.textContent = `
-      /* Hide the Google Translate banner frame */
-      .goog-te-banner-frame,
-      .goog-te-balloon-frame,
-      #goog-gt-tt,
-      .goog-te-ftab-link,
-      .goog-tooltip,
-      .goog-tooltip:hover,
-      .goog-text-highlight,
-      #google_translate_element,
-      .VIpgJd-ZVi9od-ORHb-OEVmcd,
-      .VIpgJd-ZVi9od-xl07Ob-lTBxed,
-      .VIpgJd-ZVi9od-SmfZ-OEVmcd,
-      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
-      .VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
-      .skiptranslate,
-      iframe.skiptranslate {
-        display: none !important;
-        visibility: hidden !important;
-        height: 0 !important;
-        overflow: hidden !important;
-      }
-      /* Fix body top offset that Google Translate adds */
-      body {
-        top: 0 !important;
-        position: static !important;
-      }
-      /* Prevent Google Translate from messing with font styling */
-      .translated-ltr, .translated-rtl {
-        font: inherit !important;
-      }
-      /* Hide the Google branding tooltip on translated text */
-      .goog-te-spinner-pos,
-      .goog-te-spinner {
-        display: none !important;
-      }
-    `;
-    document.head.appendChild(style);
-    return () => {
-      style.remove();
-    };
-  }, []);
 
   return null; // This component renders nothing
 }

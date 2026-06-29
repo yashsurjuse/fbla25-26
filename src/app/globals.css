@@ -474,6 +474,200 @@ body label * {
 .animate-stagger-fade > *:nth-child(3) { animation-delay: 0.15s; }
 .animate-stagger-fade > *:nth-child(4) { animation-delay: 0.2s; }
 .animate-stagger-fade > *:nth-child(5) { animation-delay: 0.25s; }
+@keyframes popup-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translate3d(14px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes hero-banner-reveal {
+  from {
+    opacity: 0;
+    transform: scaleY(0.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hero-logo-reveal {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes circulating-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+    filter: blur(2px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-mosaic-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 2px;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Hero Mosaic Grid                                                   */
+/* ------------------------------------------------------------------ */
+.hero-mosaic-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 4px; /* Slightly smaller frame so you can see the background */
+  background-color: #e9e3dd;
+}
+
+.hero-center-block {
+  grid-area: 2 / 2 / 5 / 4; /* Spans rows 2, 3, 4 and cols 2, 3 */
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .museum-pattern {
+    background-size: 26px 26px, 26px 26px, 100% 100%, 100% 100%;
+  }
+}
+
+/* 22nd Century Pristine Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+}
+
+.glass-nav {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.35);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  backdrop-filter: blur(32px) saturate(250%) contrast(110%);
+  -webkit-backdrop-filter: blur(32px) saturate(250%) contrast(110%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 100%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glass-card > *:not(.absolute) {
+  position: relative;
+  z-index: 1;
+}
+
+.glass-card:not(.no-hover):hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(48px) saturate(300%) contrast(120%);
+  -webkit-backdrop-filter: blur(48px) saturate(300%) contrast(120%);
+}
+
+.pill-btn {
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pill-btn-dark {
+  background: var(--ink);
+  color: var(--paper) !important;
+  border: 1px solid var(--ink);
+}
+
+.pill-btn-dark:hover {
+  background: var(--paper);
+  color: var(--ink) !important;
+}
+
+.pill-btn-light {
+  background: var(--paper);
+  color: var(--ink) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.pill-btn-light:hover {
+  background: var(--ink);
+  color: var(--paper) !important;
+  border-color: var(--ink);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.animate-stagger-fade > * {
+  opacity: 0;
+  animation: popup-rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-stagger-fade > *:nth-child(1) { animation-delay: 0.05s; }
+.animate-stagger-fade > *:nth-child(2) { animation-delay: 0.1s; }
+.animate-stagger-fade > *:nth-child(3) { animation-delay: 0.15s; }
+.animate-stagger-fade > *:nth-child(4) { animation-delay: 0.2s; }
+.animate-stagger-fade > *:nth-child(5) { animation-delay: 0.25s; }
 .animate-stagger-fade > *:nth-child(6) { animation-delay: 0.3s; }
 .animate-stagger-fade > *:nth-child(7) { animation-delay: 0.35s; }
 .animate-stagger-fade > *:nth-child(8) { animation-delay: 0.4s; }
@@ -483,4 +677,42 @@ body label * {
 body .goog-text-highlight {
   background-color: transparent !important;
   box-shadow: none !important;
+}
+
+/* Hide all Google Translate visual artifacts */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-te-ftab-link,
+.goog-tooltip,
+.goog-tooltip:hover,
+#google_translate_element,
+.VIpgJd-ZVi9od-ORHb-OEVmcd,
+.VIpgJd-ZVi9od-xl07Ob-lTBxed,
+.VIpgJd-ZVi9od-SmfZ-OEVmcd,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf,
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf-ti6hGc,
+.skiptranslate,
+iframe.skiptranslate {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fix body top offset that Google Translate adds */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+/* Prevent Google Translate from messing with font styling */
+.translated-ltr, .translated-rtl {
+  font: inherit !important;
+}
+
+/* Hide the Google branding tooltip on translated text */
+.goog-te-spinner-pos,
+.goog-te-spinner {
+  display: none !important;
 }
