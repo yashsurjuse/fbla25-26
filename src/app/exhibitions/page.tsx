@@ -16,7 +16,7 @@ function ExhibitionsContent() {
   const [exhibitionsData, setExhibitionsData] = useState<any[]>([]);
   const [selectedExhibition, setSelectedExhibition] = useState<any | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState<"all" | "current" | "past" | "future">("all");
+  const [statusFilter, setStatusFilter] = useState<"all" | "current" | "past">("all");
   const [featuredWorks, setFeaturedWorks] = useState<MetObject[]>([]);
   const [loadingWorks, setLoadingWorks] = useState(false);
   const router = useRouter();
@@ -99,7 +99,7 @@ function ExhibitionsContent() {
                 className="w-full max-w-md rounded-full border border-black/30 bg-white/50 backdrop-blur-md px-6 py-3.5 text-sm font-semibold text-black outline-none placeholder:text-black/40 focus:border-black/50 focus:bg-white shadow-[0_4px_16px_rgba(0,0,0,0.02)] transition-all"
             />
             <div className="flex flex-wrap gap-2">
-              {(["all", "current", "future", "past"] as const).map((status) => (
+              {(["all", "current", "past"] as const).map((status) => (
                 <button
                   key={status}
                   onClick={() => setStatusFilter(status)}
