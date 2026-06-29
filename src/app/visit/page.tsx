@@ -252,7 +252,8 @@ export default function VisitPage() {
                 >
                   <div>
                     <p className="text-lg font-semibold text-black">
-                      {type.label} <span className="text-black/60">${type.price.toFixed(2)}</span>{" "}
+                      {type.label}{" "}
+                      <span className="text-black/60">${type.price.toFixed(2)}</span>{" "}
                       {type.price === 0 ? <span className="text-black/55">(Included)</span> : null}
                     </p>
                     <p className="text-xs uppercase tracking-[0.14em] text-black/55">{type.description}</p>
