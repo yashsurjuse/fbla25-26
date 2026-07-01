@@ -86,7 +86,7 @@ export default function HeroMosaic() {
         </h1>
         <Link
           href="/visit"
-          className="pointer-events-auto mt-10 rounded-[2rem] bg-white px-8 py-3 text-sm font-bold tracking-widest text-black hover:bg-black hover:text-white transition-colors duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
+          className="pointer-events-auto mt-10 rounded-[2rem] bg-white px-8 py-3 text-sm font-bold tracking-widest text-black hover:bg-black hover:!text-white transition-colors duration-300 shadow-[0_8px_30px_rgba(0,0,0,0.2)]"
         >
           PLAN YOUR VISIT
         </Link>
